@@ -1,21 +1,99 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<td-layout>
+  <!--Menu content-->
+  <td-navigation-drawer flex [sidenavTitle]="name" logo="assets:covalent">
+    <mat-nav-list>
+      <a *ngFor="let item of menu_routes; let i=index" mat-list-item>
+        <mat-icon>{{item.icon}}</mat-icon>
+        {{item.title}}
+        <!--Divider for 0 index = Home, the movies block and tv series -->
+        <div *ngIf="i==0 || item.title == 'Top rated movies' || item.title == 'Top rated TV series'">
+          <mat-divider class="bgc-grey-800"></mat-divider>
+        </div>
+      </a>
+    </mat-nav-list>
+    <div td-navigation-drawer-menu>
+      <mat-nav-list>
+        <a *ngFor="let item of usermenu" mat-list-item>
+          <mat-icon>{{item.icon}}</mat-icon>
+          {{item.title}}
+        </a>
+      </mat-nav-list>
+    </div>
+  </td-navigation-drawer>
+  <!--End Menu content-->
+  
+  <td-layout-nav color="primary" logo="assets:covalent" navigationRoute="/">
+    <button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div td-toolbar-content layout="row" layout-align="start center" class="" flex>
+      <span hide-gt-xs class="tc-blue-500 mat-subhead">Movies</span>
+      <span hide-xs class="tc-blue-500 mat-subhead">Movies</span>
+      <span flex></span>
+      <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
+        <td-notification-count color="accent" [notifications]="12">
+          <mat-icon>notifications</mat-icon>
+        </td-notification-count>
+      </button>
+      <mat-menu #notificationsMenu="matMenu">
+        <td-menu>
+          <div td-menu-header class="mat-subhead">Job Openings</div>
+          <mat-nav-list dense>
+            <a mat-list-item>
+              <mat-icon mat-list-avatar>fiber_new</mat-icon>
+              <h4 matLine>
+                <span class="text-wrap">Sr. Frontend Engineer</span>
+              </h4>
+              <p matLine>UX team</p>
+            </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item>
+              <mat-icon mat-list-avatar>fiber_new</mat-icon>
+              <h4 matLine>
+                <span class="text-wrap">Sr. Data Scientist</span>
+              </h4>
+              <p matLine>Data science team</p>
+            </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item>
+              <mat-icon mat-list-avatar>fiber_new</mat-icon>
+              <h4 matLine>
+                <span class="text-wrap">Sr. DevOps Engineer</span>
+              </h4>
+              <p matLine>DevOps team</p>
+            </a>
+          </mat-nav-list>
+          <a mat-button color="accent" td-menu-footer>
+            View Jobs
+          </a>
+        </td-menu>
+      </mat-menu>
+    </div>
+    <!--Section toolbar-->
 
-<router-outlet></router-outlet>
+    <mat-toolbar class="pad-none bgc-blue-grey-700">
+      <!--pull-bottom-xl pull-top-md make the fuck efect-->
+      <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper" flex>
+        <a mat-tab-link class="toolbar-item" *ngFor="let route of routes; let i = index" [routerLink]="[route['path']]" routerLinkActive
+          #ni="routerLinkActive" [active]="ni.isActive" color="accent">
+          <span hide-xs>{{route['name']}}</span>
+          <span hide-gt-xs>
+            <mat-icon>{{route['icon']}}</mat-icon>
+          </span>
+        </a>
+      </nav>
+    </mat-toolbar>
+    <!--End secction toolbar-->
+    <!-- router outlet goes here -->
+    <router-outlet></router-outlet>
+    <!-- end content -->
+    <app-footer></app-footer>
+    <td-layout-footer>
+      <div layout="row" layout-align="start center">
+        <span class="mat-caption">Made with
+          <mat-icon class="text-md">favorite</mat-icon> by
+          <span class="text-nodecoration tc-blue-700">Harold</span>, built on Angular v6 + Covalent + Angular Material.</span>
+      </div>
+    </td-layout-footer>
+  </td-layout-nav>
+</td-layout>
