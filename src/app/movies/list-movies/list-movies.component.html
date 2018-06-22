@@ -1,8 +1,9 @@
 <div class="app-list-movies">
   <div class="container-movies">
-    <div fxLayout="row wrap" class="flex-grid"  fxLayoutAlign="center">
-      <div flex *ngFor="let item of data.results; let i = index;">
-        <app-movie-card [data]="item"></app-movie-card>
+    
+    <div fxLayout="row wrap"  diameter="20" class="flex-grid" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';" fxLayoutAlign="center">
+      <div flex *ngFor="let item of data.results; let i = index;" >
+        <app-movie-card [data]="item" class="item"></app-movie-card>
       </div>
     </div>
   </div>

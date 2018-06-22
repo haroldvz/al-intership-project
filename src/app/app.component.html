@@ -74,6 +74,7 @@
     <mat-toolbar class="pad-none bgc-blue-grey-700">
       <!--pull-bottom-xl pull-top-md make the fuck efect-->
       <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper" flex>
+
         <a mat-tab-link class="toolbar-item" *ngFor="let route of routes; let i = index" [routerLink]="[route['path']]" routerLinkActive
           #ni="routerLinkActive" [active]="ni.isActive" color="accent">
           <span hide-xs>{{route['name']}}</span>
@@ -85,7 +86,9 @@
     </mat-toolbar>
     <!--End secction toolbar-->
     <!-- router outlet goes here -->
-    <router-outlet></router-outlet>
+    <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+    <router-outlet #o="outlet"></router-outlet>
+    </main>
     <!-- end content -->
     <app-footer></app-footer>
     <td-layout-footer>
