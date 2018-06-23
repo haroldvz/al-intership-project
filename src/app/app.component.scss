@@ -1,8 +1,21 @@
 p {
     font-family: Lato;
-  }
+}
 
-  .mat-tab-link {
+.mat-tab-link {
     max-width: 160px !important;
 }
 
+.toolbar-item {
+    color: white;
+}
+
+.link-mat-list-item:hover {
+    background-color: #455a64 !important;
+}
+
+a.link-mat-list-item.active_item {
+    color: #455a64 !important;
+    background-color: rgba(216, 67, 21, 0.7) !important;
+    font-weight: bold;
+}

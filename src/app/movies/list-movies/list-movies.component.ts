@@ -9,21 +9,6 @@ import { TdLoadingService } from '@covalent/core';
 
 @Component({
   selector: 'app-list-movies',
-  /*animations:[
-    
-    trigger(
-    'query', [
-      transition(
-        '* => start', [
-          query('.item', [style({
-            opacity: 0
-          }), animate('2s', style({
-            opacity: 1
-          }))], {
-            limit: -3
-          }),
-        ]),
-    ]),],*/
   templateUrl: './list-movies.component.html',
   styleUrls: ['./list-movies.component.scss']
 })
@@ -42,9 +27,9 @@ export class ListMoviesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+
     this.routerSubscribe = this.route.params.subscribe(params => {
-      
+
       this.registerLoading();
 
       /*setTimeout(() => {
@@ -67,10 +52,10 @@ export class ListMoviesComponent implements OnInit {
           //this.movies.push(data.results);
         }
       );
-      
+
     });
 
-   
+
 
   }
 

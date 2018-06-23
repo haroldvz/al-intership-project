@@ -16,11 +16,11 @@ export class AppComponent {
 
 
   menu_routes: Object[] = [
-    {
+    /*{
       icon: 'home',
       route: '/',
       title: 'Home',
-    },
+    },*/
     //Movies
     {
       icon: 'library_books',

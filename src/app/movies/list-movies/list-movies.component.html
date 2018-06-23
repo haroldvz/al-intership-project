@@ -1,6 +1,5 @@
 <div class="app-list-movies">
   <div class="container-movies">
-    
     <div fxLayout="row wrap"  diameter="20" class="flex-grid" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';" fxLayoutAlign="center">
       <div flex *ngFor="let item of data.results; let i = index;" >
         <app-movie-card [data]="item" class="item"></app-movie-card>
@@ -8,14 +7,3 @@
     </div>
   </div>
 </div>
-<!--<div class="container-movies">
-<div fxLayout="row wrap" >
-  <mat-grid-list cols="4" gutterSize="5px" fxLayoutAlign="stretch stretch">
-    <mat-grid-tile *ngFor="let movie of data.results;" [rowspan]="2" fxLayoutAlign="stretch stretch">
-      <a [routerLink]="['/movie', movie.id]">
-        <app-movie-card [data]="movie"></app-movie-card>
-      </a>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
-</div>-->

@@ -2,7 +2,9 @@
   <!--Menu content-->
   <td-navigation-drawer flex [sidenavTitle]="name" logo="assets:covalent">
     <mat-nav-list>
-      <a *ngFor="let item of menu_routes; let i=index" mat-list-item>
+      <a class="link-mat-list-item" *ngFor="let item of menu_routes; let i=index" 
+      mat-list-item
+      [routerLink]="[item.route]" routerLinkActive="active_item">
         <mat-icon>{{item.icon}}</mat-icon>
         {{item.title}}
         <!--Divider for 0 index = Home, the movies block and tv series -->
@@ -30,44 +32,6 @@
       <span hide-gt-xs class="tc-blue-500 mat-subhead">Movies</span>
       <span hide-xs class="tc-blue-500 mat-subhead">Movies</span>
       <span flex></span>
-      <button mat-icon-button [matMenuTriggerFor]="notificationsMenu">
-        <td-notification-count color="accent" [notifications]="12">
-          <mat-icon>notifications</mat-icon>
-        </td-notification-count>
-      </button>
-      <mat-menu #notificationsMenu="matMenu">
-        <td-menu>
-          <div td-menu-header class="mat-subhead">Job Openings</div>
-          <mat-nav-list dense>
-            <a mat-list-item>
-              <mat-icon mat-list-avatar>fiber_new</mat-icon>
-              <h4 matLine>
-                <span class="text-wrap">Sr. Frontend Engineer</span>
-              </h4>
-              <p matLine>UX team</p>
-            </a>
-            <mat-divider></mat-divider>
-            <a mat-list-item>
-              <mat-icon mat-list-avatar>fiber_new</mat-icon>
-              <h4 matLine>
-                <span class="text-wrap">Sr. Data Scientist</span>
-              </h4>
-              <p matLine>Data science team</p>
-            </a>
-            <mat-divider></mat-divider>
-            <a mat-list-item>
-              <mat-icon mat-list-avatar>fiber_new</mat-icon>
-              <h4 matLine>
-                <span class="text-wrap">Sr. DevOps Engineer</span>
-              </h4>
-              <p matLine>DevOps team</p>
-            </a>
-          </mat-nav-list>
-          <a mat-button color="accent" td-menu-footer>
-            View Jobs
-          </a>
-        </td-menu>
-      </mat-menu>
     </div>
     <!--Section toolbar-->
 
