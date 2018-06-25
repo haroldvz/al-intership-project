@@ -34,8 +34,9 @@
       <span flex></span>
     </div>
     <!--Section toolbar-->
+    <div>
 
-    <mat-toolbar class="pad-none bgc-blue-grey-700">
+    <mat-toolbar class="pad-none bgc-blue-grey-700 toolbar-navigation">
       <!--pull-bottom-xl pull-top-md make the fuck efect-->
       <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper" flex>
 
@@ -48,6 +49,7 @@
         </a>
       </nav>
     </mat-toolbar>
+  </div>
     <!--End secction toolbar-->
     <!-- router outlet goes here -->
     <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
