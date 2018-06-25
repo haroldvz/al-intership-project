@@ -1,9 +1,34 @@
 <div class="app-list-movies">
+  <!--Category selector-->
+  <div layout="row" class="bgc-grey-700 category">
+    <div class="pad-right-xl pad-left-xl pad-top-xs pad-bottom-xs">
+      <div layout="row">
+        <div layout-xs="row" layout-gt-xs="column">
+          <div class="container-title-categories">
+            <p class="title-categories push-bottom-xs push-top-sm">Category: </p>
+          </div>
+          <mat-form-field class="category-selector pad-left-md pad-top-xs">
+            <mat-select placeholder="Select a category">
+              <mat-option value="option">Option</mat-option>
+              <mat-option value="option">Option</mat-option>
+              <mat-option value="option">Option</mat-option>
+              <mat-option value="option">Option</mat-option>
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End category selector-->
+  <!--Container movies list-->
   <div class="container-movies">
-    <div fxLayout="row wrap"  diameter="20" class="flex-grid" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';" fxLayoutAlign="center">
-      <div flex *ngFor="let item of data.results; let i = index;" >
+    <div fxLayout="row wrap" diameter="20" class="flex-grid" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
+      fxLayoutAlign="center">
+      <div flex *ngFor="let item of data.results; let i = index;">
         <app-movie-card [data]="item" class="item"></app-movie-card>
       </div>
     </div>
   </div>
+  <!--End container movies list-->
 </div>

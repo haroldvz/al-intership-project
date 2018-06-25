@@ -15,11 +15,14 @@ p {
 }
 
 .link-mat-list-item:hover {
-    background-color: #455a64 !important;
+    background-color:#424242 !important;
 }
 
 a.link-mat-list-item.active_item {
-    color: #455a64 !important;
-    background-color: rgba(216, 67, 21, 0.7) !important;
+    color: white !important;
+    background-color: #00796b !important;
     font-weight: bold;
+    .mat-icon{
+        color: white;
+    }
 }

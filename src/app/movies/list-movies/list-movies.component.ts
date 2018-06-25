@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
 import { ResponseDescriptor } from '../../shared/types/response.type';
-import { MovieDescriptor } from '../../shared/types/movies/detail-movie.type';
-import { trigger, animate, style, group, state, animateChild, query, stagger, transition, keyframes } from '@angular/animations';
 import { TdMediaService, TdPagingBarComponent } from '@covalent/core';
 import { TdLoadingService } from '@covalent/core';
 
@@ -16,11 +14,9 @@ export class ListMoviesComponent implements OnInit {
 
   private routerSubscribe: any;
   public data: ResponseDescriptor = new ResponseDescriptor();
-  animate;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private _movie_service: MovieService,
     private _loadingService: TdLoadingService,
     public _mediaService: TdMediaService

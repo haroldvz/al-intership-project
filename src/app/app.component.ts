@@ -8,11 +8,13 @@ import { fadeAnimation } from './shared/animations/animations';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations:[fadeAnimation]
-  
+  animations: [fadeAnimation]
+
 })
 export class AppComponent {
   name = 'Movies';
+
+
 
 
   menu_routes: Object[] = [
@@ -146,5 +148,14 @@ export class AppComponent {
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'covalent-mark',
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
+  }
+
+
+  // Theme toggle
+  get activeTheme(): string {
+    return localStorage.getItem('theme');
+  }
+  theme(theme: string): void {
+    localStorage.setItem('theme', theme);
   }
 }

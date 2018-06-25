@@ -2,25 +2,29 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 //import { HttpModule, JsonpModule } from '@angular/http';
-import {FlexLayoutModule} from '@angular/flex-layout'
+import { FlexLayoutModule } from '@angular/flex-layout'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import {HttpClientModule, HttpClient,HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 
-import { MatButtonModule, MatListModule, MatIconModule, MatCardModule, MatMenuModule, MatInputModule, MatButtonToggleModule,
-         MatProgressSpinnerModule, MatSelectModule, MatSlideToggleModule, MatDialogModule, MatSnackBarModule, MatToolbarModule,
-         MatTabsModule, MatSidenavModule, MatTooltipModule, MatRippleModule, MatRadioModule, MatGridListModule,
-         MatDatepickerModule, MatNativeDateModule, MatSliderModule, MatAutocompleteModule } from '@angular/material';
+import {
+  MatButtonModule, MatListModule, MatIconModule, MatCardModule, MatMenuModule, MatInputModule, MatButtonToggleModule,
+  MatProgressSpinnerModule, MatSelectModule, MatSlideToggleModule, MatDialogModule, MatSnackBarModule, MatToolbarModule,
+  MatTabsModule, MatSidenavModule, MatTooltipModule, MatRippleModule, MatRadioModule, MatGridListModule,
+  MatDatepickerModule, MatNativeDateModule, MatSliderModule, MatAutocompleteModule, MatFormFieldModule
+} from '@angular/material';
 
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-        
 
-import { CovalentCommonModule, CovalentLayoutModule, CovalentMediaModule, CovalentExpansionPanelModule,
-         CovalentStepsModule, CovalentLoadingModule, CovalentDialogsModule, CovalentSearchModule, CovalentPagingModule,
-         CovalentNotificationsModule, CovalentMenuModule, CovalentDataTableModule, CovalentMessageModule, TdMediaService } from '@covalent/core';
+
+import {
+  CovalentCommonModule, CovalentLayoutModule, CovalentMediaModule, CovalentExpansionPanelModule,
+  CovalentStepsModule, CovalentLoadingModule, CovalentDialogsModule, CovalentSearchModule, CovalentPagingModule,
+  CovalentNotificationsModule, CovalentMenuModule, CovalentDataTableModule, CovalentMessageModule, TdMediaService
+} from '@covalent/core';
 import { CommonModule } from '@angular/common';
 
 import { MoviesModule } from './movies/movies.module';
@@ -29,11 +33,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { TvSeriesModule } from './tv-series/tv-series.module';
 import { NotFoundComponent } from './shared/layout/not-found/not-found.component';
+import { CategorySelectorComponent } from './shared/layout/category-selector/category-selector.component';
 
 
 
 @NgModule({
-  imports:      [
+  imports: [
     BrowserModule,
     CommonModule,
     BrowserAnimationsModule,
@@ -80,14 +85,22 @@ import { NotFoundComponent } from './shared/layout/not-found/not-found.component
     CovalentMenuModule,
     CovalentDataTableModule,
     CovalentMessageModule,
+
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
     //My modules
     MoviesModule,
     PeopleModule,
     TvSeriesModule,
     AppRoutingModule
-    ],
-  declarations: [ AppComponent, FooterComponent, NotFoundComponent ],
+  ],
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    NotFoundComponent
+  ],
   providers: [TdMediaService],
-  bootstrap:    [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
