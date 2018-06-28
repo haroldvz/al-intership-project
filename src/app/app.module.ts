@@ -33,7 +33,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { TvSeriesModule } from './tv-series/tv-series.module';
 import { NotFoundComponent } from './shared/layout/not-found/not-found.component';
-import { CategorySelectorComponent } from './shared/layout/category-selector/category-selector.component';
 
 
 

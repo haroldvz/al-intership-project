@@ -1,10 +1,10 @@
 <div class="app-movie-card">
-  <mat-card class="movie-card flex-item" flex-item style="width:300px;">
+  <mat-card class="movie-card flex-item" flex-item>
     <div class="">
       <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{data.poster_path}}">
     </div>
-    <mat-card-title class="movie-card-title">{{data.title}}</mat-card-title>
-    <mat-card-subtitle>100% Width Image</mat-card-subtitle>
+    <mat-card-title class="movie-card-title"><a [routerLink]="['/movie/', data.id]">{{data.title}}</a></mat-card-title>
+    <mat-card-subtitle>{{data.popularity}}</mat-card-subtitle>
     <mat-card-content>
     </mat-card-content>
   </mat-card>

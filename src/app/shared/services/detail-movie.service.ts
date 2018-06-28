@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { map } from 'rxjs/internal/operators/map';
 import { MovieDescriptor } from '../types/movies/detail-movie.type';
+import { ApiService } from './api.service';
 
 
 @Injectable({
@@ -17,7 +18,20 @@ export class DetailMovieService {
    * @param {HttpClient} _http
    * @memberof DetailMovieService
    */
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient,
+    private _api_service: ApiService) { }
+
+
+
+  getMovieDetail(id_movie: number) {
+    let url = this.url + id_movie;
+    let args = '';
+    return this._api_service.get(url, args).pipe(map(
+      (data) => {
+        return MovieDescriptor.import(data);
+      }
+    ));
+  }
 
 
   /**
@@ -28,13 +42,13 @@ export class DetailMovieService {
    * @returns
    * @memberof MovieService
    */
-  sendRequest(url: string, args:string = '',id_movie:number){
+  /*sendRequest(url: string, args: string = '', id_movie: number) {
     url += (id_movie + '?api_key=' + environment.api_key + args);
     return this._http.get(url).pipe(map(
       (data) => {
         return MovieDescriptor.import(data);
       }
     ));
-  }
+  }*/
 
 }

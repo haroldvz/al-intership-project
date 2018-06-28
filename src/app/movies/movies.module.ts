@@ -17,7 +17,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   imports: [
     MovieRoutingModule,
@@ -30,7 +30,8 @@ import { MatInputModule } from '@angular/material/input';
     BrowserModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatTabsModule
 
   ],
   declarations: [

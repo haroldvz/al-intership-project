@@ -1,0 +1,62 @@
+
+.main-container {
+    position: relative;
+    .movie-detail-backdrop {
+        width: 100%;
+        height: auto;
+        z-index: 0;
+        display: block;
+        background-position: 50% 50%;
+        left: 0;
+        right: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        
+    }
+    .poster-image {
+        padding-top: 2%;
+        height: 450px;
+        width: auto;
+    }
+    .detail-description-content {
+        padding-right: 5%;
+        padding-left: 2%;
+        
+        padding-bottom: 2%;
+        .movie-title {
+            h2 {
+                font-family: 'Source Sans Pro', Arial, sans-serif;
+                font-size: 2em;
+                color: white;
+            }
+            span {
+                font-family: 'Source Sans Pro', Arial, sans-serif;
+                font-size: 20px;
+                margin-left: 5px;
+                color: white;
+            }
+            .genres {
+                font-family: 'Source Sans Pro', Arial, sans-serif;
+                font-size: 15px;
+            }
+        }
+        .movie-overview {
+            h2 {
+                font-family: 'Source Sans Pro', Arial, sans-serif;
+                font-size: 1.2m;
+                color: white;
+            }
+            color: white;
+            text-align: justify;
+        }
+        .featured-crew {
+            h2 {
+                font-family: 'Source Sans Pro', Arial, sans-serif;
+                font-size: 1.2m;
+                color: white;
+            }
+            color: white;
+            text-align: justify;
+        }
+    }
+}

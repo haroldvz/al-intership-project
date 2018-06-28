@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {map} from 'rxjs/internal/operators/map';
+import { map } from 'rxjs/internal/operators/map';
 import { environment } from './../../../environments/environment';
 import { ResponseDescriptor } from './../types/response.type';
+import { ApiService } from './api.service';
 
 @Injectable()
 export class MovieService {
@@ -10,48 +11,44 @@ export class MovieService {
   url = environment.api_url + '/movie';
 
   /**
-   * Creates an instance of MovieService.
-   * @param {HttpClient} _http
+   *Creates an instance of MovieService.
+   * @param {ApiService} _api_service
    * @memberof MovieService
    */
-  constructor(private _http: HttpClient) { }
-  
+  constructor(private _api_service: ApiService) { }
 
   /**
    *
-   *
-   * @param {string} url
-   * @param {string} [args='']
+   * @param {number} page
    * @returns
    * @memberof MovieService
    */
-  sendRequest(url: string, args = ''){
-    url += ('?api_key=' + environment.api_key + args);
-    return this._http.get(url).pipe(map(
+  getTopRatedMovies(page: number) {
+    let url = this.url + '/top-rated';
+    let args = '&page=' + page;
+    return this._api_service.get(url, args).pipe(map(
       (data) => {
         return ResponseDescriptor.import(data);
       }
     ));
   }
 
-
   /**
-   * api endpoint: movies/get-top-rated-movies
+   *
+   *
    * @param {number} page
    * @returns
    * @memberof MovieService
    */
-  getTopRatedMovies(page: number){
-    const url = this.url + '/top_rated';
-    const args = '&page=' + page + '&language=en-US';
-    return this.sendRequest(url, args);
-  }
+  getPopularMovies(page: number) {
+    let url = this.url + '/popular';
+    let args = '&page=' + page;
+    return this._api_service.get(url, args).pipe(map(
+      (data) => {
+        return ResponseDescriptor.import(data);
+      }
+    ));
 
-
-  getPopularMovies(page: number){
-    const url = this.url + '/popular';
-    const args = '&page=' + page + '&language=en-US';
-    return this.sendRequest(url, args);
   }
 
 }
