@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListMoviesComponent } from './list-movies/list-movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { HomeComponent } from './home/home.component';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatIconModule } from '@angular/material';
 import { MovieImagesComponent } from './movie-images/movie-images.component';
 import { MovieCastComponent } from './movie-cast/movie-cast.component';
 import { MovieRoutingModule } from './movie-routing.module';
@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
+
 @NgModule({
   imports: [
     MovieRoutingModule,
@@ -31,7 +32,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule
 
   ],
   declarations: [

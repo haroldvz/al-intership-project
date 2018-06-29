@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MovieDescriptor } from '../../shared/types/movies/detail-movie.type';
 import { TdLoadingService, TdMediaService } from '@covalent/core';
 import { environment } from './../../../environments/environment';
+import { MovieService } from '../../shared/services/movie.service';
+import { CreditsDescriptor } from '../../shared/types/movies/credits.type';
 
 
 
@@ -13,29 +15,31 @@ import { environment } from './../../../environments/environment';
   styleUrls: ['./movie-detail.component.scss']
 })
 export class MovieDetailComponent implements OnInit {
-  
-  private base_img_url_backdrop_path:string = environment.api_image_url + environment.api_image_backdrop_size;
+
+  private base_img_url_backdrop_path: string = environment.api_image_url + environment.api_image_backdrop_size;
   private routerSubscribe;
   private data: MovieDescriptor = new MovieDescriptor();
+  private data_credits: CreditsDescriptor = new CreditsDescriptor();
   private genres;
 
   //use ngClass
   myStyles = {
     'height': '100%',
     'z-index': '2',
-    'padding-left':' 4%',
-    'padding-right':' 4%',
-   
+    'padding-left': ' 4%',
+    'padding-right': ' 4%',
+
     'margin-bottom': '5%',
-    'background-image':' radial-gradient(circle at 20% 50%, rgba('+this.getRandomInt(0,120)+', 40, 38, 0.94) 0%, rgba(44, 39, 17, 0.94) 100%)'
-    }
+    'background': ' radial-gradient(circle at 20% 50%, rgba(' + this.getRandomInt(0, 120) + ', 40, 38, 0.94) 0%, rgba(44, 39, 17, 0.94) 100%)'
+  }
 
   constructor(
     private _movie_detail_service: DetailMovieService,
+    private _movie_service: MovieService,
     private route: ActivatedRoute,
     private _loadingService: TdLoadingService,
     public _mediaService: TdMediaService,
-    ) { }
+  ) { }
 
   ngOnInit() {
 
@@ -67,26 +71,15 @@ export class MovieDetailComponent implements OnInit {
         }
       );
 
+      this._movie_service.getMovieCredits(id).subscribe(
+        (data) => {
+          this.data_credits = data;
+          console.log(data);
+          //this.movies.push(data.results);
+        }
+      );
+
     });
-
-
-    /*st(){
-      this.masEditConfig = {
-        accountId: this.accountId,
-        deploymentId:this.deploymentId,
-        items_count:0,
-        params:this.params
-      }
-    }
-
-    ons(){
-      this.params.offset = 0;
-      this.params.search = value ? value:undefined;
-      this.loadData('all')
-    }*/
-
-
-
 
   }
 
@@ -111,11 +104,6 @@ export class MovieDetailComponent implements OnInit {
   loadingResolve(): void {
     this._loadingService.resolve('movie-detail');
   }
-
-
-
-  
-
 
 
 }

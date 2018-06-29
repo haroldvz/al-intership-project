@@ -17,10 +17,13 @@
         <div fxLayout="column" class="push-lg push-right-none">
           <div fxLayout="column" class="detail-description-content">
             <div class="movie-title">
-              <h2>{{data.title}}
+              <h2>{{data.title}}</h2>
+              <p>
                 <span>({{data.release_date}})</span>
-              </h2>
-              <span class="genres">{{genres}}</span>
+              </p>
+              <p>
+                <span class="genres">{{genres}}</span>
+              </p>
             </div>
             <div class="movie-overview">
               <h2>Overview:</h2>
@@ -28,7 +31,17 @@
             </div>
             <div class="featured-crew">
               <h2>Featured Crew:</h2>
-              <p>{{data.overview}}</p>
+              <div fxLayout="row wrap">
+                <div *ngFor="let item of data_credits.crew | slice:0:10 ; let i = index;">
+                  <p class="feature-crew">
+                    <span class="name">{{item.name}}</span>
+                    <br> <span class="job">{{item.job}}</span>
+                  </p>
+
+                  <!--<app-movie-card [data]="item" class="item"></app-movie-card>-->
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

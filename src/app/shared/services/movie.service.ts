@@ -4,6 +4,8 @@ import { map } from 'rxjs/internal/operators/map';
 import { environment } from './../../../environments/environment';
 import { ResponseDescriptor } from './../types/response.type';
 import { ApiService } from './api.service';
+import { CreditsDescriptor } from '../types/movies/credits.type';
+
 
 @Injectable()
 export class MovieService {
@@ -49,6 +51,23 @@ export class MovieService {
       }
     ));
 
+  }
+
+
+  /**
+   *
+   * @param 
+   * @returns
+   * @memberof MovieService
+   */
+  getMovieCredits(id_movie: number) {
+    let url = this.url + '/'+ id_movie + '/credits';
+    let args = '';
+    return this._api_service.get(url, args).pipe(map(
+      (data) => {
+        return CreditsDescriptor.import(data);
+      }
+    ));
   }
 
 }
