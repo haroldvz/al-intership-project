@@ -5,6 +5,7 @@ import { map } from 'rxjs/internal/operators/map';
 import { MovieDescriptor } from '../types/movies/detail-movie.type';
 import { ApiService } from './api.service';
 import { ResponseDescriptor } from '../types/movies/response.type';
+import { ImagesMoviesDescriptor } from '../types/movies/images.type';
 
 
 @Injectable({
@@ -63,18 +64,21 @@ export class DetailMovieService {
   /**
    *
    *
-   * @param {string} url
-   * @param {string} [args='']
+   * @param {number} id_movie
    * @returns
-   * @memberof MovieService
+   * @memberof DetailMovieService
    */
-  /*sendRequest(url: string, args: string = '', id_movie: number) {
-    url += (id_movie + '?api_key=' + environment.api_key + args);
-    return this._http.get(url).pipe(map(
+  getMovieImages(id_movie:number){
+    let url = this.url + id_movie + '/images';
+    let args = '';
+    return this._api_service.get(url, args).pipe(map(
       (data) => {
-        return MovieDescriptor.import(data);
+        return ImagesMoviesDescriptor.import(data);
       }
     ));
-  }*/
+  }
+
+
+
 
 }

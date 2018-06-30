@@ -18,7 +18,7 @@ export class ApiService {
    * @memberof ApiService
    */
   get(url: string = '', args: string = '') {
-    url += ('?api_key=' + environment.api_key + args + '&language=' + environment.language );
+    url += ('?api_key=' + environment.api_key + args );
     return this._http.get(url);
   }
 
