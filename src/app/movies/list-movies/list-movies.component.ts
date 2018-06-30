@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
-import { ResponseDescriptor } from '../../shared/types/response.type';
+import { ResponseDescriptor } from '../../shared/types/movies/response.type';
 import { TdMediaService, TdPagingBarComponent } from '@covalent/core';
 import { TdLoadingService } from '@covalent/core';
 

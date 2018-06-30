@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from './../../../environments/environment';
-import { ResponseDescriptor } from './../types/response.type';
+import { ResponseDescriptor } from './../types/movies/response.type';
 import { ApiService } from './api.service';
 import { CreditsDescriptor } from '../types/movies/credits.type';
+
 
 
 @Injectable()

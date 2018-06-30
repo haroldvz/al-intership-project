@@ -4,6 +4,7 @@ import { environment } from './../../../environments/environment';
 import { map } from 'rxjs/internal/operators/map';
 import { MovieDescriptor } from '../types/movies/detail-movie.type';
 import { ApiService } from './api.service';
+import { ResponseDescriptor } from '../types/movies/response.type';
 
 
 @Injectable({
@@ -23,12 +24,37 @@ export class DetailMovieService {
 
 
 
+  /**
+   *
+   *
+   * @param {number} id_movie
+   * @returns
+   * @memberof DetailMovieService
+   */
   getMovieDetail(id_movie: number) {
     let url = this.url + id_movie;
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
         return MovieDescriptor.import(data);
+      }
+    ));
+  }
+
+
+  /**
+   *
+   *
+   * @param {number} id_movie
+   * @returns
+   * @memberof DetailMovieService
+   */
+  getSimilarMovies(id_movie: number) {
+    let url = this.url + id_movie + '/similar';
+    let args = '';
+    return this._api_service.get(url, args).pipe(map(
+      (data) => {
+        return ResponseDescriptor.import(data);
       }
     ));
   }

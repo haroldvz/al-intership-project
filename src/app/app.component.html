@@ -63,11 +63,11 @@
         </nav>
       </mat-toolbar>
 
-      </div>
-    
+    </div>
+
     <!--End secction toolbar-->
     <!-- router outlet goes here -->
-    <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+    <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''" class="bgc-grey-500">
       <router-outlet #o="outlet"></router-outlet>
     </main>
     <!-- end content -->
@@ -76,7 +76,7 @@
       <div layout="row" layout-align="start center">
         <span class="mat-caption">Made with
           <mat-icon class="text-md">favorite</mat-icon> by
-          <span class="text-nodecoration tc-blue-700">Harold</span>, built on Angular v6 + Covalent + Angular Material.</span>
+          <span class="text-nodecoration tc-blue-700">Harold</span>, built on Angular v6 + Covalent Teradata + Angular Material.</span>
       </div>
     </td-layout-footer>
   </td-layout-nav>

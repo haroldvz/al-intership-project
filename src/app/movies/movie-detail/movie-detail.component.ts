@@ -22,17 +22,60 @@ export class MovieDetailComponent implements OnInit {
   private data_credits: CreditsDescriptor = new CreditsDescriptor();
   private genres;
 
+  /**
+   *
+   * Nav items array for display detail movie components
+   * @type {Object[]}
+   * @memberof MovieDetailComponent
+   */
+  items_detail: Object[] = [
+    {
+      name: 'Cast',
+      tab_number: 1,
+      icon: 'tv',
+    }, {
+      name: 'Crew',
+      tab_number: 2,
+      icon: 'tv',
+    },
+    {
+      name: 'Similar',
+      tab_number: 3,
+      icon: 'tv',
+    },
+    {
+      name: 'Images',
+      tab_number: 4,
+      icon: 'tv',
+    },
+    {
+      name: 'Videos',
+      tab_number: 5,
+      icon: 'tv',
+    }
+  ];
+
   //use ngClass
-  myStyles = {
+  private myStyles = {
     'height': '100%',
     'z-index': '2',
     'padding-left': ' 4%',
     'padding-right': ' 4%',
-
-    'margin-bottom': '5%',
-    'background': ' radial-gradient(circle at 20% 50%, rgba(' + this.getRandomInt(0, 120) + ', 40, 38, 0.94) 0%, rgba(44, 39, 17, 0.94) 100%)'
+    'background': ' radial-gradient(ellipse at 34% 60%, rgba(' + this.getRandomInt(0, 125) + ', 30, 28, 0.95) 0%, rgba(50, 43, 25, 0.90) 100%)'
   }
 
+  private selected_item: number = 1;
+
+
+  /**
+   *Creates an instance of MovieDetailComponent.
+   * @param {DetailMovieService} _movie_detail_service
+   * @param {MovieService} _movie_service
+   * @param {ActivatedRoute} route
+   * @param {TdLoadingService} _loadingService
+   * @param {TdMediaService} _mediaService
+   * @memberof MovieDetailComponent
+   */
   constructor(
     private _movie_detail_service: DetailMovieService,
     private _movie_service: MovieService,
@@ -79,11 +122,33 @@ export class MovieDetailComponent implements OnInit {
         }
       );
 
+
+
     });
 
   }
 
-  getRandomInt(min, max) {
+
+
+  /**
+   *
+   *
+   * @param {number} item_number
+   * @memberof MovieDetailComponent
+   */
+  setItem(item_number: number): void {
+    this.selected_item = item_number;
+  }
+
+  /**
+   *
+   *
+   * @param {*} min
+   * @param {*} max
+   * @returns {number}
+   * @memberof MovieDetailComponent
+   */
+  getRandomInt(min, max): number {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 

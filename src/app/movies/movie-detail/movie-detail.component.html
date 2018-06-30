@@ -31,39 +31,54 @@
             </div>
             <div class="featured-crew">
               <h2>Featured Crew:</h2>
-              <div fxLayout="row wrap">
-                <div *ngFor="let item of data_credits.crew | slice:0:10 ; let i = index;">
-                  <p class="feature-crew">
-                    <span class="name">{{item.name}}</span>
-                    <br> <span class="job">{{item.job}}</span>
-                  </p>
-
-                  <!--<app-movie-card [data]="item" class="item"></app-movie-card>-->
+              <div fxLayout="row wrap" fxLayoutGap="20px">
+                <div flex *ngFor="let item of data_credits.crew | slice:0:3 ; let i = index;">
+                  <div>
+                    {{item.name}}
+                    <br> {{item.job}}
+                  </div>
                 </div>
               </div>
-
+              <br>
+              <div fxLayout="row wrap" fxLayoutGap="20px">
+                <div flex *ngFor="let item of data_credits.crew | slice:3:6 ; let i = index;">
+                  <div style="text-align:left !important;">
+                    {{item.name}}
+                    <br> {{item.job}}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-    <mat-tab label="Cast">
-      <div fxLayout="column">
-        <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto
-          de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a
-          la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos
-          especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos,
-          quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset",
-          las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo
-          Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
-        </p>
-      </div>
-    </mat-tab>
-    <mat-tab label="Crew"> Content 2 </mat-tab>
-    <mat-tab label="Recomendations"> Content 3 </mat-tab>
-    <mat-tab label="Reviews"> Content 3 </mat-tab>
-  </mat-tab-group>
-  <!--<app-list-movies></app-list-movies>-->
+  <div fxLayout="column">
+    <mat-toolbar class="pad-none bgc-grey-800 toolbar-navigation" style="position:relative;">
+      <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper" flex>
+        <a mat-tab-link class="toolbar-item" *ngFor="let item of items_detail; let i = index" (click)="setItem(item['tab_number'])">
+          <span hide-xs>{{item['name']}}</span>
+          <span hide-gt-xs>
+            <mat-icon>{{item['icon']}}</mat-icon>
+          </span>
+        </a>
+      </nav>
+    </mat-toolbar>
+  </div>
+  <div [ngSwitch]="selected_item">
+    <div *ngSwitchCase="'1'">
+      <app-movie-cast [data]="data_credits.cast"></app-movie-cast>
+    </div>
+    <div *ngSwitchCase="'2'">
+      <app-movie-crew [data]="data_credits.crew"></app-movie-crew>
+    </div>
+    <div *ngSwitchCase="'3'">
+      <app-similar-movies></app-similar-movies>
+    </div>
+    <div *ngSwitchCase="'4'">
+    </div>
+    <div *ngSwitchCase="'5'">
+    </div>
+  </div>
 </section>

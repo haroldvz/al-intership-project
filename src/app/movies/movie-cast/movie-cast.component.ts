@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CastDescriptor } from '../../shared/types/movies/credits.type';
 
 @Component({
   selector: 'app-movie-cast',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie-cast.component.scss']
 })
 export class MovieCastComponent implements OnInit {
+
+  @Input() public data:CastDescriptor = new CastDescriptor();
 
   constructor() { }
 
