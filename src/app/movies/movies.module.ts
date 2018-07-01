@@ -13,6 +13,8 @@ import { MovieVideosComponent } from './movie-videos/movie-videos.component';
 import { MovieCastCrewCardComponent } from './movie-cast-crew-card/movie-cast-crew-card.component';
 import { MovieBackdropCardComponent } from './movie-backdrop-card/movie-backdrop-card.component';
 import { SharedModule } from '../shared/shared.module';
+import { DetailMovieService } from '../shared/services/detail-movie.service';
+import { MovieSliderComponent } from './movie-slider/movie-slider.component';
 
 
 @NgModule({
@@ -32,8 +34,9 @@ import { SharedModule } from '../shared/shared.module';
     MovieVideosComponent,
     MovieCastCrewCardComponent,
     MovieBackdropCardComponent,
+    MovieSliderComponent,
     //GallerySliderComponent
   ],
-  providers: [MovieService]
+  providers: [MovieService,DetailMovieService]
 })
 export class MoviesModule { }

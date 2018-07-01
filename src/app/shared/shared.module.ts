@@ -3,45 +3,29 @@ import { CommonModule } from '@angular/common';
 import { GallerySliderComponent } from '../movies/gallery-slider/gallery-slider.component';
 import { GalleryModule } from '@ngx-gallery/core';
 import { LightboxModule } from '@ngx-gallery/lightbox';
-import { MatCardModule, MatGridListModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatTabsModule, MatIconModule, MatToolbarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CovalentLoadingModule } from '@covalent/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
+import { SharedCovalentModule } from './shared-covalent.module';
+import { SharedMaterialModule } from './shared-material.module';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   imports: [
     CommonModule,
     GalleryModule.forRoot(),
     LightboxModule.forRoot(),
-    MatCardModule,
-    MatGridListModule,
     FlexLayoutModule,
-    CovalentLoadingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    MatTabsModule,
-    MatIconModule,
-    MatToolbarModule,
+    SharedCovalentModule,
+    SharedMaterialModule,
+    AngularFontAwesomeModule
   ],
-  exports:[
+  exports: [
     GallerySliderComponent,
     GalleryModule,
-    LightboxModule, MatCardModule,
-    MatGridListModule,
+    LightboxModule,
     FlexLayoutModule,
-    CovalentLoadingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatInputModule,
-    MatTabsModule,
-    MatIconModule,
-    MatToolbarModule,
+    SharedCovalentModule,
+    SharedMaterialModule,
+    AngularFontAwesomeModule
   ],
   declarations: [GallerySliderComponent]
 })

@@ -1,4 +1,4 @@
-.app-cast-card {
+/*.app-cast-card {
     .cast-image-container {
         position: relative;
         width: 100%;
@@ -20,5 +20,18 @@
     .cast-card-title {
         font-weight: 600;
         font-size: 0.9em;
+    }
+}*/
+
+.cast-card {
+    .cast-card-title {
+        font-weight: 600;
+        font-size: 0.9em;
+    }
+    img {
+        max-height: 800px;
+        max-width: 600px;
+        display: block; //display: inline;
+        position: relative;
     }
 }
