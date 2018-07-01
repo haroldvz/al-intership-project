@@ -1,3 +1,13 @@
-<p>
-  movie-backdrop-card works!
-</p>
+<div class="app-movie-backdrop-card">
+    <mat-card class="movie-backdrop flex-item" flex-item>
+      <div class="movie-backdrop-container">
+        <img mat-card-image class="img-movie-backdrop" src="https://image.tmdb.org/t/p/w500{{data.backdrop_path}}">
+      </div>
+      <mat-card-content>
+        <h2 class="movie-backdrop-card-title">
+          <a [routerLink]="['/movie/', data.id ]">{{data.title}}</a>
+        </h2>
+        <!--<p>{{data.popularity}}</p>-->
+      </mat-card-content>
+    </mat-card>
+  </div>
