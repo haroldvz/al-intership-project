@@ -1,7 +1,14 @@
-<div class="container-crew">
+<!--<div class="container-crew">
   <div>
     <div *ngFor="let item of data; let i = index;">
       <app-movie-cast-crew-card [data]="item"></app-movie-cast-crew-card>
     </div>
   </div>
+</div>-->
+<div class="container-crew">
+  <mat-grid-list #grid rowHeight="600:800" gutterSize="5px">
+    <mat-grid-tile *ngFor="let item of data; let i = index;" class="tile-cast">
+      <app-movie-cast-crew-card [data]="item"></app-movie-cast-crew-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

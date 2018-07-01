@@ -121,7 +121,7 @@ export class MovieDetailComponent implements OnInit {
           this.data_credits = data;
           let crew_array = data.crew;
           this.data_crew = this.proccessList(crew_array);
-          console.log("CREW"+this.data_crew.length);
+         
 
         }
       );
