@@ -1,0 +1,27 @@
+.app-cast-card {
+
+    .cast-image-container{
+        position: relative; 
+        width: 100%; /* for IE 6 */
+
+        p{
+            position: absolute; 
+            top:200px;
+            left: 0; 
+            width: 100%; 
+        }
+    }
+
+    .cast-card {
+        height: 345px;
+        width: 235px;
+    }
+    .img-cast {
+        height: 235px;
+        width: 235px;
+    }
+    .cast-card-title {
+        font-weight: 600;
+        font-size: 0.9em;
+    }
+}

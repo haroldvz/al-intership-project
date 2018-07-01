@@ -21,6 +21,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MovieCrewComponent } from './movie-crew/movie-crew.component';
 import { SimilarMoviesComponent } from './similar-movies/similar-movies.component';
 import { MovieVideosComponent } from './movie-videos/movie-videos.component';
+import { MovieCastCrewCardComponent } from './movie-cast-crew-card/movie-cast-crew-card.component';
+import { MovieBackdropCardComponent } from './movie-backdrop-card/movie-backdrop-card.component';
+
 
 @NgModule({
   imports: [
@@ -50,6 +53,9 @@ import { MovieVideosComponent } from './movie-videos/movie-videos.component';
     MovieCrewComponent,
     SimilarMoviesComponent,
     MovieVideosComponent,
+    MovieCastCrewCardComponent,
+    MovieBackdropCardComponent,
+
   ],
   providers: [MovieService]
 })
