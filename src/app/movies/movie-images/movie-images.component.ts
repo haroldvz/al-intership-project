@@ -10,6 +10,14 @@ import { ImagesMoviesDescriptor } from '../../shared/types/movies/images.type';
 })
 export class MovieImagesComponent implements OnInit {
 
+  imageData = [
+    {
+      srcUrl: 'https://pixabay.com/get/eb3db9072df5083ecd0b4003e64d4094fe76e7d619b5134290f6c8_960.jpg',
+      previewUrl: 'https://cdn.pixabay.com/photo/2017/10/25/16/54/african-lion-2888519_150.jpg'
+    }
+    // ... more items
+  ];
+
   private routerSubscribe;
   public data: ImagesMoviesDescriptor = new ImagesMoviesDescriptor();
 

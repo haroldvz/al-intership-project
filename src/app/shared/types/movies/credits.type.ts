@@ -86,7 +86,7 @@ export class CastDescriptor {
         castDescriptor.cast_id = rawData.hasOwnProperty('cast_id') ? rawData.cast_id : -1;
         castDescriptor.character = rawData.hasOwnProperty('character') ? rawData.character : '';
         castDescriptor.id = rawData.hasOwnProperty('id') ? rawData.id : -1;
-        castDescriptor.gender = rawData.hasOwnProperty('gender') ? rawData.job : -1;
+        castDescriptor.gender = rawData.hasOwnProperty('gender') ? rawData.gender : -1;
         castDescriptor.name = rawData.hasOwnProperty('name') ? rawData.name : '';
         castDescriptor.profile_path = rawData.hasOwnProperty('profile_path') ? rawData.profile_path : '';
         castDescriptor.order = rawData.hasOwnProperty('order') ? rawData.id : -1;

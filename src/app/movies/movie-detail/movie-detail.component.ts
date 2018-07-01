@@ -5,7 +5,7 @@ import { MovieDescriptor } from '../../shared/types/movies/detail-movie.type';
 import { TdLoadingService, TdMediaService } from '@covalent/core';
 import { environment } from './../../../environments/environment';
 import { MovieService } from '../../shared/services/movie.service';
-import { CreditsDescriptor } from '../../shared/types/movies/credits.type';
+import { CreditsDescriptor, CrewDescriptor } from '../../shared/types/movies/credits.type';
 
 
 
@@ -20,6 +20,7 @@ export class MovieDetailComponent implements OnInit {
   private routerSubscribe;
   private data: MovieDescriptor = new MovieDescriptor();
   private data_credits: CreditsDescriptor = new CreditsDescriptor();
+  private data_crew:CrewDescriptor[];
   private genres;
 
   /**
@@ -116,9 +117,12 @@ export class MovieDetailComponent implements OnInit {
 
       this._movie_service.getMovieCredits(id).subscribe(
         (data) => {
-          this.data_credits = data;
           console.log(data);
-          //this.movies.push(data.results);
+          this.data_credits = data;
+          let crew_array = data.crew;
+          this.data_crew = this.proccessList(crew_array);
+          console.log("CREW"+this.data_crew.length);
+
         }
       );
 
@@ -128,6 +132,31 @@ export class MovieDetailComponent implements OnInit {
 
   }
 
+  /**
+   *
+   *
+   * @param {*} a
+   * @param {*} b
+   * @returns
+   * @memberof MovieDetailComponent
+   */
+  isEqual(a, b){
+    if(a['id'] != b['id']){return false;}    
+    return true;
+  }
+
+  /**
+   *
+   *
+   * @param {any[]} list
+   * @returns
+   * @memberof MovieDetailComponent
+   */
+  proccessList(list:any[]){
+    list = list.filter((value, index, array) => 
+    !array.filter((v, i) => this.isEqual(value, v) && i < index).length);
+    return list;
+  }
 
 
   /**

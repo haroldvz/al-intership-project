@@ -10,10 +10,10 @@ import { AppComponent } from './app.component';
 
 
 import {
-  MatButtonModule, MatListModule, MatIconModule, MatCardModule, MatMenuModule, MatInputModule, MatButtonToggleModule,
-  MatProgressSpinnerModule, MatSelectModule, MatSlideToggleModule, MatDialogModule, MatSnackBarModule, MatToolbarModule,
-  MatTabsModule, MatSidenavModule, MatTooltipModule, MatRippleModule, MatRadioModule, MatGridListModule,
-  MatDatepickerModule, MatNativeDateModule, MatSliderModule, MatAutocompleteModule, MatFormFieldModule
+  MatButtonModule, MatListModule, MatIconModule, MatMenuModule, MatInputModule, 
+  MatSelectModule,  MatToolbarModule,
+  MatTabsModule,
+  MatFormFieldModule
 } from '@angular/material';
 
 
@@ -92,12 +92,15 @@ import { NotFoundComponent } from './shared/layout/not-found/not-found.component
     MoviesModule,
     PeopleModule,
     TvSeriesModule,
-    AppRoutingModule
+    AppRoutingModule,
+
+    /*Gallery*/
+    
   ],
   declarations: [
     AppComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   providers: [TdMediaService],
   bootstrap: [AppComponent]

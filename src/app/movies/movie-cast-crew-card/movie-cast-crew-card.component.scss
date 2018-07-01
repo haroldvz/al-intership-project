@@ -1,19 +1,16 @@
 .app-cast-card {
-
-    .cast-image-container{
-        position: relative; 
-        width: 100%; /* for IE 6 */
-
-        p{
-            position: absolute; 
-            top:200px;
-            left: 0; 
-            width: 100%; 
+    .cast-image-container {
+        position: relative;
+        width: 100%;
+        p {
+            position: absolute;
+            top: 200px;
+            left: 0;
+            width: 100%;
         }
     }
-
     .cast-card {
-        height: 345px;
+        height: 335px;
         width: 235px;
     }
     .img-cast {

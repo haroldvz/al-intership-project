@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CastDescriptor } from '../../shared/types/movies/credits.type';
 
 @Component({
   selector: 'app-movie-cast-crew-card',

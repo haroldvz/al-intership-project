@@ -1,3 +1,7 @@
-<p>
-  {{data|json}}
-</p>
+<div class="container-crew">
+  <div fxLayout="row wrap" diameter="20" fxLayoutAlign="center center">
+    <div flex *ngFor="let item of data; let i = index;" fxLayoutAlign="center center">
+      <app-movie-cast-crew-card [data]="item"></app-movie-cast-crew-card>
+    </div>
+  </div>
+</div>

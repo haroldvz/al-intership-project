@@ -10,8 +10,6 @@ export class MovieCrewComponent implements OnInit {
 
   @Input() public data:CrewDescriptor = new CrewDescriptor();
 
-  
-
   constructor() { }
 
   ngOnInit() {
