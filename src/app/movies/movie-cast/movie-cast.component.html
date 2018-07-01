@@ -1,6 +1,6 @@
-<div class="container-cast">
-  <div fxLayout="row wrap" diameter="20" fxLayoutAlign="center center" >
-    <div flex *ngFor="let item of data; let i = index;" fxLayoutAlign="center center">
+<!--<div class="container-cast">
+  <div fxLayout="row wrap" diameter="20" fxLayoutAlign="center center" fxLayoutGap="2">
+    <div flex *ngFor="let item of data; let i = index;" fxLayoutAlign="center center">-->
       <!--<div class="app-cast-card">
         <mat-card class="cast-card flex-item" flex-item>
           <div class="cast-image-container">
@@ -15,7 +15,14 @@
           </mat-card-content>
         </mat-card>
       </div>-->
-      <app-movie-cast-crew-card [data]="item"></app-movie-cast-crew-card>
+   <!-- <app-movie-cast-crew-card [data]="item"></app-movie-cast-crew-card>
     </div>
   </div>
+</div>-->
+<div class="container-cast">
+<mat-grid-list #grid rowHeight="600:800" gutterSize="5px">
+    <mat-grid-tile  *ngFor="let item of data; let i = index;" class="tile-cast" >
+      <app-movie-cast-crew-card [data]="item"></app-movie-cast-crew-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

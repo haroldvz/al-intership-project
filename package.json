@@ -29,6 +29,7 @@
     "@covalent/http": "^2.0.0-beta.2",
     "@covalent/markdown": "^2.0.0-beta.2",
     "@ngx-gallery/core": "^2.2.1",
+    "@ngx-gallery/lightbox": "^2.2.1",
     "angular-font-awesome": "^3.1.2",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
