@@ -1,0 +1,15 @@
+.app-tv-serie-backdrop-card {
+    .tv-serie-backdrop {
+        height: 100%;
+        width: 300px;
+    }
+    .img-tv-serie-backdrop {
+        max-height: 281px;
+        max-width: 500px;
+        background-size: cover;
+    }
+    .tv-serie-backdrop-card-title {
+        font-weight: 600;
+        font-size: 0.9em;
+    }
+}
