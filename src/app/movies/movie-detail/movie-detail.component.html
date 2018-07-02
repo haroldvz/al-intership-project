@@ -54,7 +54,7 @@
       </div>
     </div>
   </div>
-  <div fxLayout="column">
+  <div fxLayout="column" class="navbar-detail-movie">
     <mat-toolbar class="pad-none bgc-grey-800 toolbar-navigation" style="position:relative;">
       <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper" flex>
         <a mat-tab-link class="toolbar-item" *ngFor="let item of items_detail; let i = index" (click)="setItem(item['tab_number'])">
@@ -81,5 +81,7 @@
     </div>
     <div *ngSwitchCase="'5'">
     </div>
+    <div *ngSwitchCase="'6'">
+      </div>
   </div>
 </section>

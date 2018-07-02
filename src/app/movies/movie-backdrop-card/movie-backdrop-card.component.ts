@@ -9,7 +9,7 @@ import { MovieDescriptor } from '../../shared/types/movies/detail-movie.type';
 export class MovieBackdropCardComponent implements OnInit {
 
   
-  @Input() public data: MovieDescriptor = new MovieDescriptor();
+  @Input() public data;
 
   constructor() { }
 

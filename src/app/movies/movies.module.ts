@@ -33,7 +33,7 @@ import { MovieSliderComponent } from './movie-slider/movie-slider.component';
     SimilarMoviesComponent,
     MovieVideosComponent,
     MovieCastCrewCardComponent,
-    MovieBackdropCardComponent,
+    //MovieBackdropCardComponent,
     MovieSliderComponent,
     //GallerySliderComponent
   ],

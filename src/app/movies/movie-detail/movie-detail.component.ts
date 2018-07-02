@@ -20,7 +20,7 @@ export class MovieDetailComponent implements OnInit {
   private routerSubscribe;
   private data: MovieDescriptor = new MovieDescriptor();
   private data_credits: CreditsDescriptor = new CreditsDescriptor();
-  private data_crew:CrewDescriptor[];
+  private data_crew: CrewDescriptor[];
   private genres;
 
   /**
@@ -52,6 +52,11 @@ export class MovieDetailComponent implements OnInit {
     {
       name: 'Videos',
       tab_number: 5,
+      icon: 'tv',
+    },
+    {
+      name: 'Reviews',
+      tab_number: 6,
       icon: 'tv',
     }
   ];
@@ -121,7 +126,7 @@ export class MovieDetailComponent implements OnInit {
           this.data_credits = data;
           let crew_array = data.crew;
           this.data_crew = this.proccessList(crew_array);
-         
+
 
         }
       );
@@ -140,8 +145,8 @@ export class MovieDetailComponent implements OnInit {
    * @returns
    * @memberof MovieDetailComponent
    */
-  isEqual(a, b){
-    if(a['id'] != b['id']){return false;}    
+  isEqual(a, b) {
+    if (a['id'] != b['id']) { return false; }
     return true;
   }
 
@@ -152,9 +157,9 @@ export class MovieDetailComponent implements OnInit {
    * @returns
    * @memberof MovieDetailComponent
    */
-  proccessList(list:any[]){
-    list = list.filter((value, index, array) => 
-    !array.filter((v, i) => this.isEqual(value, v) && i < index).length);
+  proccessList(list: any[]) {
+    list = list.filter((value, index, array) =>
+      !array.filter((v, i) => this.isEqual(value, v) && i < index).length);
     return list;
   }
 

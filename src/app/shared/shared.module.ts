@@ -7,6 +7,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedCovalentModule } from './shared-covalent.module';
 import { SharedMaterialModule } from './shared-material.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { DialogOverviewBiographyComponent } from './layout/dialog-overview-biography/dialog-overview-biography.component';
+import { MovieBackdropCardComponent } from '../movies/movie-backdrop-card/movie-backdrop-card.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -16,7 +19,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     FlexLayoutModule,
     SharedCovalentModule,
     SharedMaterialModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    RouterModule
   ],
   exports: [
     GallerySliderComponent,
@@ -25,8 +29,13 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     FlexLayoutModule,
     SharedCovalentModule,
     SharedMaterialModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MovieBackdropCardComponent
   ],
-  declarations: [GallerySliderComponent]
+  entryComponents:[
+    DialogOverviewBiographyComponent
+  ],
+
+  declarations: [GallerySliderComponent, DialogOverviewBiographyComponent,MovieBackdropCardComponent]
 })
 export class SharedModule { }
