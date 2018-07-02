@@ -10,7 +10,7 @@
           <mat-divider class="bgc-grey-800"></mat-divider>
         </div>
       </a>
-      
+
     </mat-nav-list>
     <div td-navigation-drawer-menu>
       <mat-nav-list>
@@ -49,13 +49,12 @@
         </mat-menu>
       </span>-->
     <div>
-        
-      <mat-toolbar class="pad-none bgc-grey-800 toolbar-navigation">
+
+      <mat-toolbar class="pad-none bgc-grey-800 toolbar-navigation" style="position:relative;">
         <!--pull-bottom-xl pull-top-md make the fuck efect-->
         <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper" flex>
-
           <a mat-tab-link class="toolbar-item" *ngFor="let route of routes; let i = index" [routerLink]="[route['path']]" routerLinkActive
-            #ni="routerLinkActive" [active]="ni.isActive" color="accent">
+            #itemnb="routerLinkActive" [active]="itemnb.isActive">
             <span hide-xs>{{route['name']}}</span>
             <span hide-gt-xs>
               <mat-icon>{{route['icon']}}</mat-icon>
@@ -63,10 +62,12 @@
           </a>
         </nav>
       </mat-toolbar>
+
     </div>
+
     <!--End secction toolbar-->
     <!-- router outlet goes here -->
-    <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+    <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''" class="bgc-grey-500">
       <router-outlet #o="outlet"></router-outlet>
     </main>
     <!-- end content -->
@@ -75,7 +76,7 @@
       <div layout="row" layout-align="start center">
         <span class="mat-caption">Made with
           <mat-icon class="text-md">favorite</mat-icon> by
-          <span class="text-nodecoration tc-blue-700">Harold</span>, built on Angular v6 + Covalent + Angular Material.</span>
+          <span class="text-nodecoration tc-blue-700">Harold</span>, built on Angular v6 + Covalent Teradata + Angular Material.</span>
       </div>
     </td-layout-footer>
   </td-layout-nav>

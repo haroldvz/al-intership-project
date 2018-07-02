@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
-import { ResponseDescriptor } from '../../shared/types/response.type';
+import { ResponseDescriptor } from '../../shared/types/movies/response.type';
 import { TdMediaService, TdPagingBarComponent } from '@covalent/core';
 import { TdLoadingService } from '@covalent/core';
 
@@ -12,8 +12,9 @@ import { TdLoadingService } from '@covalent/core';
 })
 export class ListMoviesComponent implements OnInit {
 
-  private routerSubscribe: any;
+  private routerSubscribe;
   public data: ResponseDescriptor = new ResponseDescriptor();
+  animate;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,10 +24,8 @@ export class ListMoviesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.routerSubscribe = this.route.params.subscribe(params => {
-
-      this.registerLoading();
+      this.LoadingRegister();
 
       /*setTimeout(() => {
       
@@ -40,28 +39,31 @@ export class ListMoviesComponent implements OnInit {
       }, 5000);*/
 
       let category: string = params['category'];
-      //request
       this._movie_service.getPopularMovies(1).subscribe(
         (data) => {
           this.data = data;
-          this.resolveLoading();
-          //this.movies.push(data.results);
+          this.loadingResolve();
         }
       );
 
     });
-
-
-
   }
 
-  //Loading
-  registerLoading(): void {
-    this._loadingService.register('list-movies');
+   /**
+   *
+   *
+   * @memberof ListMoviesComponent
+   */
+  LoadingRegister(): void {
+    this._loadingService.register('movie-detail');
   }
 
-  resolveLoading(): void {
-    this._loadingService.resolve('list-movies');
+  /**
+   *
+   *
+   * @memberof ListMoviesComponent
+   */
+  loadingResolve(): void {
+    this._loadingService.resolve('movie-detail');
   }
-
 }

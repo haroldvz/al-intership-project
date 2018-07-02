@@ -1,3 +1,8 @@
-<p>
-  person-series works!
-</p>
+<div class="container-person-tv-series">
+    <h2 class="title-tv-series-movies">TV credits</h2>
+  <div fxLayout="row wrap" diameter="20" fxLayoutAlign="center center">
+    <div flex *ngFor="let item of data.cast; let i = index;" fxLayoutAlign="center center">
+      <app-tv-series-backdrop-card [data]="item"></app-tv-series-backdrop-card>
+    </div>
+  </div>
+</div>

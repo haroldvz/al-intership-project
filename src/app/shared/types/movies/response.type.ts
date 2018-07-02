@@ -1,4 +1,5 @@
-import { MovieDescriptor } from "./movies/detail-movie.type";
+import { MovieDescriptor } from "./detail-movie.type";
+
 
 export class ResponseDescriptor {
 

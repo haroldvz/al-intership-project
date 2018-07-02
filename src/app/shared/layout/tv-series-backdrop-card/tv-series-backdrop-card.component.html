@@ -1,0 +1,18 @@
+<div class="app-tv-serie-backdrop-card">
+    <mat-card class="tv-serie-backdrop flex-item" flex-item>
+      <div class="tv-serie-backdrop-container">
+        <div *ngIf="data.backdrop_path;else noBackdropImage ">
+            <img mat-card-image class="img-tv-serie-backdrop" src="https://image.tmdb.org/t/p/w500{{data.backdrop_path}}">
+        </div>
+        <ng-template #noBackdropImage>
+            <img mat-card-image src="assets/images/no-backdrop-image.png" class="" />
+          </ng-template>
+      </div>
+      <mat-card-content>
+        <h2 class="tv-serie-backdrop-card-title">
+          <a [routerLink]="['/tv/', data.id ]">{{data.name}}</a>
+        </h2>
+        <!--<p>{{data.popularity}}</p>-->
+      </mat-card-content>
+    </mat-card>
+  </div>

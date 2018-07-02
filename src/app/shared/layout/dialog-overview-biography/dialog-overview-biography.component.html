@@ -1,0 +1,14 @@
+
+<div *ngIf="data.name">
+    <h1 mat-dialog-title>{{data.name}} </h1>
+</div>
+<div mat-dialog-content>
+  <div *ngIf="data.biography">
+  <p class="subtitle-dialog">Biography</p>
+  <p>{{data.biography}}</p>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+ <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>-->
+</div>

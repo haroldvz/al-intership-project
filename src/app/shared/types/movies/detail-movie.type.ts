@@ -14,6 +14,7 @@ export class MovieDescriptor {
     public production_countries: ProductionCountryDescriptor[] = [];
     public spoken_languages: SpokenLanguageDescriptor[] = [];
     public poster_path: string;
+    public backdrop_path:string;
 
 
     /**
@@ -34,7 +35,8 @@ export class MovieDescriptor {
         movie.popularity = rawData.hasOwnProperty('popularity') ? rawData.popularity : 0;
         movie.vote_average = rawData.hasOwnProperty('vote_average') ? rawData.vote_average : 0;
         movie.vote_count = rawData.hasOwnProperty('vote_count') ? rawData.vote_count : 0;
-        movie.poster_path = rawData.hasOwnProperty('poster_path') ? rawData.poster_path : 'no-img';
+        movie.poster_path = rawData.hasOwnProperty('poster_path') ? rawData.poster_path : '';
+        movie.backdrop_path = rawData.hasOwnProperty('backdrop_path') ? rawData.backdrop_path : '';
 
         let genre: GenreDescriptor;
         if (rawData.hasOwnProperty("genres")) {
