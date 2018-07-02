@@ -11,15 +11,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./movie-images.component.scss']
 })
 export class MovieImagesComponent implements OnInit {
-  //https://image.tmdb.org/t/p/w780
-  //https://image.tmdb.org/t/p/w342/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg
-
-  images: GalleryItem[];
-
-  public imageData = [
-   
-
-  ];
 
   data;
 
@@ -42,16 +33,6 @@ export class MovieImagesComponent implements OnInit {
           this.data = data;
           console.log("DATA en movieimage");
           console.log(this.data);
-
-          this.images_data = data;
-
-          let data_backdrops = this.images_data.backdrops;
-          /*console.log("DB"+data_backdrops.length)
-
-          data_backdrops.forEach(element => {
-            console.log(element)
-            this.imageData.push( { srcUrl: 'https://image.tmdb.org/t/p/w780/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg', previewUrl: 'https://image.tmdb.org/t/p/w342/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg' })
-          });*/
 
 
         }

@@ -10,6 +10,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { DialogOverviewBiographyComponent } from './layout/dialog-overview-biography/dialog-overview-biography.component';
 import { MovieBackdropCardComponent } from '../movies/movie-backdrop-card/movie-backdrop-card.component';
 import { RouterModule } from '@angular/router';
+import { TvSeriesBackdropCardComponent } from './layout/tv-series-backdrop-card/tv-series-backdrop-card.component';
 
 @NgModule({
   imports: [
@@ -30,12 +31,17 @@ import { RouterModule } from '@angular/router';
     SharedCovalentModule,
     SharedMaterialModule,
     AngularFontAwesomeModule,
-    MovieBackdropCardComponent
+    MovieBackdropCardComponent,
+    TvSeriesBackdropCardComponent
   ],
   entryComponents:[
     DialogOverviewBiographyComponent
   ],
 
-  declarations: [GallerySliderComponent, DialogOverviewBiographyComponent,MovieBackdropCardComponent]
+  declarations: [
+    GallerySliderComponent, 
+    DialogOverviewBiographyComponent,
+    MovieBackdropCardComponent, 
+    TvSeriesBackdropCardComponent]
 })
 export class SharedModule { }

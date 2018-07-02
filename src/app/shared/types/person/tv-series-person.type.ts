@@ -43,17 +43,18 @@ export class CastCreditsTVPeopleDescriptor {
     public character: string;
     public credit_id: string;
     public id: number;
-    public title: string;
+    public name: string;
     public poster_path: string;
     public video: boolean;
     public genres: GenreDescriptor[] = [];
-    public release_date: string;
+    public first_air_date: string;
     public overview: string;
     public popularity: number;
     public original_language: string;
     public vote_count:number;
     public backdrop_path:string;
     public vote_average:number;
+    public episode_count:number;
 
 
     public static import(rawData: any) {
@@ -62,12 +63,13 @@ export class CastCreditsTVPeopleDescriptor {
         castCreditsTVPeopleDescriptor.character = rawData.hasOwnProperty('character') ? rawData.character : '';
         castCreditsTVPeopleDescriptor.credit_id = rawData.hasOwnProperty('credit_id') ? rawData.credit_id : '';
         castCreditsTVPeopleDescriptor.id = rawData.hasOwnProperty('id') ? rawData.id : -1;
-        castCreditsTVPeopleDescriptor.title = rawData.hasOwnProperty('title') ? rawData.title : '';
+        castCreditsTVPeopleDescriptor.episode_count = rawData.hasOwnProperty('episode_count') ? rawData.episode_count : -1;
+        castCreditsTVPeopleDescriptor.name = rawData.hasOwnProperty('name') ? rawData.name : '';
         castCreditsTVPeopleDescriptor.poster_path = rawData.hasOwnProperty('poster_path') ? rawData.poster_path : '';
         castCreditsTVPeopleDescriptor.backdrop_path = rawData.hasOwnProperty('backdrop_path') ? rawData.backdrop_path : '';
         
         
-        castCreditsTVPeopleDescriptor.release_date = rawData.hasOwnProperty('release_date') ? rawData.release_date : '';
+        castCreditsTVPeopleDescriptor.first_air_date = rawData.hasOwnProperty('first_air_date') ? rawData.first_air_date : '';
         castCreditsTVPeopleDescriptor.overview = rawData.hasOwnProperty('overview') ? rawData.overview : '';
         castCreditsTVPeopleDescriptor.popularity = rawData.hasOwnProperty('popularity') ? rawData.popularity : -1;
         castCreditsTVPeopleDescriptor.original_language = rawData.hasOwnProperty('original_language') ? rawData.original_language : '';

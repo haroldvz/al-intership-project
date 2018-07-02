@@ -6,7 +6,11 @@
                     <img mat-card-image class="container-img-person" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{data.profile_path}}">
                 </div>
                 <mat-card-title class="person-card-title">
-                    <p class="popularity"><span>{{data.popularity | number:'1.0-0'}}<mat-icon>stars</mat-icon></span></p>
+                    <p class="popularity">
+                        <span>{{data.popularity | number:'1.0-0'}}
+                            <mat-icon>stars</mat-icon>
+                        </span>
+                    </p>
                 </mat-card-title>
                 <!--<mat-card-subtitle></mat-card-subtitle>
                 <mat-card-content>
@@ -47,7 +51,7 @@
                                             <mat-icon class="text-md">place</mat-icon>
                                             Place of birth
                                         </span>
-                                        
+
                                         <br>
                                         <span class="place_of_birth">{{data.place_of_birth}}</span>
                                     </p>
@@ -59,9 +63,11 @@
                                             <mat-icon class="text-md">web</mat-icon>
                                             Home page
                                         </span>
-                                        
+
                                         <br>
-                                        <span class="place_of_birth"><a href="{{data.homepage}}" target="_blank">{{data.homepage}}</a></span>
+                                        <span class="place_of_birth">
+                                            <a href="{{data.homepage}}" target="_blank">{{data.homepage}}</a>
+                                        </span>
                                     </p>
                                 </div>
                             </div>
@@ -85,11 +91,13 @@
     </mat-toolbar>
     <div [ngSwitch]="selected_item">
         <div *ngSwitchCase="'1'">
+            <app-person-images></app-person-images>
         </div>
         <div *ngSwitchCase="'2'">
             <app-person-movies></app-person-movies>
         </div>
         <div *ngSwitchCase="'3'">
+            <app-person-series></app-person-series>
         </div>
         <div *ngSwitchCase="'4'">
         </div>

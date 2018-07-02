@@ -6,6 +6,9 @@ import { MovieDescriptor } from '../types/movies/detail-movie.type';
 import { ApiService } from './api.service';
 import { PersonDescriptor } from '../types/person/detail-person.type';
 import { CreditsPersonDescriptor } from '../types/person/credits-person.type';
+import { CreditsTVPersonDescriptor } from '../types/person/tv-series-person.type';
+import { ImagesMoviesDescriptor } from '../types/movies/images.type';
+import { ImagesPersonDescriptor } from '../types/person/images-person.type';
 
 
 
@@ -56,6 +59,41 @@ export class DetailPersonService {
     return this._api_service.get(url, args).pipe(map(
       (data) => {
         return CreditsPersonDescriptor.import(data);
+      }
+    ));
+  }
+
+  /**
+   *
+   *
+   * @param {number} id_person
+   * @returns
+   * @memberof DetailPersonService
+   */
+  getPersonTVCredits(id_person: number) {
+    let url = this.url + id_person + '/tv_credits';
+    let args = '';
+    return this._api_service.get(url, args).pipe(map(
+      (data) => {
+        return CreditsTVPersonDescriptor.import(data);
+      }
+    ));
+  }
+
+
+   /**
+   *
+   *
+   * @param {number} id_person
+   * @returns
+   * @memberof DetailPersonService
+   */
+  getPersonImages(id_person: number) {
+    let url = this.url + id_person + '/images';
+    let args = '';
+    return this._api_service.get(url, args).pipe(map(
+      (data) => {
+        return ImagesPersonDescriptor.import(data);
       }
     ));
   }
