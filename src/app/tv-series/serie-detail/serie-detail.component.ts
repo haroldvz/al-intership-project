@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { TdMediaService, TdLoadingService } from '@covalent/core';
+import { ActivatedRoute } from '@angular/router';
+import { DetailTVService } from '../../shared/services/detail-tv.service';
+import { TVSeriesDescriptor } from '../../shared/types/tv-series/detail-tv.type';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-serie-detail',
@@ -7,9 +12,89 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SerieDetailComponent implements OnInit {
 
-  constructor() { }
+
+  private myStyles = {
+    'height': '100%',
+    'z-index': '2',
+    'padding-left': ' 4%',
+    'padding-right': ' 4%',
+    'background': ' radial-gradient(ellipse at 34% 60%, rgba(' + this.getRandomInt(0, 125) + ', 30, 28, 0.95) 0%, rgba(50, 43, 25, 0.90) 100%)'
+  }
+
+  private selected_item: number = 1;
+  private routerSubscribe;
+
+  private data: TVSeriesDescriptor = new TVSeriesDescriptor();
+  private genres;
+  private base_img_url_backdrop_path: string = environment.api_image_url + environment.api_image_backdrop_size;
+
+  constructor(
+    //private _movie_detail_service: DetailMovieService,
+    //private _movie_service: MovieService,
+    private _detail_tv_service:DetailTVService,
+    private route: ActivatedRoute,
+    private _loadingService: TdLoadingService,
+    public _mediaService: TdMediaService,
+  ) { }
 
   ngOnInit() {
+
+
+    this.routerSubscribe = this.route.params.subscribe(params => {
+
+      this.LoadingRegister();
+
+
+      let id: number = params['id'];
+     
+      this._detail_tv_service.getTVDetail(id).subscribe(
+        (data) => {
+          this.data = data;
+          console.log(data);
+          //this.genres = data.genres.map((element) => { return element.name }).join(', ');
+          this.loadingResolve();
+          //this.movies.push(data.results);
+        }
+      );
+
+   
+
+    });
+
+
+
+
+  }
+
+
+   /**
+   *
+   *
+   * @param {*} min
+   * @param {*} max
+   * @returns {number}
+   * @memberof MovieDetailComponent
+   */
+  getRandomInt(min, max): number {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  /**
+   *
+   *
+   * @memberof ListMoviesComponent
+   */
+  LoadingRegister(): void {
+    this._loadingService.register('movie-detail');
+  }
+
+  /**
+   *
+   *
+   * @memberof ListMoviesComponent
+   */
+  loadingResolve(): void {
+    this._loadingService.resolve('movie-detail');
   }
 
 }

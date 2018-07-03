@@ -4,6 +4,8 @@ export class TVSeriesDescriptor {
 
     public id: number;
     public genres: GenreDescriptor[] = [];
+    //public created_by: CreatedByDescriptor[] = [];
+    public episode_run_time:number[] = [];
     public name: string;
     public original_name:string;
     public overview: string;
@@ -12,6 +14,18 @@ export class TVSeriesDescriptor {
     public vote_count: number;
     public poster_path: string;
     public backdrop_path:string;
+    public homepage:string;
+    public in_production:boolean;
+    public languages:string[] = [];
+    public number_of_episodes:number;
+    public number_of_seasons:number;
+    public original_language:string;
+    //public production_companies;
+    //public seasons:SeasonDescriptor[]=[];
+    public vote_average:number;
+
+
+
 
 
     /**

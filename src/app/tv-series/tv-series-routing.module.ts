@@ -6,7 +6,7 @@ import { SerieDetailComponent } from './serie-detail/serie-detail.component';
 const routes: Routes = [
   {path: '', redirectTo: 'tv/popular', pathMatch: 'full'},
   {path:'tv/:category', component:ListSeriesComponent},
-  {path:'tv/:id', component:SerieDetailComponent},
+  {path:'tv-detail/:id', component:SerieDetailComponent},
 ];
 
 @NgModule({
