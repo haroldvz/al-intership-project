@@ -1,0 +1,8 @@
+<div class="container-credits">
+  <mat-grid-list #grid rowHeight="600:800" gutterSize="5px">
+    <mat-grid-tile *ngFor="let item of data; let i = index;" class="tile-cast">
+      <app-serie-credits-card [data]="item"></app-serie-credits-card>
+      {{item}}
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

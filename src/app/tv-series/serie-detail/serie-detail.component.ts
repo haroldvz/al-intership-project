@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DetailTVService } from '../../shared/services/detail-tv.service';
 import { TVSeriesDescriptor } from '../../shared/types/tv-series/detail-tv.type';
 import { environment } from '../../../environments/environment';
+import { CreditsTVDescriptor } from '../../shared/types/tv-series/tv-credits.type';
 
 @Component({
   selector: 'app-serie-detail',
@@ -28,10 +29,47 @@ export class SerieDetailComponent implements OnInit {
   private genres;
   private base_img_url_backdrop_path: string = environment.api_image_url + environment.api_image_backdrop_size;
 
+
+  /**
+   *
+   * Nav items array for display detail movie components
+   * @type {Object[]}
+   * @memberof MovieDetailComponent
+   */
+  items_detail: Object[] = [
+    {
+      name: 'Cast',
+      tab_number: 1,
+      icon: 'tv',
+    },
+    {
+      name: 'Similar',
+      tab_number: 2,
+      icon: 'tv',
+    },
+    {
+      name: 'Images',
+      tab_number: 3,
+      icon: 'tv',
+    },
+    {
+      name: 'Videos',
+      tab_number: 4,
+      icon: 'tv',
+    },
+    {
+      name: 'Reviews',
+      tab_number: 5,
+      icon: 'tv',
+    }
+  ];
+
+  data_credits:CreditsTVDescriptor = new CreditsTVDescriptor();
+
   constructor(
     //private _movie_detail_service: DetailMovieService,
     //private _movie_service: MovieService,
-    private _detail_tv_service:DetailTVService,
+    private _detail_tv_service: DetailTVService,
     private route: ActivatedRoute,
     private _loadingService: TdLoadingService,
     public _mediaService: TdMediaService,
@@ -46,18 +84,30 @@ export class SerieDetailComponent implements OnInit {
 
 
       let id: number = params['id'];
-     
+
       this._detail_tv_service.getTVDetail(id).subscribe(
         (data) => {
           this.data = data;
-          console.log(data);
+          //console.log(data);
           //this.genres = data.genres.map((element) => { return element.name }).join(', ');
           this.loadingResolve();
           //this.movies.push(data.results);
         }
       );
 
-   
+      this._detail_tv_service.getCreditsTVSeries(id).subscribe(
+
+        (data) => {
+          this.data_credits = data;
+          console.log(data);
+          //this.genres = data.genres.map((element) => { return element.name }).join(', ');
+          this.loadingResolve();
+          //this.movies.push(data.results);
+        }
+
+      );
+
+
 
     });
 
@@ -67,14 +117,25 @@ export class SerieDetailComponent implements OnInit {
   }
 
 
-   /**
+  /**
    *
    *
-   * @param {*} min
-   * @param {*} max
-   * @returns {number}
-   * @memberof MovieDetailComponent
+   * @param {number} item_number
+   * @memberof SerieDetailComponent
    */
+  setItem(item_number: number): void {
+    this.selected_item = item_number;
+  }
+
+
+  /**
+  *
+  *
+  * @param {*} min
+  * @param {*} max
+  * @returns {number}
+  * @memberof MovieDetailComponent
+  */
   getRandomInt(min, max): number {
     return Math.floor(Math.random() * (max - min)) + min;
   }

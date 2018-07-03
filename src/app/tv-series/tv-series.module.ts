@@ -9,6 +9,11 @@ import { SerieVideosComponent } from './serie-videos/serie-videos.component';
 import { TVSerieService } from '../shared/services/tv-series.service';
 import { SharedModule } from '../shared/shared.module';
 import { TvSeriesCardComponent } from './tv-series-card/tv-series-card.component';
+import { SerieCastComponent } from './serie-cast/serie-cast.component';
+import { SerieCrewComponent } from './serie-crew/serie-crew.component';
+import { SerieCreditsComponent } from './serie-credits/serie-credits.component';
+import { SerieCreditsCardComponent } from './serie-credits-card/serie-credits-card.component';
+import { SerieBackdropCardComponent } from './serie-backdrop-card/serie-backdrop-card.component';
 
 @NgModule({
   imports: [
@@ -20,7 +25,7 @@ import { TvSeriesCardComponent } from './tv-series-card/tv-series-card.component
     ListSeriesComponent, 
     SerieDetailComponent, 
     SerieImagesComponent, 
-    SerieVideosComponent, TvSeriesCardComponent],
+    SerieVideosComponent, TvSeriesCardComponent, SerieCastComponent, SerieCrewComponent, SerieCreditsComponent, SerieCreditsCardComponent, SerieBackdropCardComponent],
   providers:[
     TVSerieService
   ]
