@@ -5,15 +5,16 @@
       <div fxLayout="row">
         <div fxLayout.xs="column" fxLayout.sm="row">
           <div class="container-title-categories">
-            <p class="title-categories push-bottom-xs push-top-sm">Category: </p>
+            <p class="title-categories push-bottom-xs push-top-sm">Filter: </p>
           </div>
           <mat-form-field class="category-selector pad-left-md pad-top-xs">
-            <mat-select placeholder="Select a category">
-              <mat-option value="option">Option</mat-option>
-              <mat-option value="option">Option</mat-option>
-              <mat-option value="option">Option</mat-option>
-              <mat-option value="option">Option</mat-option>
-              <mat-option value="option">Option</mat-option>
+
+            <mat-select [(value)]="_actual_category" (selectionChange)="changeFilter($event)">
+              <mat-option value="popular">Popular</mat-option>
+              <mat-option value="top-rated">Top rated</mat-option>
+              <mat-option value="now-playing">Now playing</mat-option>
+              <!--<mat-option value="latest">Latest</mat-option>-->
+              <mat-option value="upcoming">Upcoming</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -23,12 +24,20 @@
   <!--End category selector-->
   <!--Container movies list-->
   <div class="container-movies">
-    <div fxLayout="row wrap" diameter="20"  *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
+    <div fxLayout="row wrap" diameter="20" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
       fxLayoutAlign="center">
-      <div flex *ngFor="let item of data.results; let i = index;">
+      <div flex *ngFor="let item of data.results; let i = index;" fxLayoutAlign="center center">
         <app-movie-card [data]="item" class="item"></app-movie-card>
       </div>
     </div>
+    <!--See documentation about paging-bar covalent https://teradata.github.io/covalent/#/components/paging-->
+    <td-paging-bar #pagingBar [pageLinkCount]="0" [pageSize]="20" [total]="total_results" (change)="changeOfPage($event)" [firstLast]="true">
+      {{pagingBar.range}}
+      <span hide-xs>of {{pagingBar.total}}</span>
+    </td-paging-bar>
+    <!--End container movies list-->
+
   </div>
-  <!--End container movies list-->
+
+
 </div>

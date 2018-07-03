@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatFormFieldModule, MatSelectModule, MatInputModule, MatTabsModule, MatIconModule, MatToolbarModule, MatGridListModule, MatCardModule, MatButtonModule, MatListModule, MatMenuModule } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MatTabsModule, MatIconModule, MatToolbarModule, MatGridListModule, MatCardModule, MatButtonModule, MatListModule, MatMenuModule, MatAutocompleteModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {MatDialogModule} from '@angular/material/dialog';
 
@@ -26,6 +26,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSelectModule,
     MatInputModule,
     MatDialogModule,
+    MatAutocompleteModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -47,6 +48,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSelectModule,
     MatInputModule,
     MatDialogModule,
+    MatAutocompleteModule,
   ],
   declarations: []
 })

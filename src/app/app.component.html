@@ -1,3 +1,5 @@
+
+
 <td-layout [class]="activeTheme">
   <!--Menu content-->
   <td-navigation-drawer flex [sidenavTitle]="name" logo="assets:covalent">
@@ -23,14 +25,16 @@
   </td-navigation-drawer>
   <!--End Menu content-->
 
-  <td-layout-nav color="primary" logo="assets:covalent" navigationRoute="/">
+  <td-layout-nav color="primary" logo="assets:covalent" navigationRoute="/" id="app-top">
     <button mat-icon-button td-menu-button tdLayoutToggle>
       <mat-icon>menu</mat-icon>
     </button>
-    <div td-toolbar-content layout="row" layout-align="start center" class="" flex>
+    <div td-toolbar-content fxLayout="row wrap" layout-align="start center" class="" flex>
+
       <span hide-gt-xs class="mat-subhead">Movies</span>
       <span hide-xs class="mat-subhead">Movies</span>
       <span flex></span>
+      <app-search></app-search>
     </div>
     <!--Section toolbar-->
     <!--<span>

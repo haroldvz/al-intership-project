@@ -11,6 +11,9 @@ import { DialogOverviewBiographyComponent } from './layout/dialog-overview-biogr
 import { MovieBackdropCardComponent } from '../movies/movie-backdrop-card/movie-backdrop-card.component';
 import { RouterModule } from '@angular/router';
 import { TvSeriesBackdropCardComponent } from './layout/tv-series-backdrop-card/tv-series-backdrop-card.component';
+import { SearchComponent } from './layout/search/search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchService } from './services/search.service';
 
 @NgModule({
   imports: [
@@ -21,7 +24,9 @@ import { TvSeriesBackdropCardComponent } from './layout/tv-series-backdrop-card/
     SharedCovalentModule,
     SharedMaterialModule,
     AngularFontAwesomeModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     GallerySliderComponent,
@@ -32,16 +37,23 @@ import { TvSeriesBackdropCardComponent } from './layout/tv-series-backdrop-card/
     SharedMaterialModule,
     AngularFontAwesomeModule,
     MovieBackdropCardComponent,
-    TvSeriesBackdropCardComponent
+    TvSeriesBackdropCardComponent,
+    SearchComponent,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  entryComponents:[
+  entryComponents: [
     DialogOverviewBiographyComponent
   ],
 
   declarations: [
-    GallerySliderComponent, 
+    GallerySliderComponent,
     DialogOverviewBiographyComponent,
-    MovieBackdropCardComponent, 
-    TvSeriesBackdropCardComponent]
+    MovieBackdropCardComponent,
+    TvSeriesBackdropCardComponent,
+    SearchComponent],
+  providers: [
+    SearchService
+  ]
 })
 export class SharedModule { }

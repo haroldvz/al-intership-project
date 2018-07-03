@@ -1,18 +1,18 @@
 <div class="app-movie-backdrop-card">
-    <mat-card class="movie-backdrop flex-item" flex-item>
-      <div class="movie-backdrop-container">
-        <div *ngIf="data.backdrop_path;else noBackdropImage ">
-            <img mat-card-image class="img-movie-backdrop" src="https://image.tmdb.org/t/p/w500{{data.backdrop_path}}">
-        </div>
-        <ng-template #noBackdropImage>
-            <img mat-card-image src="assets/images/no-backdrop-image.png" class="" />
-          </ng-template>
+  <mat-card class="movie-backdrop flex-item" flex-item>
+    <div class="movie-backdrop-container">
+      <div *ngIf="data.backdrop_path;else noBackdropImage ">
+        <img mat-card-image class="img-movie-backdrop" src="https://image.tmdb.org/t/p/w500{{data.backdrop_path}}">
       </div>
-      <mat-card-content>
-        <h2 class="movie-backdrop-card-title">
-          <a [routerLink]="['/movie/', data.id ]">{{data.title}}</a>
-        </h2>
-        <!--<p>{{data.popularity}}</p>-->
-      </mat-card-content>
-    </mat-card>
-  </div>
+      <ng-template #noBackdropImage>
+        <img mat-card-image src="assets/images/no-backdrop-image.png" class="" />
+      </ng-template>
+    </div>
+    <mat-card-content>
+      <h2 class="movie-backdrop-card-title">
+        <a [routerLink]="['/movie/', data.id ]">{{data.title}}</a>
+      </h2>
+      <!--<p>{{data.popularity}}</p>-->
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 import { TdMediaService } from '@covalent/core';
 import { fadeAnimation } from './shared/animations/animations';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import { fadeAnimation } from './shared/animations/animations';
   animations: [fadeAnimation]
 
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   name = 'Movies';
 
 
@@ -30,7 +32,7 @@ export class AppComponent {
       title: 'Popular movies',
     }, {
       icon: 'color_lens',
-      route: '/movies/playing-now',
+      route: '/movies/now-playing',
       title: 'Playing now movies',
     }, {
       icon: 'view_quilt',
@@ -60,12 +62,7 @@ export class AppComponent {
       icon: 'library_books',
       route: '/people/popular',
       title: 'Popular people',
-    }, {
-      icon: 'color_lens',
-      route: '/people/latest',
-      title: 'Latest people',
     }
-
 
   ];
 
@@ -129,6 +126,10 @@ export class AppComponent {
       name: 'People',
       path: '/people/popular',
       icon: 'people',
+    }, {
+      name: 'About',
+      path: '/about',
+      icon: 'people',
     }
   ];
 
@@ -141,15 +142,31 @@ export class AppComponent {
    */
   constructor(public media: TdMediaService,
     private _iconRegistry: MatIconRegistry,
-    private _domSanitizer: DomSanitizer) {
+    private _domSanitizer: DomSanitizer,
+    private router: Router) {
     this._iconRegistry.addSvgIconInNamespace('assets', 'teradata-ux',
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/teradata-ux.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'covalent',
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'covalent-mark',
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
+
   }
 
+  ngOnInit() {
+    this.router.events.subscribe(evt => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      if (typeof window != 'undefined'){
+        console.log("WINDOWWW")
+        window.scrollTo(0, 0);
+        document.getElementById("app-top").scrollIntoView();
+      }
+      
+      
+    });
+  }
 
   // Theme toggle
   get activeTheme(): string {
