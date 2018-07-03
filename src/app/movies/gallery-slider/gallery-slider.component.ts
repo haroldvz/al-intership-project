@@ -22,6 +22,8 @@ export class GallerySliderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("DATAAAINIT")
+    console.log(this.data.backdrops)
 
     if (this.data.backdrops) {
       console.log("DATAAA"+this.data.backdrops)

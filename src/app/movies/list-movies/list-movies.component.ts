@@ -51,6 +51,7 @@ export class ListMoviesComponent implements OnInit {
         this._movie_service.getPopularMovies(this._actual_page).subscribe(
           (data) => {
             this.data = data;
+            console.log(data)
             this.total_results = data.total_results;
             this._total_pages = data.total_pages;
             this.loadingResolve();
