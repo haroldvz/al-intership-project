@@ -27,7 +27,7 @@ export class MovieService {
    * @memberof MovieService
    */
   getTopRatedMovies(page: number) {
-    let url = this.url + '/top-rated';
+    let url = this.url + '/top_rated';
     let args = '&page=' + page;
     return this._api_service.get(url, args).pipe(map(
       (data) => {
@@ -55,6 +55,44 @@ export class MovieService {
   }
 
 
+  getNowPlayingMovies(page: number) {
+    let url = this.url + '/now_playing';
+    let args = '&page=' + page;
+    return this._api_service.get(url, args).pipe(map(
+      (data) => {
+        return ResponseDescriptor.import(data);
+      }
+    ));
+
+  }
+
+
+
+  getLatestMovies(page: number) {
+    let url = this.url + '/latest';
+    let args = '&page=' + page;
+    return this._api_service.get(url, args).pipe(map(
+      (data) => {
+        return ResponseDescriptor.import(data);
+      }
+    ));
+
+  }
+
+  getUpcomingMovies(page: number) {
+    let url = this.url + '/upcoming';
+    let args = '&page=' + page;
+    return this._api_service.get(url, args).pipe(map(
+      (data) => {
+        return ResponseDescriptor.import(data);
+      }
+    ));
+
+  }
+
+
+
+
   /**
    *
    * @param 
@@ -62,7 +100,7 @@ export class MovieService {
    * @memberof MovieService
    */
   getMovieCredits(id_movie: number) {
-    let url = this.url + '/'+ id_movie + '/credits';
+    let url = this.url + '/' + id_movie + '/credits';
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {

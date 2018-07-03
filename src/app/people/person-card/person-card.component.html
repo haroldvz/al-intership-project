@@ -1,11 +1,21 @@
 <div class="app-movie-card">
-    <mat-card class="movie-card flex-item" flex-item>
-      <div class="">
-        <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{data.profile_path}}">
-      </div>
-      <mat-card-title class="movie-card-title"><a [routerLink]="['/people/', data.id]">{{data.name}}</a></mat-card-title>
-      <!--<mat-card-subtitle>{{data.popularity}}</mat-card-subtitle>-->
-      <mat-card-content>
-      </mat-card-content>
-    </mat-card>
-  </div>
+  <mat-card class="movie-card flex-item" flex-item>
+
+    <div *ngIf="data.profile_path;else noImage ">
+      <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w500{{data.profile_path}}">
+    </div>
+    <ng-template #noImage>
+      <img mat-card-image src="assets/images/no-person-img-male_256_256.jpg" class="" />
+    </ng-template>
+
+    <!--<div class="">
+      <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{data.profile_path}}">
+    </div>-->
+    <mat-card-title class="movie-card-title">
+      <a [routerLink]="['/person/', data.id]">{{data.name}}</a>
+    </mat-card-title>
+    <!--<mat-card-subtitle>{{data.popularity}}</mat-card-subtitle>-->
+    <mat-card-content>
+    </mat-card-content>
+  </mat-card>
+</div>

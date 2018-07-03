@@ -1,0 +1,7 @@
+<div class="container-similar-tv-series">
+  <div fxLayout="row wrap" diameter="20" fxLayoutAlign="center center">
+    <div flex *ngFor="let item of data.results; let i = index;" fxLayoutAlign="center center">
+      <app-movie-backdrop-card [data]="item"></app-movie-backdrop-card>
+    </div>
+  </div>
+</div>

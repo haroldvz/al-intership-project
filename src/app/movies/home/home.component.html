@@ -1,5 +1,8 @@
 <section class="bgc-blue-grey-50">
-  <div layout-gt-xs="row">
+    <div *ngIf="data_to_gallery_slider.backdrops">
+        <app-gallery-slider [data]="data_to_gallery_slider"></app-gallery-slider>
+      </div>
+  <div fxLayout="row">
     <!--<div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
       <div class="push-top-xl" hide-xs></div>
       <div tdMediaToggle="gt-sm" [mediaClasses]="['push-lg']">
@@ -13,23 +16,24 @@
     <!--<div flex="40" layout="row" layout-align="center center">
       <mat-icon class="push" style="height:auto;width:auto;" svgIcon="assets:covalent-mark"></mat-icon>
     </div>-->
+    
   </div>
   <div layout-gt-xs="row">
-  <mat-card>
-    <img mat-card-image src="https://placekitten.com/g/600/200">
-    <mat-card-title>Card with Image First</mat-card-title>
-    <mat-card-subtitle>100% Width Image</mat-card-subtitle>
-    <mat-card-content>
-    </mat-card-content>
-  </mat-card>
-</div>
-<div layout-gt-xs="row">
-  <mat-card>
-    <img mat-card-image src="https://placekitten.com/g/600/200">
-    <mat-card-title>Card with Image First</mat-card-title>
-    <mat-card-subtitle>100% Width Image</mat-card-subtitle>
-    <mat-card-content>
-    </mat-card-content>
-  </mat-card>
-</div>
+    <mat-card>
+      <img mat-card-image src="https://placekitten.com/g/600/200">
+      <mat-card-title>Card with Image First</mat-card-title>
+      <mat-card-subtitle>100% Width Image</mat-card-subtitle>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div layout-gt-xs="row">
+    <mat-card>
+      <img mat-card-image src="https://placekitten.com/g/600/200">
+      <mat-card-title>Card with Image First</mat-card-title>
+      <mat-card-subtitle>100% Width Image</mat-card-subtitle>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </section>

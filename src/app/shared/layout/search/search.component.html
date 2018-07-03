@@ -1,0 +1,28 @@
+<!--<div fxLayout="row">-->
+<!--<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+        <img class="example-option-img" aria-hidden [src]="state.flag" height="25">
+        <span>{{state.name}}</span> |
+        <small>Population: {{state.population}}</small>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  </form>-->
+
+
+<div layout="column" class="multi-search-input search" tdMediaToggle="gt-xs" [mediaClasses]="['pad-right-md']">
+<td-search-box #searchInput class="search-bar tc-grey-90" backIcon="arrow_forward" placeholder="Search movies, series, people"
+  [showUnderline]="true" [debounce]="250" [alwaysVisible]="true"
+  (searchDebounce)="search($event)" (search)="keyEnterPress()" (clear)="clear()" (focusout)="focusOut()"
+  
+  >
+</td-search-box>
+
+
+</div>
+
+
+<!--</div>-->

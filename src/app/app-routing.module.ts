@@ -7,6 +7,7 @@ const routes: Routes = [
   {path:'movies', loadChildren:'./movies/movies.module#MoviesModule'},
   {path:'people', loadChildren:'./people/people.module#PeopleModule'},
   {path:'tv', loadChildren:'./tv-series/tv-series.module#TvSeriesModule'},
+  //{path:'404-not-found', component:},
   {path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];
 
