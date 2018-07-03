@@ -1,0 +1,79 @@
+.app-person-detail {
+    padding: 5%;
+    .person-card {
+        height: 310px;
+        max-width: 400px;
+    }
+    .container-img-person {
+        height: 260px;
+        max-width: 400px;
+    }
+    .person-card-title {
+        font-size: 15px;
+    }
+    .container-person-detail-description {
+
+        width: 100%;
+        min-height: 500px;
+
+        .title-person-detail {
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            font-size: 1.8em;
+            margin: 0;
+            padding: 0;
+        }
+        .subtitle-person-detail-description {
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            font-size: 1.6em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .place_of_birth{
+            text-align: left;
+            padding-left: 20px; 
+        }
+
+       
+        text-align: justify;
+    }
+}
+
+.navbar-detail-person {
+    .toolbar-item {
+        color: white;
+    }
+    .mat-toolbar-row,
+    .mat-toolbar-single-row {
+        height: 50px;
+    }
+}
+
+.expand-biography-icon{
+    text-align: center;
+}
+
+@mixin md-icon-size($size: 24px) {
+    font-size: $size;
+    height: $size;
+    width: $size;
+}
+
+.mat-icon {
+    @include md-icon-size(24px);
+}
+
+.popularity{
+
+    span{
+        font-family: 'Source Sans Pro', Arial, sans-serif;
+            font-size: 1.2em;
+            
+    }
+
+    .mat-icon {
+        @include md-icon-size(28px);
+        bottom:0;
+    }
+    
+}

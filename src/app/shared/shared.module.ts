@@ -16,6 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchService } from './services/search.service';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { SliderComponent } from './layout/slider/slider.component';
+import { DragScrollModule } from 'ngx-drag-scroll';
+import { AboutComponent } from './layout/about/about.component';
+
 
 @NgModule({
   imports: [
@@ -29,7 +32,8 @@ import { SliderComponent } from './layout/slider/slider.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    DragScrollModule
   ],
   exports: [
     GallerySliderComponent,
@@ -45,7 +49,8 @@ import { SliderComponent } from './layout/slider/slider.component';
     FormsModule,
     ReactiveFormsModule,
     NgxGalleryModule,
-    SliderComponent
+    SliderComponent,
+    DragScrollModule
   ],
   entryComponents: [
     DialogOverviewBiographyComponent
@@ -57,7 +62,9 @@ import { SliderComponent } from './layout/slider/slider.component';
     MovieBackdropCardComponent,
     TvSeriesBackdropCardComponent,
     SearchComponent,
-    SliderComponent],
+    SliderComponent,
+    AboutComponent
+  ],
   providers: [
     SearchService
   ]

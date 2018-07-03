@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry, MatCardModule } from '@angular/material';
@@ -9,6 +9,9 @@ import { TdLoadingService } from '@covalent/core';
 import { ImagesMoviesDescriptor } from '../../shared/types/movies/images.type';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
+import { DragScrollDirective } from 'ngx-drag-scroll';
+import { ResponseDescriptor } from '../../shared/types/movies/response.type';
+import { NgxGalleryComponent } from 'ngx-gallery';
 
 
 @Component({
@@ -18,12 +21,21 @@ import { MovieService } from '../../shared/services/movie.service';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild('nav', { read: DragScrollDirective }) ds: DragScrollDirective;
+
+  leftNavDisabled = false;
+  rightNavDisabled = false;
+
+
   private routerSubscribe;
   public images_data: ImagesMoviesDescriptor = new ImagesMoviesDescriptor();
 
-  data;
+  data:ResponseDescriptor = new ResponseDescriptor();
+  backdrops_items_slider = [];
   backdrops_items = [];
   data_to_gallery_slider = {};
+
+  
 
   constructor(
     public media: TdMediaService,
@@ -41,19 +53,53 @@ export class HomeComponent implements OnInit {
 
   }
 
+ 
+
   ngOnInit() {
+
 
     this._movie_service.getPopularMovies(1).subscribe(
       (data) => {
         this.data = data;
-        for(let i=0;i<data.results.length;i++){
-          this.backdrops_items.push({file_path:data.results[i].backdrop_path})
+        console.log(this.data);
+        for (let i = 0; i < data.results.length; i++) {
+          this.backdrops_items_slider.push({ file_path: data.results[i].backdrop_path })
         }
-        this.data_to_gallery_slider['backdrops'] = this.backdrops_items;
+        this.data_to_gallery_slider['backdrops'] = this.backdrops_items_slider;
+      }
+    );
+
+    this._movie_service.getUpcomingMovies(1).subscribe(
+      (data) => {
+        this.data = data;
+        console.log(this.data);
+        /*for (let i = 0; i < data.results.length; i++) {
+          this.backdrops_items.push({ file_path: data.results[i].backdrop_path })
+        }
+        this.data_to_gallery_slider['backdrops'] = this.backdrops_items;*/
       }
     );
 
   }
+
+
+  
+
+  moveLeft() {
+    this.ds.moveLeft();
+  }
+
+  moveRight() {
+    this.ds.moveRight();
+  }
+
+  leftBoundStat(reachesLeftBound: boolean) {
+    this.leftNavDisabled = reachesLeftBound;
+  }
+
+  rightBoundStat(reachesRightBound: boolean) {
+    this.rightNavDisabled = reachesRightBound;
+}
 
 }
 

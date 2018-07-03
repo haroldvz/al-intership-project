@@ -6,13 +6,16 @@
         <mat-nav-list>
           <h3 mat-subheader class="text-upper tc-blue-grey-100">Movies</h3>
           <mat-list-item>
-            <p matLine class="tc-blue-grey-300">TV</p>
+            <p matLine class="tc-blue-grey-300"><a [routerLink]="['/movies/', 'popular']">Popular</a></p>
           </mat-list-item>
           <mat-list-item>
-            <p matLine class="tc-blue-grey-300">People</p>
+            <p matLine class="tc-blue-grey-300"><a [routerLink]="['/movies/', 'top-rated']">Top rated</a></p>
           </mat-list-item>
           <mat-list-item>
-            <p matLine class="tc-blue-grey-300">About</p>
+              <p matLine class="tc-blue-grey-300"><a [routerLink]="['/movies/', 'now-playing']">Now Playing</a></p>
+          </mat-list-item>
+          <mat-list-item>
+              <p matLine class="tc-blue-grey-300"><a [routerLink]="['/movies/', 'upcoming']">Upcoming</a></p>
           </mat-list-item>
         </mat-nav-list>
       </div>
@@ -20,28 +23,27 @@
         <mat-nav-list>
           <h3 mat-subheader class="text-upper tc-blue-grey-100">TV</h3>
           <mat-list-item>
-            <p matLine class="tc-blue-grey-300">Benefits</p>
+              <p matLine class="tc-blue-grey-300"><a [routerLink]="['/tv/', 'airing-today']">Airing today</a></p>
           </mat-list-item>
           <mat-list-item>
-            <p matLine class="tc-blue-grey-300">Locations</p>
+              <p matLine class="tc-blue-grey-300"><a [routerLink]="['/tv/', 'popular']">Popular</a></p>
           </mat-list-item>
           <mat-list-item>
-            <p matLine class="tc-blue-grey-300">List item</p>
+              <p matLine class="tc-blue-grey-300"><a [routerLink]="['/tv/', 'top-rated']">Top rated</a></p>
           </mat-list-item>
+          <mat-list-item>
+              <p matLine class="tc-blue-grey-300"><a [routerLink]="['/tv/', 'on-the-air']">On the air</a></p>
+          </mat-list-item>
+          
         </mat-nav-list>
       </div>
       <div flex-gt-xs>
         <mat-nav-list>
           <h3 mat-subheader class="text-upper tc-blue-grey-100">People</h3>
           <mat-list-item>
-            <p matLine class="tc-blue-grey-300">Benefits</p>
+              <p matLine class="tc-blue-grey-300"><a [routerLink]="['/people/', 'popular']">Popular</a></p>
           </mat-list-item>
-          <mat-list-item>
-            <p matLine class="tc-blue-grey-300">Locations</p>
-          </mat-list-item>
-          <mat-list-item>
-            <p matLine class="tc-blue-grey-300">List item</p>
-          </mat-list-item>
+         
         </mat-nav-list>
       </div>
 
@@ -49,14 +51,9 @@
         <mat-nav-list>
           <h3 mat-subheader class="text-upper tc-blue-grey-100">About</h3>
           <mat-list-item>
-            <p matLine class="tc-blue-grey-300">Benefits</p>
+              <p matLine class="tc-blue-grey-300"><a [routerLink]="['/about/']">About me</a></p>
           </mat-list-item>
-          <mat-list-item>
-            <p matLine class="tc-blue-grey-300">Locations</p>
-          </mat-list-item>
-          <mat-list-item>
-            <p matLine class="tc-blue-grey-300">List item</p>
-          </mat-list-item>
+         
         </mat-nav-list>
       </div>
       <div flex-gt-xs="10">
