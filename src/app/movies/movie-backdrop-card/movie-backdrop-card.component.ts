@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MovieDescriptor } from '../../shared/types/movies/detail-movie.type';
+
 
 @Component({
   selector: 'app-movie-backdrop-card',
@@ -8,7 +8,7 @@ import { MovieDescriptor } from '../../shared/types/movies/detail-movie.type';
 })
 export class MovieBackdropCardComponent implements OnInit {
 
-  
+
   @Input() public data;
 
   constructor() { }

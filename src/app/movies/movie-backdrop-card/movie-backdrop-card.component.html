@@ -9,8 +9,15 @@
       </ng-template>
     </div>
     <mat-card-content>
+      <!--For Movies-->
       <h2 class="movie-backdrop-card-title">
-        <a [routerLink]="['/movie/', data.id ]">{{data.title}}</a>
+        <div *ngIf="data.title">
+          <a [routerLink]="['/movie/', data.id ]">{{data.title}}</a>
+        </div>
+        <!--For TVSeries-->
+        <div *ngIf="data.name">
+          <a [routerLink]="['/tv/', data.id ]">{{data.name}}</a>
+        </div>
       </h2>
       <!--<p>{{data.popularity}}</p>-->
     </mat-card-content>
