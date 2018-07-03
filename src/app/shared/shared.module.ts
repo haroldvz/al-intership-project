@@ -14,6 +14,8 @@ import { TvSeriesBackdropCardComponent } from './layout/tv-series-backdrop-card/
 import { SearchComponent } from './layout/search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchService } from './services/search.service';
+import { NgxGalleryModule } from 'ngx-gallery';
+import { SliderComponent } from './layout/slider/slider.component';
 
 @NgModule({
   imports: [
@@ -26,7 +28,8 @@ import { SearchService } from './services/search.service';
     AngularFontAwesomeModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxGalleryModule
   ],
   exports: [
     GallerySliderComponent,
@@ -40,7 +43,9 @@ import { SearchService } from './services/search.service';
     TvSeriesBackdropCardComponent,
     SearchComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxGalleryModule,
+    SliderComponent
   ],
   entryComponents: [
     DialogOverviewBiographyComponent
@@ -51,7 +56,8 @@ import { SearchService } from './services/search.service';
     DialogOverviewBiographyComponent,
     MovieBackdropCardComponent,
     TvSeriesBackdropCardComponent,
-    SearchComponent],
+    SearchComponent,
+    SliderComponent],
   providers: [
     SearchService
   ]
