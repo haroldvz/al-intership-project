@@ -1,3 +1,39 @@
-<p>
-  list-series works!
-</p>
+<!--Category selector-->
+<div fxLayout="row" class="bgc-grey-700 category">
+  <div class="pad-right-xl pad-left-xl pad-top-xs pad-bottom-xs">
+    <div fxLayout="row">
+      <div fxLayout.xs="column" fxLayout.sm="row">
+        <div class="container-title-categories">
+          <p class="title-categories push-bottom-xs push-top-sm">Filter: </p>
+        </div>
+        <mat-form-field class="category-selector pad-left-md pad-top-xs">
+
+          <mat-select [(value)]="_actual_category" (selectionChange)="changeFilter($event)">
+            <mat-option value="popular">Popular</mat-option>
+            <mat-option value="top-rated">Top rated</mat-option>
+            <mat-option value="on-the-air">On the air</mat-option>
+            <!--<mat-option value="latest">Latest</mat-option>-->
+            <mat-option value="airing-today">Airing today</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End category selector-->
+
+<div class="container-tv-series">
+  <div fxLayout="row wrap" diameter="20" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
+    fxLayoutAlign="center">
+    <div flex *ngFor="let item of data.results; let i = index;" fxLayoutAlign="center center">
+     <app-tv-series-card [data]="item" class="item"></app-tv-series-card>
+    </div>
+  </div>
+  <!--See documentation about paging-bar covalent https://teradata.github.io/covalent/#/components/paging-->
+  <!--<td-paging-bar #pagingBar [pageLinkCount]="0" [pageSize]="20" [total]="total_results" (change)="changeOfPage($event)" [firstLast]="true">
+    {{pagingBar.range}}
+    <span hide-xs>of {{pagingBar.total}}</span>
+  </td-paging-bar>-->
+  <!--End container movies list-->
+
+</div>

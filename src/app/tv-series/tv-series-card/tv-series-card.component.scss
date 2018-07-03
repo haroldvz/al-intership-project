@@ -1,0 +1,30 @@
+.app-movie-card {
+    .movie-card {
+        min-height: 445px;
+        max-width: 265px;
+    }
+    .container-img-movie {
+        max-height: 375px;
+        width: 100%;
+        min-width: 265px;
+    }
+    .movie-card-title {
+        font-size: 15px;
+    }
+}
+
+/*
+.app-movie-card {
+    .movie-card {
+        min-height: 390px;
+        max-width: 230px;
+    }
+    .container-img-movie {
+        max-height: 340px;
+        width: 100%;
+        min-width: 230px;
+    }
+    .movie-card-title {
+        font-size: 15px;
+    }
+}*/
