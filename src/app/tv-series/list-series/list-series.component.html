@@ -26,14 +26,17 @@
   <div fxLayout="row wrap" diameter="20" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
     fxLayoutAlign="center">
     <div flex *ngFor="let item of data.results; let i = index;" fxLayoutAlign="center center">
-     <app-tv-series-card [data]="item" class="item"></app-tv-series-card>
+      <app-tv-series-card [data]="item" class="item"></app-tv-series-card>
     </div>
+    
   </div>
+
   <!--See documentation about paging-bar covalent https://teradata.github.io/covalent/#/components/paging-->
-  <!--<td-paging-bar #pagingBar [pageLinkCount]="0" [pageSize]="20" [total]="total_results" (change)="changeOfPage($event)" [firstLast]="true">
-    {{pagingBar.range}}
-    <span hide-xs>of {{pagingBar.total}}</span>
-  </td-paging-bar>-->
+  <td-paging-bar #pagingBar [pageLinkCount]="0" [pageSize]="20" [total]="_total_results" (change)="changeOfPage($event)" [firstLast]="true">
+      {{pagingBar.range}}
+      <span hide-xs>of {{pagingBar.total}}</span>
+    </td-paging-bar>
+
   <!--End container movies list-->
 
 </div>

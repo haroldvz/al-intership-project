@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PeopleService } from '../../shared/services/people.service';
 import { ResponseTVSeriesDescriptor } from '../../shared/types/tv-series/tv-response.type';
 import { TVSerieService } from '../../shared/services/tv-series.service';
+import { IPageChangeEvent } from '@covalent/core';
 
 @Component({
   selector: 'app-list-series',
@@ -123,6 +124,19 @@ export class ListSeriesComponent implements OnInit {
 
 
     }
+  }
+
+
+  /**
+   *
+   *
+   * @param {IPageChangeEvent} event
+   * @memberof ListSeriesComponent
+   */
+  changeOfPage(event: IPageChangeEvent): void {
+    document.querySelector('body').scrollTo(0, 0);
+    event.page > 1000 ? this._actual_page = 999:this._actual_page = event.page;
+    this._router.navigate(['/tv/', this._actual_category, { 'page': this._actual_page }]);
   }
 
 
