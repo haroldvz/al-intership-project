@@ -159,9 +159,8 @@ export class AppComponent implements OnInit {
         return;
       }
       if (typeof window != 'undefined'){
-        console.log("WINDOWWW")
-        window.scrollTo(0, 0);
-        document.getElementById("app-top").scrollIntoView();
+        //window.scrollTo(0, 0);
+        //document.getElementById("app-top").scrollIntoView();
       }
       
       

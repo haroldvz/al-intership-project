@@ -31,9 +31,9 @@
       </div>
     </div>
     <!--See documentation about paging-bar covalent https://teradata.github.io/covalent/#/components/paging-->
-    <td-paging-bar #pagingBar [pageLinkCount]="0" [pageSize]="20" [total]="total_results" (change)="changeOfPage($event)" [firstLast]="true">
-      {{pagingBar.range}}
-      <span hide-xs>of {{pagingBar.total}}</span>
+    <td-paging-bar #pagingMoviesBar pageLinkCount="5" [firstLast]="false" [pageSize]="20" [total]="total_results" (change)="changeOfPage($event)">
+      {{pagingMoviesBar.range}}
+      <span hide-xs>of {{pagingMoviesBar.total}}</span>
     </td-paging-bar>
     <!--End container movies list-->
 

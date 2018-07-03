@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PeopleService } from '../../shared/services/people.service';
 import { ResponseTVSeriesDescriptor } from '../../shared/types/tv-series/tv-response.type';
 import { TVSerieService } from '../../shared/services/tv-series.service';
-import { IPageChangeEvent } from '@covalent/core';
+import { IPageChangeEvent, TdPagingBarComponent } from '@covalent/core';
 
 @Component({
   selector: 'app-list-series',
@@ -17,6 +17,8 @@ export class ListSeriesComponent implements OnInit {
   private _actual_page: number;
   private _total_results: number;
   private _total_pages: number;
+
+  @ViewChild('pagingTVBar') pagingTVBar: TdPagingBarComponent;
 
   data: ResponseTVSeriesDescriptor = new ResponseTVSeriesDescriptor();
 
@@ -55,6 +57,7 @@ export class ListSeriesComponent implements OnInit {
     //console.log(event.value);
     this._actual_category = event.value;
     this._actual_page = 1;//go to page 1 in the new list
+    this.pagingTVBar.navigateToPage(1);//reset the page in paginator
     this._router.navigate(['/tv/', this._actual_category, { 'page': this._actual_page }]);
   }
 

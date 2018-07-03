@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
           this.backdrops_items.push({file_path:data.results[i].backdrop_path})
         }
         this.data_to_gallery_slider['backdrops'] = this.backdrops_items;
-        console.log(this.data_to_gallery_slider);
       }
     );
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
 import { ResponseDescriptor } from '../../shared/types/movies/response.type';
@@ -19,6 +19,8 @@ export class ListMoviesComponent implements OnInit {
   private _total_pages: number;
   public data: ResponseDescriptor = new ResponseDescriptor();
   animate;
+
+  @ViewChild('pagingMoviesBar') pagingMoviesBar: TdPagingBarComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,7 +53,7 @@ export class ListMoviesComponent implements OnInit {
         this._movie_service.getPopularMovies(this._actual_page).subscribe(
           (data) => {
             this.data = data;
-            console.log(data)
+            //console.log(data)
             this.total_results = data.total_results;
             this._total_pages = data.total_pages;
             this.loadingResolve();
@@ -130,6 +132,7 @@ export class ListMoviesComponent implements OnInit {
     //console.log(event.value);
     this._actual_category = event.value;
     this._actual_page = 1;//go to page 1 in the new list
+    this.pagingMoviesBar.navigateToPage(1);
     this._router.navigate(['/movies/', this._actual_category, { 'page': this._actual_page }]);
   }
 
