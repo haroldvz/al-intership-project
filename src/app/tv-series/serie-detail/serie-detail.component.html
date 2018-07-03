@@ -72,13 +72,13 @@
     <app-serie-credits [data]="data_credits.cast"></app-serie-credits>
     </div>
     <div *ngSwitchCase="'2'">
-       <app-similar-series></app-similar-series>
+       <!--<app-similar-series></app-similar-series>-->
     </div>
     <div *ngSwitchCase="'3'">
      <!-- <app-similar-movies></app-similar-movies>-->
     </div>
     <div *ngSwitchCase="'4'">
-     <!-- <app-movie-images></app-movie-images>-->
+     <app-serie-videos [data]="data.videos"></app-serie-videos>
     </div>
     <div *ngSwitchCase="'5'">
     </div>

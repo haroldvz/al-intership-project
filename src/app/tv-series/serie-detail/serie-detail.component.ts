@@ -88,10 +88,10 @@ export class SerieDetailComponent implements OnInit {
       this._detail_tv_service.getTVDetail(id).subscribe(
         (data) => {
           this.data = data;
-          //console.log(data);
+          console.log(this.data);
           //this.genres = data.genres.map((element) => { return element.name }).join(', ');
           this.loadingResolve();
-          //this.movies.push(data.results);
+         
         }
       );
 
@@ -99,10 +99,10 @@ export class SerieDetailComponent implements OnInit {
 
         (data) => {
           this.data_credits = data;
-          console.log(data);
-          //this.genres = data.genres.map((element) => { return element.name }).join(', ');
+         
+        
           this.loadingResolve();
-          //this.movies.push(data.results);
+         
         }
 
       );

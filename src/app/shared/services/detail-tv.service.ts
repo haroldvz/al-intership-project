@@ -9,6 +9,7 @@ import { ImagesMoviesDescriptor } from '../types/movies/images.type';
 import { TVSeriesDescriptor } from '../types/tv-series/detail-tv.type';
 import { ResponseTVSeriesDescriptor } from '../types/tv-series/tv-response.type';
 import { CreditsTVDescriptor } from '../types/tv-series/tv-credits.type';
+import { ResponseVideoDescriptor } from '../types/video.type';
 
 
 @Injectable({
@@ -37,7 +38,7 @@ export class DetailTVService {
      */
     getTVDetail(id_movie: number) {
         let url = this.url + id_movie;
-        let args = '';
+        let args = '&append_to_response=videos';
         return this._api_service.get(url, args).pipe(map(
             (data) => {
                 return TVSeriesDescriptor.import(data);
@@ -89,6 +90,23 @@ export class DetailTVService {
         return this._api_service.get(url, args).pipe(map(
             (data) => {
                 return ImagesMoviesDescriptor.import(data);
+            }
+        ));
+    }
+
+    /**
+     *
+     *
+     * @param {number} id_tv
+     * @returns
+     * @memberof DetailTVService
+     */
+    getTVVideos(id_tv: number) {
+        let url = this.url + id_tv + '/videos';
+        let args = '';
+        return this._api_service.get(url, args).pipe(map(
+            (data) => {
+                return ResponseVideoDescriptor.import(data);
             }
         ));
     }

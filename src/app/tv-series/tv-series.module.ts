@@ -15,6 +15,7 @@ import { SerieCreditsComponent } from './serie-credits/serie-credits.component';
 import { SerieCreditsCardComponent } from './serie-credits-card/serie-credits-card.component';
 import { SerieBackdropCardComponent } from './serie-backdrop-card/serie-backdrop-card.component';
 import { SimilarSeriesComponent } from './similar-series/similar-series.component';
+import { SerieReviewsComponent } from './serie-reviews/serie-reviews.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { SimilarSeriesComponent } from './similar-series/similar-series.componen
     ListSeriesComponent, 
     SerieDetailComponent, 
     SerieImagesComponent, 
-    SerieVideosComponent, TvSeriesCardComponent, SerieCastComponent, SerieCrewComponent, SerieCreditsComponent, SerieCreditsCardComponent, SerieBackdropCardComponent, SimilarSeriesComponent],
+    SerieVideosComponent, TvSeriesCardComponent, SerieCastComponent, SerieCrewComponent, SerieCreditsComponent, SerieCreditsCardComponent, SerieBackdropCardComponent, SimilarSeriesComponent, SerieReviewsComponent],
   providers:[
     TVSerieService
   ]

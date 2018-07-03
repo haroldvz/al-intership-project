@@ -34,7 +34,7 @@ export class DetailMovieService {
    */
   getMovieDetail(id_movie: number) {
     let url = this.url + id_movie;
-    let args = '';
+    let args = '&append_to_response=videos';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
         return MovieDescriptor.import(data);

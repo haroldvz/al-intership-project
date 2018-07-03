@@ -27,7 +27,7 @@ export class SimilarSeriesComponent implements OnInit {
         (data) => {
 
           this.data = data;
-          console.log(data);
+          //console.log(data);
 
         }
       );

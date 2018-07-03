@@ -1,3 +1,23 @@
-<p>
-  serie-videos works!
-</p>
+<div *ngIf="data">
+  <div fxLayout="row wrap">
+    <div *ngFor="let item of data">
+      <mat-card class="video-card">
+        <div class="">
+          <iframe class="video-container" [src]="makeSafeVideoURL(item.key)"></iframe>
+        </div>
+        <mat-card-content>
+          <h2 class="video-card-title">
+            <!--<a [routerLink]="['/person/', data.id ]">{{data.name}}</a>-->
+          </h2>
+          <div *ngIf="data.character">
+            <p>{{data.character}}</p>
+
+          </div>
+          <div *ngIf="data.department">
+            <p>{{data.department}}</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 import { GenreDescriptor } from "./../genres/genres.type";
+import { VideoDescriptor } from "../video.type";
 
 export class TVSeriesDescriptor {
 
@@ -23,7 +24,7 @@ export class TVSeriesDescriptor {
     //public production_companies;
     //public seasons:SeasonDescriptor[]=[];
     public vote_average:number;
-
+    public videos: VideoDescriptor[] = [];
 
 
 
@@ -57,6 +58,17 @@ export class TVSeriesDescriptor {
                 tv_serie.genres.push(genre);
             }
         }
+
+        let video: VideoDescriptor;
+        if (rawData.hasOwnProperty("videos")) {
+            for (var i = 0; i < rawData.videos.results.length; i++) {
+                let row: any = rawData.videos.results[i];
+                video = VideoDescriptor.import(row);
+                tv_serie.videos.push(video);
+            }
+        }
+
+
         return tv_serie;
     }
 }
