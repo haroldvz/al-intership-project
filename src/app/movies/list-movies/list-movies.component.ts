@@ -12,11 +12,11 @@ import { TdLoadingService } from '@covalent/core';
 })
 export class ListMoviesComponent implements OnInit {
 
-  private routerSubscribe;
-  private total_results: number;
-  private _actual_page: number;
-  private _actual_category: string;
-  private _total_pages: number;
+  public routerSubscribe;
+  public total_results: number;
+  public _actual_page: number;
+  public _actual_category: string;
+  public _total_pages: number;
   public data: ResponseDescriptor = new ResponseDescriptor();
   animate;
 

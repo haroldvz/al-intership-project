@@ -16,12 +16,12 @@ import { CreditsDescriptor, CrewDescriptor } from '../../shared/types/movies/cre
 })
 export class MovieDetailComponent implements OnInit {
 
-  private base_img_url_backdrop_path: string = environment.api_image_url + environment.api_image_backdrop_size;
-  private routerSubscribe;
-  private data: MovieDescriptor = new MovieDescriptor();
-  private data_credits: CreditsDescriptor = new CreditsDescriptor();
-  private data_crew: CrewDescriptor[];
-  private genres;
+  public base_img_url_backdrop_path: string = environment.api_image_url + environment.api_image_backdrop_size;
+  public routerSubscribe;
+  public data: MovieDescriptor = new MovieDescriptor();
+  public data_credits: CreditsDescriptor = new CreditsDescriptor();
+  public data_crew: CrewDescriptor[];
+  public genres;
 
   /**
    *
@@ -62,7 +62,7 @@ export class MovieDetailComponent implements OnInit {
   ];
 
   //use ngClass
-  private myStyles = {
+  public myStyles = {
     'height': '100%',
     'z-index': '2',
     'padding-left': ' 4%',
@@ -70,7 +70,7 @@ export class MovieDetailComponent implements OnInit {
     'background': ' radial-gradient(ellipse at 34% 60%, rgba(' + this.getRandomInt(0, 125) + ', 30, 28, 0.95) 0%, rgba(50, 43, 25, 0.90) 100%)'
   }
 
-  private selected_item: number = 1;
+  public selected_item: number = 1;
 
 
   /**

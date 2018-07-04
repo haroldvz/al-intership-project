@@ -11,7 +11,7 @@ export class MovieVideosComponent implements OnInit {
 
   @Input() public data;
 
-  private base_video_url:string = environment.api_video_url;
+  public base_video_url:string = environment.api_video_url;
 
   constructor(private _sanitizer: DomSanitizer) { }
 

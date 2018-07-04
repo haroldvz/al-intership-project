@@ -13,10 +13,10 @@ import { IPageChangeEvent, TdPagingBarComponent } from '@covalent/core';
 export class ListSeriesComponent implements OnInit {
 
   private routerSubscribe;
-  private _actual_category: string;
-  private _actual_page: number;
-  private _total_results: number;
-  private _total_pages: number;
+  public _actual_category: string;
+  public _actual_page: number;
+  public _total_results: number;
+  public _total_pages: number;
 
   @ViewChild('pagingTVBar') pagingTVBar: TdPagingBarComponent;
 

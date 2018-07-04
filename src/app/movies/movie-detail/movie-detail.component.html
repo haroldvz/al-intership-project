@@ -75,6 +75,7 @@
     </nav>
     <!-- </mat-toolbar>-->
   </div>
+  
   <div [ngSwitch]="selected_item">
     <div *ngSwitchCase="'1'">
       <app-movie-cast [data]="data_credits.cast"></app-movie-cast>
@@ -89,7 +90,7 @@
       <app-movie-images></app-movie-images>
     </div>
     <div *ngSwitchCase="'5'">
-        <app-movie-videos [data]="data.videos"></app-movie-videos>
+      <app-movie-videos [data]="data.videos"></app-movie-videos>
     </div>
     <div *ngSwitchCase="'6'">
     </div>

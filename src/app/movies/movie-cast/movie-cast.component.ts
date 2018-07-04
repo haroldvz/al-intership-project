@@ -13,7 +13,7 @@ import { TdMediaService } from '@covalent/core';
 })
 export class MovieCastComponent implements OnInit, AfterContentInit {
 
-  private gridByBreakpoint = {
+  public gridByBreakpoint = {
     xl: 8,
     lg: 5,
     md: 4,

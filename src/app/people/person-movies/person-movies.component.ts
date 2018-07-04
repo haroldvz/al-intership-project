@@ -12,7 +12,7 @@ export class PersonMoviesComponent implements OnInit {
 
   private routerSubscribe;
 
-  private data: CreditsPersonDescriptor = new CreditsPersonDescriptor();
+  public data: CreditsPersonDescriptor = new CreditsPersonDescriptor();
 
   constructor(private _person_detail_service: DetailPersonService,
     private route: ActivatedRoute, ) { }

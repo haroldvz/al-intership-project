@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PersonSeriesComponent implements OnInit {
 
   private routerSubscribe;
-  private data: CreditsTVPersonDescriptor = new CreditsTVPersonDescriptor();
+  public data: CreditsTVPersonDescriptor = new CreditsTVPersonDescriptor();
 
   constructor(private _person_detail_service: DetailPersonService,
     private route: ActivatedRoute, ) { }

@@ -35,8 +35,8 @@ export class PersonDetailComponent implements OnInit {
 
 
   public data: PersonDescriptor = new PersonDescriptor();
-  private routerSubscribe;
-  private selected_item: number = 2;
+  public routerSubscribe;
+  public selected_item: number = 2;
 
   constructor(private _person_detail_service: DetailPersonService,
     private route: ActivatedRoute,

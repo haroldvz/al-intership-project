@@ -14,7 +14,7 @@ import { CreditsTVDescriptor } from '../../shared/types/tv-series/tv-credits.typ
 export class SerieDetailComponent implements OnInit {
 
 
-  private myStyles = {
+  public myStyles = {
     'height': '100%',
     'z-index': '2',
     'padding-left': ' 4%',
@@ -22,12 +22,12 @@ export class SerieDetailComponent implements OnInit {
     'background': ' radial-gradient(ellipse at 34% 60%, rgba(' + this.getRandomInt(0, 125) + ', 30, 28, 0.95) 0%, rgba(50, 43, 25, 0.90) 100%)'
   }
 
-  private selected_item: number = 1;
-  private routerSubscribe;
+  public selected_item: number = 1;
+  public routerSubscribe;
 
-  private data: TVSeriesDescriptor = new TVSeriesDescriptor();
-  private genres;
-  private base_img_url_backdrop_path: string = environment.api_image_url + environment.api_image_backdrop_size;
+  public data: TVSeriesDescriptor = new TVSeriesDescriptor();
+  public genres;
+  public base_img_url_backdrop_path: string = environment.api_image_url + environment.api_image_backdrop_size;
 
 
   /**
