@@ -18,6 +18,7 @@
           <div fxLayout="column" class="detail-description-content">
             <div class="movie-title">
               <h2>{{data.name}}</h2>
+              <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
               <p>
                 <mat-icon style="color:white;">event</mat-icon>
                 <span class="md-headline">{{data.first_air_date}}</span>

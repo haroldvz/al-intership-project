@@ -49,6 +49,8 @@ export class TVSeriesDescriptor {
         tv_serie.vote_count = rawData.hasOwnProperty('vote_count') ? rawData.vote_count : 0;
         tv_serie.poster_path = rawData.hasOwnProperty('poster_path') ? rawData.poster_path : '';
         tv_serie.backdrop_path = rawData.hasOwnProperty('backdrop_path') ? rawData.backdrop_path : '';
+        tv_serie.vote_average = rawData.hasOwnProperty('vote_average') ? rawData.vote_average : 0;
+
 
         let genre: GenreDescriptor;
         if (rawData.hasOwnProperty("genre_ids")) {

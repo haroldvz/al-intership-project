@@ -6,7 +6,7 @@
     <mat-card-title class="movie-card-title">
       <a [routerLink]="['/tv-detail/', data.id]">{{data.name}}</a>
     </mat-card-title>
-    <mat-card-subtitle>{{data.popularity}}</mat-card-subtitle>
+    <mat-card-subtitle><bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating></mat-card-subtitle>
     <mat-card-content>
     </mat-card-content>
   </mat-card>

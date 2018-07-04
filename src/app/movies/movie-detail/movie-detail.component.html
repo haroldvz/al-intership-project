@@ -14,21 +14,24 @@
       <div fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="center" [ngStyle]="myStyles" tdMediaToggle="gt-sm">
         <div fxLayout="column" [ngClass]="{'poster-image':true,'push-lg': _mediaService.query('lg'), 'push-right-none': _mediaService.query('lg')}">
           <img src="https://image.tmdb.org/t/p/w300/{{data.poster_path}}" class="img-fluid rounded">
+
         </div>
         <div fxLayout="column" class="push-lg push-right-none">
           <div fxLayout="column" class="detail-description-content">
             <div class="movie-title">
               <h2>{{data.title}}</h2>
-              <p>
-                <mat-icon style="color:white;">event</mat-icon>
-                <span class="md-headline">{{data.release_date}}</span>
-              </p>
+              <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
+              <span>Votes ({{data.vote_count}})</span>
               <p>
                 <mat-chip-list>
                   <mat-chip color="accent" *ngFor="let item of genres; let i = index;">{{item.name}}</mat-chip>
                 </mat-chip-list>
 
                 <!-- <span class="genres">{{genres}}</span>-->
+              </p>
+              <p>
+                <mat-icon style="color:white;">event</mat-icon>
+                <span class="md-headline">{{data.release_date}}</span>
               </p>
             </div>
             <div class="movie-overview">
