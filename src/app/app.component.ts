@@ -46,8 +46,13 @@ export class AppComponent implements OnInit {
     //TV
     {
       icon: 'library_books',
-      route: '/tv/latest',
-      title: 'Latest TV series',
+      route: '/tv/airing-today',
+      title: 'Airing today TV series',
+    },
+    {
+      icon: 'library_books',
+      route: '/tv/on-the-air',
+      title: 'On the Air TV series',
     }, {
       icon: 'color_lens',
       route: '/tv/popular',
