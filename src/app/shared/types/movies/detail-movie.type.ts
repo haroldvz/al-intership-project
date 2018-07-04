@@ -1,4 +1,5 @@
 import { GenreDescriptor } from "./../genres/genres.type";
+import { VideoDescriptor } from "../video.type";
 
 export class MovieDescriptor {
 
@@ -20,6 +21,7 @@ export class MovieDescriptor {
     public imdb_id:string;
     public homepage:string;
     public budget:number;
+    public videos: VideoDescriptor[] = [];
 
 
 
@@ -58,6 +60,15 @@ export class MovieDescriptor {
                 let row: any = rawData.genres[i];
                 genre = GenreDescriptor.import(row);
                 movie.genres.push(genre);
+            }
+        }
+
+        let video: VideoDescriptor;
+        if (rawData.hasOwnProperty("videos")) {
+            for (var i = 0; i < rawData.videos.results.length; i++) {
+                let row: any = rawData.videos.results[i];
+                video = VideoDescriptor.import(row);
+                movie.videos.push(video);
             }
         }
 

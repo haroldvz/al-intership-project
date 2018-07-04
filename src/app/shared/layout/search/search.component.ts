@@ -30,10 +30,10 @@ export interface State {
 })
 export class SearchComponent implements OnInit {
 
-  search_results = [];
+  //search_results = [];
 
 
-  states: State[] = [
+  /*states: State[] = [
     {
       name: 'Arkansas',
       population: '2.978M',
@@ -64,12 +64,13 @@ export class SearchComponent implements OnInit {
       // https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg
       flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg'
     }
-  ];
+  ];*/
 
 
   //material search
   stateCtrl = new FormControl();
   filteredStates: Observable<State[]>;
+  query:string;
 
   //covalent search
   @ViewChild('searchInput') searchBar: TdSearchBoxComponent;
@@ -81,18 +82,19 @@ export class SearchComponent implements OnInit {
   constructor(private _search_service: SearchService,
     public router: Router) {
 
-    this.filteredStates = this.stateCtrl.valueChanges
+    /*this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
         startWith(''),
         map(state => state ? this._filterStates(state) : this.states.slice(0, 3))
-      );
+      );*/
 
   }
 
   ngOnInit() {
 
   }
-  handleKeydown(evt: any) {
+
+  /*handleKeydown(evt: any) {
     console.log(evt);
   }
 
@@ -105,8 +107,14 @@ export class SearchComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
-  }
+  }*/
 
+
+  /**
+   *
+   *
+   * @memberof SearchComponent
+   */
   clear() {
     this.searchBar.value = '';
     this.searchInputTerm.next('');
@@ -115,7 +123,15 @@ export class SearchComponent implements OnInit {
     }
   }
 
+
+  /**
+   *
+   *
+   * @param {string} event
+   * @memberof SearchComponent
+   */
   search(event: string): void {
+    this.query = event;
     console.log(event)
     this.searchInputTerm.next(event);
     if (event != null && event != '') {
@@ -135,6 +151,13 @@ export class SearchComponent implements OnInit {
   }
 
 
+  /**
+   *
+   *
+   * @param {*} prop
+   * @returns
+   * @memberof SearchComponent
+   */
   predicateBy(prop) {
     return function (a, b) {
       if (a[prop] < b[prop]) {
@@ -146,11 +169,21 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   *
+   * @memberof SearchComponent
+   */
   keyEnterPress() {
     const query = this.searchBar.value;
     console.log(query);
   }
 
+  /**
+   *
+   *
+   * @memberof SearchComponent
+   */
   focusOut() {
     this.searchInputTerm.next('');
   }
