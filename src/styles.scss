@@ -11,12 +11,15 @@
 /* ink bar style */
 
 @import '~@ngx-gallery/core/styles/gallery';
-
+@import '~ngx-bar-rating/themes/br-fontawesome-theme';
+@import '~ngx-bar-rating/themes/br-stars-theme';
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
   height: 5px;
 } 
 
+
 .mat-grid-tile .mat-figure{
   display: block !important;
 }
+
 

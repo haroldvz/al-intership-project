@@ -30,6 +30,8 @@ export interface State {
 })
 export class SearchComponent implements OnInit {
 
+  search_results = [];
+
 
   states: State[] = [
     {
@@ -89,6 +91,14 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+  handleKeydown(evt:any){
+    console.log(evt);
+  }
+
+  itemSelected(evt: any){
+    console.log(evt.value);
+    this.router.navigate(['/movie/', 351286]);
   }
 
   private _filterStates(value: string): State[] {

@@ -115,7 +115,9 @@ export class MovieDetailComponent implements OnInit {
           this.data = data;
           console.log(data);
           this.selected_item = 1;
-          this.genres = data.genres.map((element) => { return element.name }).join(', ');
+          //console.log(data.genres)
+          //this.genres = data.genres.map((element) => { return element.name }).join(', ');
+          this.genres = data.genres;
           this.loadingResolve();
           //this.movies.push(data.results);
         }

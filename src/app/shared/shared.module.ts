@@ -18,8 +18,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { SliderComponent } from './layout/slider/slider.component';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { AboutComponent } from './layout/about/about.component';
-
-
+import { BarRatingModule } from "ngx-bar-rating";
 @NgModule({
   imports: [
     CommonModule,
@@ -33,7 +32,8 @@ import { AboutComponent } from './layout/about/about.component';
     FormsModule,
     ReactiveFormsModule,
     NgxGalleryModule,
-    DragScrollModule
+    DragScrollModule,
+    BarRatingModule
   ],
   exports: [
     GallerySliderComponent,
@@ -50,7 +50,8 @@ import { AboutComponent } from './layout/about/about.component';
     ReactiveFormsModule,
     NgxGalleryModule,
     SliderComponent,
-    DragScrollModule
+    DragScrollModule,
+    BarRatingModule
   ],
   entryComponents: [
     DialogOverviewBiographyComponent

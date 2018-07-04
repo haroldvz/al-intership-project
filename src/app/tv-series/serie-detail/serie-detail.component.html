@@ -19,7 +19,9 @@
             <div class="movie-title">
               <h2>{{data.name}}</h2>
               <p>
-                <span>({{data.first_air_date}})</span>
+                <mat-icon style="color:white;">event</mat-icon>
+                <span class="md-headline">{{data.first_air_date}}</span>
+
               </p>
               <p>
                 <!--<span class="genres">{{genres}}</span>-->
@@ -29,12 +31,12 @@
               <h2>Overview:</h2>
               <p>{{data.overview}}</p>
             </div>
-            <div class="featured-crew">
+            <div class="featured-cast">
               <h2>Featured Cast:</h2>
               <div fxLayout="row wrap" fxLayoutGap="20px">
                 <div flex *ngFor="let item of data_credits.cast | slice:0:3 ; let i = index;">
                   <div>
-                    {{item.name}}
+                    <span class="feature-cast-name">{{item.name}}</span>
                     <br> {{item.character}}
                   </div>
                 </div>
@@ -43,7 +45,7 @@
               <div fxLayout="row wrap" fxLayoutGap="20px">
                 <div flex *ngFor="let item of data_credits.cast | slice:3:6 ; let i = index;">
                   <div style="text-align:left !important;">
-                    {{item.name}}
+                    <span class="feature-cast-name">{{item.name}}</span>
                     <br> {{item.character}}
 
                   </div>
@@ -56,33 +58,33 @@
     </div>
   </div>
   <div fxLayout="column" class="navbar-detail-movie">
-    <mat-toolbar class="pad-none bgc-grey-800 toolbar-navigation" style="position:relative;">
-      <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper" flex>
-        <a mat-tab-link class="toolbar-item" *ngFor="let item of items_detail; let i = index" (click)="setItem(item['tab_number'])">
-          <span hide-xs>{{item['name']}}</span>
-          <span hide-gt-xs>
-            <mat-icon>{{item['icon']}}</mat-icon>
-          </span>
-        </a>
-      </nav>
-    </mat-toolbar>
+    <!-- <mat-toolbar class="pad-none bgc-grey-800 toolbar-navigation" style="position:relative;">-->
+    <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper bgc-grey-800" flex>
+      <a mat-tab-link class="toolbar-item" *ngFor="let item of items_detail; let i = index" (click)="setItem(item['tab_number'])">
+        <span hide-xs>{{item['name']}}</span>
+        <span hide-gt-xs>
+          <mat-icon>{{item['icon']}}</mat-icon>
+        </span>
+      </a>
+    </nav>
+    <!--</mat-toolbar>-->
   </div>
   <div [ngSwitch]="selected_item">
     <div *ngSwitchCase="'1'">
-    <app-serie-credits [data]="data_credits.cast"></app-serie-credits>
+      <app-serie-credits [data]="data_credits.cast"></app-serie-credits>
     </div>
     <div *ngSwitchCase="'2'">
-       <app-similar-series></app-similar-series>
+      <app-similar-series></app-similar-series>
     </div>
     <div *ngSwitchCase="'3'">
-     <!-- <app-similar-movies></app-similar-movies>-->
+      <!-- <app-similar-movies></app-similar-movies>-->
     </div>
     <div *ngSwitchCase="'4'">
-     <app-serie-videos [data]="data.videos"></app-serie-videos>
+      <app-serie-videos [data]="data.videos"></app-serie-videos>
     </div>
     <div *ngSwitchCase="'5'">
     </div>
     <div *ngSwitchCase="'6'">
-      </div>
+    </div>
   </div>
 </section>

@@ -4,7 +4,9 @@
       <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{data.poster_path}}">
     </div>
     <mat-card-title class="movie-card-title"><a [routerLink]="['/movie/', data.id]">{{data.title}}</a></mat-card-title>
-    <mat-card-subtitle>{{data.popularity}}</mat-card-subtitle>
+    <mat-card-subtitle>
+      <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
+    </mat-card-subtitle>
     <mat-card-content>
     </mat-card-content>
   </mat-card>

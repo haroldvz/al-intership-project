@@ -53,10 +53,10 @@
         </mat-menu>
       </span>-->
     <div>
-
-      <mat-toolbar class="pad-none bgc-grey-800 toolbar-navigation" style="position:relative;">
+        
+     
         <!--pull-bottom-xl pull-top-md make the fuck efect-->
-        <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper" flex>
+        <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper bgc-grey-800" flex>
           <a mat-tab-link class="toolbar-item" *ngFor="let route of routes; let i = index" [routerLink]="[route['path']]" routerLinkActive
             #itemnb="routerLinkActive" [active]="itemnb.isActive">
             <span hide-xs>{{route['name']}}</span>
@@ -65,7 +65,7 @@
             </span>
           </a>
         </nav>
-      </mat-toolbar>
+    
 
     </div>
 
