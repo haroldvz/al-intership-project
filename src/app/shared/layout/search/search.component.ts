@@ -79,24 +79,24 @@ export class SearchComponent implements OnInit {
   data: ResponseSearchDescriptor = new ResponseSearchDescriptor();
 
   constructor(private _search_service: SearchService,
-    public router: Router) { 
+    public router: Router) {
 
-      this.filteredStates = this.stateCtrl.valueChanges
+    this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
         startWith(''),
-        map(state => state ? this._filterStates(state) : this.states.slice(0,3))
+        map(state => state ? this._filterStates(state) : this.states.slice(0, 3))
       );
 
-    }
+  }
 
   ngOnInit() {
 
   }
-  handleKeydown(evt:any){
+  handleKeydown(evt: any) {
     console.log(evt);
   }
 
-  itemSelected(evt: any){
+  itemSelected(evt: any) {
     console.log(evt.value);
     this.router.navigate(['/movie/', 351286]);
   }
@@ -123,6 +123,7 @@ export class SearchComponent implements OnInit {
         (data) => {
 
           this.data = data;
+          this.data.results.sort(this.predicateBy("popularity"))
           console.log(this.data);
         }
       );
@@ -131,6 +132,18 @@ export class SearchComponent implements OnInit {
       this.data.results = []
     }
 
+  }
+
+
+  predicateBy(prop) {
+    return function (a, b) {
+      if (a[prop] < b[prop]) {
+        return 1;
+      } else if (a[prop] > b[prop]) {
+        return -1;
+      }
+      return 0;
+    }
   }
 
   keyEnterPress() {

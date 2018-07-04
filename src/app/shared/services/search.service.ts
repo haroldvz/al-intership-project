@@ -18,27 +18,34 @@ export class SearchService {
    */
   constructor(private _api_service: ApiService) { }
 
- /**
-  *
-  *
-  * @param {number} page
-  * @param {string} query
-  * @returns
-  * @memberof SearchService
-  */
-  multiSearch(page: number, query:string) {
+  /**
+   *
+   *
+   * @param {number} page
+   * @param {string} query
+   * @returns
+   * @memberof SearchService
+   */
+  multiSearch(page: number, query: string) {
     let url = this.url + '/multi';
     let args = '&query=' + query + '&page=' + page;
     return this._api_service.get(url, args).pipe(map(
       (data) => {
         return ResponseSearchDescriptor.import(data);
       }
-  ));
+    ));
+
 
   }
 
 
+
   
 
+  }
 
-}
+
+
+
+
+
