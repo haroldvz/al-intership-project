@@ -1,5 +1,6 @@
 import { GenreDescriptor } from "./../genres/genres.type";
 import { VideoDescriptor } from "../video.type";
+import { ReviewDescriptor } from "../reviews/review";
 
 export class MovieDescriptor {
 
@@ -15,13 +16,14 @@ export class MovieDescriptor {
     public production_countries: ProductionCountryDescriptor[] = [];
     public spoken_languages: SpokenLanguageDescriptor[] = [];
     public poster_path: string;
-    public backdrop_path:string;
-    public runtime:number;
-    public revenue:number;
-    public imdb_id:string;
-    public homepage:string;
-    public budget:number;
+    public backdrop_path: string;
+    public runtime: number;
+    public revenue: number;
+    public imdb_id: string;
+    public homepage: string;
+    public budget: number;
     public videos: VideoDescriptor[] = [];
+    public reviews: ReviewDescriptor[] = [];
 
 
 
@@ -69,6 +71,15 @@ export class MovieDescriptor {
                 let row: any = rawData.videos.results[i];
                 video = VideoDescriptor.import(row);
                 movie.videos.push(video);
+            }
+        }
+
+        let review: ReviewDescriptor;
+        if (rawData.hasOwnProperty("reviews")) {
+            for (var i = 0; i < rawData.reviews.results.length; i++) {
+                let row: any = rawData.reviews.results[i];
+                review = ReviewDescriptor.import(row);
+                movie.reviews.push(review);
             }
         }
 

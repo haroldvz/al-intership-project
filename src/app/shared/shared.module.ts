@@ -20,6 +20,8 @@ import { DragScrollModule } from 'ngx-drag-scroll';
 import { AboutComponent } from './layout/about/about.component';
 import { BarRatingModule } from "ngx-bar-rating";
 import { SearchPageComponent } from './components/search-page/search-page.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -52,7 +54,8 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
     NgxGalleryModule,
     SliderComponent,
     DragScrollModule,
-    BarRatingModule
+    BarRatingModule,
+    ReviewsComponent
   ],
   entryComponents: [
     DialogOverviewBiographyComponent
@@ -66,7 +69,9 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
     SearchComponent,
     SliderComponent,
     AboutComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    ReviewsComponent,
+    ReviewCardComponent
   ],
   providers: [
     SearchService
