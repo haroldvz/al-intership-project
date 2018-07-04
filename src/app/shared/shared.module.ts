@@ -19,6 +19,7 @@ import { SliderComponent } from './layout/slider/slider.component';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { AboutComponent } from './layout/about/about.component';
 import { BarRatingModule } from "ngx-bar-rating";
+import { SearchPageComponent } from './components/search-page/search-page.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -64,7 +65,8 @@ import { BarRatingModule } from "ngx-bar-rating";
     TvSeriesBackdropCardComponent,
     SearchComponent,
     SliderComponent,
-    AboutComponent
+    AboutComponent,
+    SearchPageComponent
   ],
   providers: [
     SearchService
