@@ -12,6 +12,12 @@ import { DialogOverviewBiographyComponent } from '../../shared/layout/dialog-ove
 })
 export class PersonDetailComponent implements OnInit {
 
+  /**
+   * Items of the secondary nabvar 
+   *
+   * @type {Object[]}
+   * @memberof PersonDetailComponent
+   */
   items_detail: Object[] = [
     {
       name: 'Images',
@@ -30,18 +36,26 @@ export class PersonDetailComponent implements OnInit {
 
   ];
 
-  animal: string;
-  name: string;
+  data: PersonDescriptor = new PersonDescriptor();
+  routerSubscribe;
+  selected_item: number = 2;
 
-
-  public data: PersonDescriptor = new PersonDescriptor();
-  public routerSubscribe;
-  public selected_item: number = 2;
-
+  /**
+   *Creates an instance of PersonDetailComponent.
+   * @param {DetailPersonService} _person_detail_service
+   * @param {ActivatedRoute} route
+   * @param {MatDialog} dialog
+   * @memberof PersonDetailComponent
+   */
   constructor(private _person_detail_service: DetailPersonService,
     private route: ActivatedRoute,
     public dialog: MatDialog) { }
 
+  /**
+   *
+   *
+   * @memberof PersonDetailComponent
+   */
   ngOnInit() {
     this.routerSubscribe = this.route.params.subscribe(params => {
       let id: number = params['id'];
@@ -55,19 +69,27 @@ export class PersonDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Open dialog pop up for show the biography
+   * 
+   * @memberof PersonDetailComponent
+   */
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewBiographyComponent, {
       width: '600px',
-      data: { name: this.data.name, animal: this.animal, biography: this.data.biography }
+      data: { name: this.data.name, biography: this.data.biography }
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
     });
-
   }
 
+  /**
+   * Set the item of teh navbar to show in person detail
+   *
+   * @param {number} item_number
+   * @memberof PersonDetailComponent
+   */
   setItem(item_number: number): void {
     this.selected_item = item_number;
   }

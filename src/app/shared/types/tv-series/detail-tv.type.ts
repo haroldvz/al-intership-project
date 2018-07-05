@@ -1,5 +1,6 @@
 import { GenreDescriptor } from "./../genres/genres.type";
 import { VideoDescriptor } from "../video.type";
+import { ReviewDescriptor } from "../reviews/review";
 
 export class TVSeriesDescriptor {
 
@@ -25,7 +26,7 @@ export class TVSeriesDescriptor {
     //public seasons:SeasonDescriptor[]=[];
     public vote_average:number;
     public videos: VideoDescriptor[] = [];
-
+    public reviews: ReviewDescriptor[] = [];
 
 
 
@@ -67,6 +68,15 @@ export class TVSeriesDescriptor {
                 let row: any = rawData.videos.results[i];
                 video = VideoDescriptor.import(row);
                 tv_serie.videos.push(video);
+            }
+        }
+
+        let review: ReviewDescriptor;
+        if (rawData.hasOwnProperty("reviews")) {
+            for (var i = 0; i < rawData.reviews.results.length; i++) {
+                let row: any = rawData.reviews.results[i];
+                review = ReviewDescriptor.import(row);
+                tv_serie.reviews.push(review);
             }
         }
 

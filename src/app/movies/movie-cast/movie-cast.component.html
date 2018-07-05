@@ -1,27 +1,6 @@
-<!--<div class="container-cast">
-  <div fxLayout="row wrap" diameter="20" fxLayoutAlign="center center" fxLayoutGap="2">
-    <div flex *ngFor="let item of data; let i = index;" fxLayoutAlign="center center">-->
-      <!--<div class="app-cast-card">
-        <mat-card class="cast-card flex-item" flex-item>
-          <div class="cast-image-container">
-            <img mat-card-image class="img-cast" src="https://image.tmdb.org/t/p/w235_and_h235_face{{item.profile_path}}">
-            <p>asdasdasdsda</p>
-          </div>
-          <mat-card-content>
-            <h2 class="cast-card-title">
-              <a [routerLink]="['/person/', item.id ]">{{item.name}}</a>
-            </h2>
-            <p>{{item.character}}</p>
-          </mat-card-content>
-        </mat-card>
-      </div>-->
-   <!-- <app-movie-cast-crew-card [data]="item"></app-movie-cast-crew-card>
-    </div>
-  </div>
-</div>-->
 <div class="container-cast">
-<mat-grid-list #grid rowHeight="600:800" gutterSize="5px">
-    <mat-grid-tile  *ngFor="let item of data; let i = index;" class="tile-cast" >
+  <mat-grid-list #grid rowHeight="600:800" gutterSize="5px">
+    <mat-grid-tile *ngFor="let item of data; let i = index;" class="tile-cast">
       <app-movie-cast-crew-card [data]="item"></app-movie-cast-crew-card>
     </mat-grid-tile>
   </mat-grid-list>

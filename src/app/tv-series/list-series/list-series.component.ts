@@ -19,6 +19,7 @@ export class ListSeriesComponent implements OnInit {
   public _total_pages: number;
 
   @ViewChild('pagingTVBar') pagingTVBar: TdPagingBarComponent;
+  
 
   data: ResponseTVSeriesDescriptor = new ResponseTVSeriesDescriptor();
 

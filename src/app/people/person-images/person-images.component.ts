@@ -15,30 +15,31 @@ export class PersonImagesComponent implements OnInit {
 
   data;
 
+  /**
+   *Creates an instance of PersonImagesComponent.
+   * @param {DetailPersonService} _person_detail_service
+   * @param {ActivatedRoute} route
+   * @memberof PersonImagesComponent
+   */
   constructor(private _person_detail_service: DetailPersonService,
     private route: ActivatedRoute,) { }
 
+  /**
+   *
+   *
+   * @memberof PersonImagesComponent
+   */
   ngOnInit() {
-
-
     this.routerSubscribe = this.route.params.subscribe(params => {
-
       let id: number = params['id'];
-
       this._person_detail_service.getPersonImages(id).subscribe(
         (data) => {
-
           this.data = data;
           console.log("data person img");
           console.log(data);
         }
-
       )
-
-
     });
-
-
   }
 
 }

@@ -14,21 +14,31 @@ import { IPageChangeEvent } from '@covalent/core';
 export class ListPeopleComponent implements OnInit {
 
   private routerSubscribe;
-  public _actual_category: string;
-  public _actual_page: number;
-  public _total_results: number;
-  public _total_pages: number;
+  _actual_category: string;
+  _actual_page: number;
+  _total_results: number;
+  _total_pages: number;
 
   data: ResponsePeopleDescriptor = new ResponsePeopleDescriptor();
 
+  /**
+   *Creates an instance of ListPeopleComponent.
+   * @param {PeopleService} _people_service
+   * @param {ActivatedRoute} route
+   * @param {Router} _router
+   * @memberof ListPeopleComponent
+   */
   constructor(private _people_service: PeopleService,
     private route: ActivatedRoute, private _router: Router, ) { }
 
+
+  /**
+   *
+   *
+   * @memberof ListPeopleComponent
+   */
   ngOnInit() {
-
     this.routerSubscribe = this.route.params.subscribe(params => {
-
-
       let category: string = params['category'];
       this._actual_category = category;
       if (params['page']) {
@@ -36,12 +46,8 @@ export class ListPeopleComponent implements OnInit {
       } else {
         this._actual_page = 1;
       }
-
       this.getPeople();
-
     });
-
-
 
   }
 
@@ -52,9 +58,7 @@ export class ListPeopleComponent implements OnInit {
    */
   getPeople() {
     switch (this._actual_category) {
-
       case 'popular': {
-
         this._people_service.getPopularPeople(this._actual_page).subscribe(
           (data) => {
             this.data = data;
@@ -64,13 +68,10 @@ export class ListPeopleComponent implements OnInit {
             //this.loadingResolve();
           }
         );
-
       } break;
       default: {
-        console.log("404");
+        this._router.navigate(['/404-not-found/']);
       } break;
-
-
     }
   }
 

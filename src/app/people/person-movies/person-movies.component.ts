@@ -14,26 +14,30 @@ export class PersonMoviesComponent implements OnInit {
 
   public data: CreditsPersonDescriptor = new CreditsPersonDescriptor();
 
+  /**
+   *Creates an instance of PersonMoviesComponent.
+   * @param {DetailPersonService} _person_detail_service
+   * @param {ActivatedRoute} route
+   * @memberof PersonMoviesComponent
+   */
   constructor(private _person_detail_service: DetailPersonService,
     private route: ActivatedRoute, ) { }
 
+  /**
+   *
+   *
+   * @memberof PersonMoviesComponent
+   */
   ngOnInit() {
-
     this.routerSubscribe = this.route.params.subscribe(params => {
-
       let id: number = params['id'];
-
       this._person_detail_service.getPersonCredits(id).subscribe(
         (data) => {
           this.data = data;
           console.log(data);
         }
-
       )
-
-
     });
-
   }
 
 }

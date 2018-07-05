@@ -12,30 +12,34 @@ export class SimilarMoviesComponent implements OnInit {
 
   private routerSubscribe;
   //@Input() public id_movie: number;
-  public data: ResponseDescriptor = new ResponseDescriptor();
+  data: ResponseDescriptor = new ResponseDescriptor();
 
+  /**
+   *Creates an instance of SimilarMoviesComponent.
+   * @param {DetailMovieService} _detail_movie_service
+   * @param {ActivatedRoute} route
+   * @memberof SimilarMoviesComponent
+   */
   constructor(private _detail_movie_service: DetailMovieService,
     private route: ActivatedRoute,
   ) { }
 
+  /**
+   *
+   *
+   * @memberof SimilarMoviesComponent
+   */
   ngOnInit() {
-
     this.routerSubscribe = this.route.params.subscribe(params => {
-
       let id: number = params['id'];
-
       this._detail_movie_service.getSimilarMovies(id).subscribe(
         (data) => {
-
           this.data = data;
-          console.log(data);
-
+          //console.log(data);
         }
       );
-
     });
-
-
   }
+
 
 }

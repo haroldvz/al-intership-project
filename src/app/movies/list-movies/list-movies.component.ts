@@ -12,16 +12,25 @@ import { TdLoadingService } from '@covalent/core';
 })
 export class ListMoviesComponent implements OnInit {
 
-  public routerSubscribe;
-  public total_results: number;
-  public _actual_page: number;
-  public _actual_category: string;
-  public _total_pages: number;
-  public data: ResponseDescriptor = new ResponseDescriptor();
+  routerSubscribe;
+  total_results: number;
+  _actual_page: number;
+  _actual_category: string;
+  _total_pages: number;
+  data: ResponseDescriptor = new ResponseDescriptor();
   animate;
 
   @ViewChild('pagingMoviesBar') pagingMoviesBar: TdPagingBarComponent;
 
+  /**
+   *Creates an instance of ListMoviesComponent.
+   * @param {ActivatedRoute} route
+   * @param {MovieService} _movie_service
+   * @param {TdLoadingService} _loadingService
+   * @param {TdMediaService} _mediaService
+   * @param {Router} _router
+   * @memberof ListMoviesComponent
+   */
   constructor(
     private route: ActivatedRoute,
     private _movie_service: MovieService,
@@ -30,6 +39,11 @@ export class ListMoviesComponent implements OnInit {
     private _router: Router,
   ) { }
 
+  /**
+   *
+   *
+   * @memberof ListMoviesComponent
+   */
   ngOnInit() {
     this.routerSubscribe = this.route.params.subscribe(params => {
       this.LoadingRegister();
@@ -45,11 +59,15 @@ export class ListMoviesComponent implements OnInit {
     });
   }
 
+
+  /**
+   *
+   *
+   * @memberof ListMoviesComponent
+   */
   getMovies() {
     switch (this._actual_category) {
-
       case 'popular': {
-
         this._movie_service.getPopularMovies(this._actual_page).subscribe(
           (data) => {
             this.data = data;
@@ -59,11 +77,8 @@ export class ListMoviesComponent implements OnInit {
             this.loadingResolve();
           }
         );
-
       } break;
       case 'top-rated': {
-
-
         this._movie_service.getTopRatedMovies(this._actual_page).subscribe(
           (data) => {
             this.data = data;
@@ -72,11 +87,8 @@ export class ListMoviesComponent implements OnInit {
             this.loadingResolve();
           }
         );
-
       } break;
       case 'now-playing': {
-
-
         this._movie_service.getNowPlayingMovies(this._actual_page).subscribe(
           (data) => {
             this.data = data;
@@ -85,11 +97,8 @@ export class ListMoviesComponent implements OnInit {
             this.loadingResolve();
           }
         );
-
       } break;
       case 'latest': {
-
-
         this._movie_service.getLatestMovies(this._actual_page).subscribe(
           (data) => {
             this.data = data;
@@ -98,11 +107,8 @@ export class ListMoviesComponent implements OnInit {
             this.loadingResolve();
           }
         );
-
       } break;
       case 'upcoming': {
-
-
         this._movie_service.getUpcomingMovies(this._actual_page).subscribe(
           (data) => {
             this.data = data;
@@ -114,11 +120,10 @@ export class ListMoviesComponent implements OnInit {
 
       } break;
       default: {
-        console.log("404");
+        this._router.navigate(['/404-not-found/']);
       } break;
-
-
     }
+
   }
 
 

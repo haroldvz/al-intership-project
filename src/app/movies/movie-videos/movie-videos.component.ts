@@ -11,8 +11,13 @@ export class MovieVideosComponent implements OnInit {
 
   @Input() public data;
 
-  public base_video_url:string = environment.api_video_url;
+  base_video_url:string = environment.api_video_url;
 
+  /**
+   *Creates an instance of MovieVideosComponent.
+   * @param {DomSanitizer} _sanitizer
+   * @memberof MovieVideosComponent
+   */
   constructor(private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {

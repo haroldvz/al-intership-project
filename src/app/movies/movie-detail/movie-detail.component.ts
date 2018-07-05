@@ -16,12 +16,12 @@ import { CreditsDescriptor, CrewDescriptor } from '../../shared/types/movies/cre
 })
 export class MovieDetailComponent implements OnInit {
 
-  public base_img_url_backdrop_path: string = environment.api_image_url + environment.api_image_backdrop_size;
-  public routerSubscribe;
-  public data: MovieDescriptor = new MovieDescriptor();
-  public data_credits: CreditsDescriptor = new CreditsDescriptor();
-  public data_crew: CrewDescriptor[];
-  public genres;
+  base_img_url_backdrop_path: string = environment.api_image_url + environment.api_image_backdrop_size;
+  routerSubscribe;
+  data: MovieDescriptor = new MovieDescriptor();
+  data_credits: CreditsDescriptor = new CreditsDescriptor();
+  data_crew: CrewDescriptor[];
+  genres;
 
   /**
    *
@@ -62,7 +62,7 @@ export class MovieDetailComponent implements OnInit {
   ];
 
   //use ngClass
-  public myStyles = {
+  myStyles = {
     'height': '100%',
     'z-index': '2',
     'padding-left': ' 4%',
@@ -70,7 +70,7 @@ export class MovieDetailComponent implements OnInit {
     'background': ' radial-gradient(ellipse at 34% 60%, rgba(' + this.getRandomInt(0, 125) + ', 30, 28, 0.95) 0%, rgba(50, 43, 25, 0.90) 100%)'
   }
 
-  public selected_item: number = 1;
+  selected_item: number = 1;
 
 
   /**
@@ -90,24 +90,14 @@ export class MovieDetailComponent implements OnInit {
     public _mediaService: TdMediaService,
   ) { }
 
+  /**
+   *
+   *
+   * @memberof MovieDetailComponent
+   */
   ngOnInit() {
-
-
     this.routerSubscribe = this.route.params.subscribe(params => {
-
       this.LoadingRegister();
-
-      /*setTimeout(() => {
-      
-        this._movie_service.getPopularMovies(1).subscribe(
-          (data) => {
-            this.data = data;
-            this.resolveLoading();
-            //this.movies.push(data.results);
-          }
-        );
-      }, 5000);*/
-
       let id: number = params['id'];
       //request
       this._movie_detail_service.getMovieDetail(id).subscribe(
@@ -129,14 +119,10 @@ export class MovieDetailComponent implements OnInit {
           this.data_credits = data;
           let crew_array = data.crew;
           this.data_crew = this.proccessList(crew_array);
-
-
         }
       );
-
-
-
     });
+
 
   }
 

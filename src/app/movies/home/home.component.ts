@@ -26,17 +26,25 @@ export class HomeComponent implements OnInit {
   leftNavDisabled = false;
   rightNavDisabled = false;
 
-
   private routerSubscribe;
-  public images_data: ImagesMoviesDescriptor = new ImagesMoviesDescriptor();
+  images_data: ImagesMoviesDescriptor = new ImagesMoviesDescriptor();
 
-  data:ResponseDescriptor = new ResponseDescriptor();
+  data: ResponseDescriptor = new ResponseDescriptor();
   backdrops_items_slider = [];
   backdrops_items = [];
   data_to_gallery_slider = {};
 
-  
 
+
+  /**
+   *Creates an instance of HomeComponent.
+   * @param {TdMediaService} media
+   * @param {MatIconRegistry} _iconRegistry
+   * @param {DomSanitizer} _domSanitizer
+   * @param {MovieService} _movie_service
+   * @param {ActivatedRoute} route
+   * @memberof HomeComponent
+   */
   constructor(
     public media: TdMediaService,
     //private _movie_service:MovieService,//movie service
@@ -53,11 +61,14 @@ export class HomeComponent implements OnInit {
 
   }
 
- 
 
+
+  /**
+   *
+   *
+   * @memberof HomeComponent
+   */
   ngOnInit() {
-
-
     this._movie_service.getPopularMovies(1).subscribe(
       (data) => {
         this.data = data;
@@ -80,11 +91,12 @@ export class HomeComponent implements OnInit {
       }
     );
 
+
   }
 
 
-  
 
+  /*
   moveLeft() {
     this.ds.moveLeft();
   }
@@ -99,7 +111,7 @@ export class HomeComponent implements OnInit {
 
   rightBoundStat(reachesRightBound: boolean) {
     this.rightNavDisabled = reachesRightBound;
-}
+  }*/
 
 }
 

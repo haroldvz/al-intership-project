@@ -13,7 +13,7 @@ import { TdMediaService } from '@covalent/core';
 })
 export class MovieCastComponent implements OnInit, AfterContentInit {
 
-  public gridByBreakpoint = {
+  gridByBreakpoint = {
     xl: 8,
     lg: 5,
     md: 4,
@@ -26,25 +26,25 @@ export class MovieCastComponent implements OnInit, AfterContentInit {
 
   @ViewChild('grid') grid: MatGridList;
 
+  /**
+   *Creates an instance of MovieCastComponent.
+   * @param {ObservableMedia} observableMedia
+   * @param {BreakpointObserver} breakpointObserver
+   * @param {TdMediaService} _mediaService
+   * @memberof MovieCastComponent
+   */
   constructor(private observableMedia: ObservableMedia,
     public breakpointObserver: BreakpointObserver,
     public _mediaService: TdMediaService, ) { }
 
   ngOnInit() {
-
-    /*this.breakpointObserver
-    .observe(['(min-width: 362px)'])
-    .subscribe((state: BreakpointState) => {
-      if (state.matches) {
-        this.grid.cols = 2;
-      } else {
-        //this.grid.cols = 1;
-        this.grid.cols = 1;
-      }
-    });*/
-
   }
 
+  /**
+   *
+   *
+   * @memberof MovieCastComponent
+   */
   ngAfterContentInit(): void {
     this.observableMedia.asObservable().subscribe((change: MediaChange) => {
       this.grid.cols = this.gridByBreakpoint[change.mqAlias];

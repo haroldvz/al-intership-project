@@ -24,12 +24,10 @@
             margin: 0;
             padding: 0;
         }
-
-        .place_of_birth{
+        .place_of_birth {
             text-align: left;
-            padding-left: 20px; 
+            padding-left: 20px;
         }
-
         padding: 4%;
         text-align: justify;
     }
@@ -45,7 +43,7 @@
     }
 }
 
-.expand-biography-icon{
+.expand-biography-icon {
     text-align: center;
 }
 
@@ -59,17 +57,13 @@
     @include md-icon-size(24px);
 }
 
-.popularity{
-
-    span{
+.popularity {
+    span {
         font-family: 'Source Sans Pro', Arial, sans-serif;
-            font-size: 2.2em;
-            
+        font-size: 2.2em;
     }
-
     .mat-icon {
         @include md-icon-size(28px);
-        bottom:0;
+        bottom: 0;
     }
-    
 }

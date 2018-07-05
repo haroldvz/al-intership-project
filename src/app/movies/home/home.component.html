@@ -4,16 +4,16 @@
   </div>-->
 
   <div *ngIf="data.results" style="padding:5%;">
-      <h2>Upcoming Movies</h2>
-      <div fxLayout="row wrap" diameter="20" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
+    <h2>Upcoming Movies</h2>
+    <div fxLayout="row wrap" diameter="20" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
       fxLayoutAlign="center">
-      
+
       <div flex *ngFor="let item of data.results.slice(0,8); let i = index;" fxLayoutAlign="center center">
         <app-movie-card [data]="item" class="item"></app-movie-card>
       </div>
     </div>
 
-   <!-- <div dragScroll drag-scroll-y-disabled="true" scrollbar-hidden="true" #nav>
+    <!-- <div dragScroll drag-scroll-y-disabled="true" scrollbar-hidden="true" #nav>
 
       <div *ngIf="data.results">
 
