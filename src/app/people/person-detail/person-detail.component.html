@@ -1,0 +1,109 @@
+<div class="app-person-detail">
+    <div fxLayout="column" class="main-container">
+        <div fxLayout.sm="row" fxLayout.xs="column">
+            <mat-card class="person-card flex-item" flex-item>
+                <div class="">
+                    <img mat-card-image class="container-img-person" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{data.profile_path}}">
+                </div>
+                <mat-card-title class="person-card-title">
+                    <p class="popularity">
+                        <span>{{data.popularity | number:'1.0-0'}}
+                            <mat-icon>stars</mat-icon>
+                        </span>
+                    </p>
+                </mat-card-title>
+                <!--<mat-card-subtitle></mat-card-subtitle>
+                <mat-card-content>
+                </mat-card-content>-->
+            </mat-card>
+            <div fxLayout="row" class="container-person-detail-description">
+                <div fxLayout="column">
+                    <div fxLayout="row wrap">
+                        <div fxLayout="column">
+                            <h2 class="title-person-detail">{{data.name}}</h2>
+                            <p class="subtitle-person-detail-description">
+                                <br>Biography
+                            </p>
+                            <!--<p>{{data.biography}}</p>-->
+                            <div *ngIf="data.biography">
+                                <p> {{ (data.biography.length > 650) ? (data.biography | slice:0:650) + '....' : (data.biography)
+                                    }}
+                                </p>
+                                <div *ngIf="data.biography.length > 650" class="expand-biography-icon">
+                                    <button mat-mini-fab (click)="openDialog()">
+                                        <mat-icon class="text-md">expand_more</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="subtitle-person-detail-description">Personal Info</p>
+                            <div fxLayout="row wrap" fxLayoutGap="10px">
+                                <div fxLayout="column">
+                                    <p>
+                                        <span>
+                                            <mat-icon class="text-md">cake</mat-icon>
+                                        </span>
+                                        Birthday
+                                        <br> {{data.birthday}} (Age: {{data.birthday|getAge}})
+                                </div>
+                                <div fxLayout="column">
+                                    <p>
+                                        <span>
+                                            <mat-icon class="text-md">place</mat-icon>
+                                            Place of birth
+                                        </span>
+
+                                        <br>
+                                        <span class="place_of_birth">{{data.place_of_birth}}</span>
+                                    </p>
+                                </div>
+
+                                <div fxLayout="column">
+                                    <p>
+                                        <span>
+                                            <mat-icon class="text-md">web</mat-icon>
+                                            Homepage
+                                        </span>
+
+                                        <br>
+                                        <span class="place_of_birth">
+                                            <a href="{{data.homepage}}" target="_blank">{{data.homepage}}</a>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div fxLayout="column" class="navbar-detail-person">
+    <!--<mat-toolbar class="bgc-grey-800 ">-->
+    <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper navbar-person-detail bgc-grey-800" flex>
+        <a mat-tab-link class="toolbar-item" *ngFor="let item of items_detail; let i = index" (click)="setItem(item['tab_number'])">
+            <span hide-xs>{{item['name']}}</span>
+            <span hide-gt-xs>
+                <mat-icon>{{item['icon']}}</mat-icon>
+            </span>
+        </a>
+    </nav>
+    <!--</mat-toolbar>-->
+    <div [ngSwitch]="selected_item">
+        <div *ngSwitchCase="'1'">
+            <app-person-images></app-person-images>
+        </div>
+        <div *ngSwitchCase="'2'">
+            <app-person-movies></app-person-movies>
+        </div>
+        <div *ngSwitchCase="'3'">
+            <app-person-series></app-person-series>
+        </div>
+        <div *ngSwitchCase="'4'">
+        </div>
+        <div *ngSwitchCase="'5'">
+        </div>
+        <div *ngSwitchCase="'6'">
+        </div>
+    </div>
+</div>

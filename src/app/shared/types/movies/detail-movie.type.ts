@@ -1,4 +1,6 @@
 import { GenreDescriptor } from "./../genres/genres.type";
+import { VideoDescriptor } from "../video.type";
+import { ReviewDescriptor } from "../reviews/review";
 
 export class MovieDescriptor {
 
@@ -14,6 +16,16 @@ export class MovieDescriptor {
     public production_countries: ProductionCountryDescriptor[] = [];
     public spoken_languages: SpokenLanguageDescriptor[] = [];
     public poster_path: string;
+    public backdrop_path: string;
+    public runtime: number;
+    public revenue: number;
+    public imdb_id: string;
+    public homepage: string;
+    public budget: number;
+    public videos: VideoDescriptor[] = [];
+    public reviews: ReviewDescriptor[] = [];
+
+
 
 
     /**
@@ -34,7 +46,15 @@ export class MovieDescriptor {
         movie.popularity = rawData.hasOwnProperty('popularity') ? rawData.popularity : 0;
         movie.vote_average = rawData.hasOwnProperty('vote_average') ? rawData.vote_average : 0;
         movie.vote_count = rawData.hasOwnProperty('vote_count') ? rawData.vote_count : 0;
-        movie.poster_path = rawData.hasOwnProperty('poster_path') ? rawData.poster_path : 'no-img';
+        movie.poster_path = rawData.hasOwnProperty('poster_path') ? rawData.poster_path : '';
+        movie.backdrop_path = rawData.hasOwnProperty('backdrop_path') ? rawData.backdrop_path : '';
+
+        movie.runtime = rawData.hasOwnProperty('runtime') ? rawData.runtime : 0;
+        movie.revenue = rawData.hasOwnProperty('revenue') ? rawData.revenue : 0;
+        movie.imdb_id = rawData.hasOwnProperty('imdb_id') ? rawData.imdb_id : '';
+        movie.homepage = rawData.hasOwnProperty('homepage') ? rawData.homepage : '';
+        movie.budget = rawData.hasOwnProperty('budget') ? rawData.budget : 0;
+
 
         let genre: GenreDescriptor;
         if (rawData.hasOwnProperty("genres")) {
@@ -42,6 +62,24 @@ export class MovieDescriptor {
                 let row: any = rawData.genres[i];
                 genre = GenreDescriptor.import(row);
                 movie.genres.push(genre);
+            }
+        }
+
+        let video: VideoDescriptor;
+        if (rawData.hasOwnProperty("videos")) {
+            for (var i = 0; i < rawData.videos.results.length; i++) {
+                let row: any = rawData.videos.results[i];
+                video = VideoDescriptor.import(row);
+                movie.videos.push(video);
+            }
+        }
+
+        let review: ReviewDescriptor;
+        if (rawData.hasOwnProperty("reviews")) {
+            for (var i = 0; i < rawData.reviews.results.length; i++) {
+                let row: any = rawData.reviews.results[i];
+                review = ReviewDescriptor.import(row);
+                movie.reviews.push(review);
             }
         }
 

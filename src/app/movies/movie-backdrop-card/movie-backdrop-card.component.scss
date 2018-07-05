@@ -1,0 +1,15 @@
+.app-movie-backdrop-card {
+    .movie-backdrop {
+        height: 100%;
+        width: 300px;
+    }
+    .img-movie-backdrop {
+        max-height: 281px;
+        max-width: 500px;
+        background-size: cover;
+    }
+    .movie-backdrop-card-title {
+        font-weight: 600;
+        font-size: 0.9em;
+    }
+}

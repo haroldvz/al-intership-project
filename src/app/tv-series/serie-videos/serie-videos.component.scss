@@ -1,0 +1,16 @@
+.card-container-video {
+    padding: 2%;
+    .video-card {
+        max-width: 500px;
+        min-width: 450px;
+        max-height: auto;
+        .video-container {
+            width: 100%;
+            min-height: 350px;
+        }
+        .video-card-title {
+            font-family: 'Source Sans Pro', Arial, sans-serif;
+            font-size: 1em;
+        }
+    }
+}

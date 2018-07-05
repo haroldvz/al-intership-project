@@ -1,8 +1,28 @@
 p {
     font-family: Lato;
-  }
+}
 
-  .mat-tab-link {
+.mat-tab-link {
     max-width: 160px !important;
 }
 
+.toolbar-item {
+    color: white;
+}
+
+.toolbar-navigation {
+    height: 50px !important;
+}
+
+.link-mat-list-item:hover {
+    background-color: #424242 !important;
+}
+
+a.link-mat-list-item.active_item {
+    color: white !important;
+    background-color: #00796b !important;
+    font-weight: bold;
+    .mat-icon {
+        color: white;
+    }
+}

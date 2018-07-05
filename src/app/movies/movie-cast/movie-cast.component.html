@@ -1,3 +1,7 @@
-<p>
-  movie-cast works!
-</p>
+<div class="container-cast">
+  <mat-grid-list #grid rowHeight="600:800" gutterSize="5px">
+    <mat-grid-tile *ngFor="let item of data; let i = index;" class="tile-cast">
+      <app-movie-cast-crew-card [data]="item"></app-movie-cast-crew-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

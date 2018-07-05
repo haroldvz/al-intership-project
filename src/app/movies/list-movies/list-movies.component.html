@@ -1,21 +1,43 @@
 <div class="app-list-movies">
-  <div class="container-movies">
-    
-    <div fxLayout="row wrap"  diameter="20" class="flex-grid" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';" fxLayoutAlign="center">
-      <div flex *ngFor="let item of data.results; let i = index;" >
-        <app-movie-card [data]="item" class="item"></app-movie-card>
+  <!--Category selector-->
+  <div fxLayout="row" class="bgc-grey-700 category">
+    <div class="pad-right-xl pad-left-xl pad-top-xs pad-bottom-xs">
+      <div fxLayout="row">
+        <div fxLayout.xs="column" fxLayout.sm="row">
+          <div class="container-title-categories">
+            <p class="title-categories push-bottom-xs push-top-sm">Filter: </p>
+          </div>
+          <mat-form-field class="category-selector pad-left-md pad-top-xs">
+
+            <mat-select [(value)]="_actual_category" (selectionChange)="changeFilter($event)">
+              <mat-option value="popular">Popular</mat-option>
+              <mat-option value="top-rated">Top rated</mat-option>
+              <mat-option value="now-playing">Now playing</mat-option>
+              <!--<mat-option value="latest">Latest</mat-option>-->
+              <mat-option value="upcoming">Upcoming</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
     </div>
   </div>
+  <!--End category selector-->
+  <!--Container movies list-->
+  <div class="container-movies">
+    <div fxLayout="row wrap" diameter="20" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
+      fxLayoutAlign="center">
+      <div flex *ngFor="let item of data.results; let i = index;" fxLayoutAlign="center center">
+        <app-movie-card [data]="item" class="item"></app-movie-card>
+      </div>
+    </div>
+    <!--See documentation about paging-bar covalent https://teradata.github.io/covalent/#/components/paging-->
+    <td-paging-bar #pagingMoviesBar pageLinkCount="5" [firstLast]="false" [pageSize]="20" [total]="total_results" (change)="changeOfPage($event)">
+      {{pagingMoviesBar.range}}
+      <span hide-xs>of {{pagingMoviesBar.total}}</span>
+    </td-paging-bar>
+    <!--End container movies list-->
+
+  </div>
+
+
 </div>
-<!--<div class="container-movies">
-<div fxLayout="row wrap" >
-  <mat-grid-list cols="4" gutterSize="5px" fxLayoutAlign="stretch stretch">
-    <mat-grid-tile *ngFor="let movie of data.results;" [rowspan]="2" fxLayoutAlign="stretch stretch">
-      <a [routerLink]="['/movie', movie.id]">
-        <app-movie-card [data]="movie"></app-movie-card>
-      </a>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
-</div>-->

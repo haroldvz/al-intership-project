@@ -1,3 +1,8 @@
-<p>
-  person-images works!
-</p>
+<div class="app-movie-images">
+  <h2 class="title-person-images">Images</h2>
+  <div *ngIf="data">
+    <div class="container-gallery">
+      <app-gallery-slider [data]="data"></app-gallery-slider>
+    </div>
+  </div>
+</div>

@@ -1,35 +1,42 @@
-<section class="bgc-blue-grey-50">
-  <div layout-gt-xs="row">
-    <!--<div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
-      <div class="push-top-xl" hide-xs></div>
-      <div tdMediaToggle="gt-sm" [mediaClasses]="['push-lg']">
-        <h1 class="mat-display-1 tc-blue-A400 push-top-xs push-bottom-sm">Main Site Slogan</h1>
-        <h2 class="mat-headline tc-grey-800 push-top-xs push-bottom-sm">Supporting Secondary Text</h2>
-        <p class="mat-subhead tc-grey-600">Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>
-        <button mat-raised-button color="accent" class="push-bottom text-upper">Call to Action</button>
+<section class="bgc-grey-500">
+  <!--<div *ngIf="data_to_gallery_slider.backdrops">
+    <app-slider [data]="data_to_gallery_slider" [data_all]="data"></app-slider>
+  </div>-->
+
+  <div *ngIf="data.results" style="padding:5%;">
+    <h2>Upcoming Movies</h2>
+    <div fxLayout="row wrap" diameter="20" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
+      fxLayoutAlign="center">
+
+      <div flex *ngFor="let item of data.results.slice(0,8); let i = index;" fxLayoutAlign="center center">
+        <app-movie-card [data]="item" class="item"></app-movie-card>
       </div>
-      <div class="push-bottom-xl" hide-xs></div>
-    </div>-->
-    <!--<div flex="40" layout="row" layout-align="center center">
-      <mat-icon class="push" style="height:auto;width:auto;" svgIcon="assets:covalent-mark"></mat-icon>
+    </div>
+
+    <!-- <div dragScroll drag-scroll-y-disabled="true" scrollbar-hidden="true" #nav>
+
+      <div *ngIf="data.results">
+
+        <img *ngFor="let item of data.results; let i = index;" src="https://image.tmdb.org/t/p/w300/{{item.poster_path}}" />
+
+      </div>
+
+    </div>
+
+    <div fxLayout="row">
+      <button mat-raised-button color="accent" (click)="moveLeft()">Go to start</button>
+     
     </div>-->
   </div>
-  <div layout-gt-xs="row">
-  <mat-card>
-    <img mat-card-image src="https://placekitten.com/g/600/200">
-    <mat-card-title>Card with Image First</mat-card-title>
-    <mat-card-subtitle>100% Width Image</mat-card-subtitle>
-    <mat-card-content>
-    </mat-card-content>
-  </mat-card>
-</div>
-<div layout-gt-xs="row">
-  <mat-card>
-    <img mat-card-image src="https://placekitten.com/g/600/200">
-    <mat-card-title>Card with Image First</mat-card-title>
-    <mat-card-subtitle>100% Width Image</mat-card-subtitle>
-    <mat-card-content>
-    </mat-card-content>
-  </mat-card>
-</div>
+
+  <!--<div layout-gt-xs="row">
+    <mat-card>
+      <img mat-card-image src="https://placekitten.com/g/600/200">
+      <mat-card-title>Card with Image First</mat-card-title>
+      <mat-card-subtitle>100% Width Image</mat-card-subtitle>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  </div>-->
+
 </section>

@@ -1,0 +1,24 @@
+<div class="review-card">
+  <mat-card class="example-card">
+    <mat-card-header>
+
+
+      <mat-card-title>
+        <fa name="user-circle " size="2x"></fa>
+        <span class="title-card-author">{{data.author}}</span>
+      </mat-card-title>
+
+    </mat-card-header>
+    <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+    <mat-card-content>
+      <p class="review-content">
+        {{data.content}}
+      </p>
+      <p class="review-card-actions">
+        <a href="{{data.url}}" class="see-review-in-page">
+          <fa name="eye " size="2x"></fa> See in page ...</a>
+      </p>
+    </mat-card-content>
+
+  </mat-card>
+</div>

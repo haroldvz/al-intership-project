@@ -1,0 +1,23 @@
+.review-card {
+    .review-content {
+        padding-left: 2%;
+        padding-right: 2%;
+        text-align: justify;
+    }
+    .see-review-in-page{
+        text-decoration: none;
+        color: black;
+    }
+    .title-card-author{
+        font-size: 1.2em;
+        font-weight: 700;
+    }
+    .review-card-actions{
+        padding-left: 2%;
+        padding-bottom: 2%;
+    }
+    .example-card {
+        width: 800px;
+    }
+    
+}

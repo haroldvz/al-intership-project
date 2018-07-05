@@ -1,0 +1,85 @@
+<!--<div fxLayout="row">-->
+<!--<form class="example-form">
+   <mat-form-field class="example-full-width">
+     <input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="itemSelected($event)"
+     (keydown)="handleKeydown($event)"
+     >
+   
+       <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+         <img class="example-option-img" aria-hidden [src]="state.flag" height="25">
+         <span>{{state.name}}</span> |
+         <small>Population: {{state.population}}</small>
+       </mat-option>
+     </mat-autocomplete>
+   </mat-form-field>
+   </form>-->
+<div class="multi-search-input search-text-input" tdMediaToggle="gt-xs">
+  <td-search-box #searchInput class="search-bar tc-grey-90" backIcon="arrow_forward" placeholder="Search movies, series, people"
+    [showUnderline]="true" [debounce]="250" [alwaysVisible]="true" (searchDebounce)="search($event)" (search)="keyEnterPress()"
+    (clear)="clear()" (focusout)="focusOut()">
+  </td-search-box>
+</div>
+<div *ngIf="data.results.length > 0; noSearchResults">
+  <ul fxLayout="column" class="show-results-search" tdMediaToggle="xs" [mediaClasses]="['show-results-search-xs']">
+    <li class="result-item" *ngFor="let result of data.results | slice:0:6; index as i; last as isLast" [ngSwitch]="result.media_type">
+      <a *ngSwitchCase="'tv'" class="result-item tc-grey-900" [routerLink]="['/tv-detail/', result.id]" (click)="clear()">
+        <div fxLayout="row" layout-align="start center">
+          <mat-icon class="tc-teal-900 pad-left-xs">live_tv</mat-icon>
+          <span class="push-left-sm">
+            {{result.name}}
+            <i class="tc-teal-900">[TV Show]</i> -
+            <!-- {{result.vote_average}} - -->
+            <mat-icon class="tc-teal-900 pad-left-xs pad-right-xs">thumb_up</mat-icon>
+            {{result.popularity}}%
+          </span>
+        </div>
+      </a>
+      <a *ngSwitchCase="'movie'" class="result-item tc-grey-900" [routerLink]="['/movie/', result.id]" (click)="clear()">
+        <div fxLayout="row" fxLayoutAlign="strech strech">
+          <mat-icon class="tc-teal-900 pad-left-xs">local_movies</mat-icon>
+          <!--<img mat-card-image class="img-movie-backdrop" src="https://image.tmdb.org/t/p/w92{{result.poster_path}}">-->
+          <span class="push-left-sm">
+            {{result.title}}
+            <i class="tc-teal-900">[Movie]</i> -
+            <!-- {{result.vote_average}} - -->
+            <mat-icon class="tc-teal-900 pad-left-xs pad-right-xs">thumb_up</mat-icon>
+            {{result.popularity}}%
+          </span>
+        </div>
+      </a>
+      <a *ngSwitchCase="'person'" class="result-item tc-grey-900" [routerLink]="['/person/', result.id]" (click)="clear()">
+        <div fxLayout="row" layout-align="start center">
+          <mat-icon class="tc-teal-900 pad-left-xs">person</mat-icon>
+          <span class="push-left-sm" flex>
+            {{result.name}}
+            <i class="tc-teal-900">[People]</i> -
+            <mat-icon class="tc-teal-900 pad-left-xs pad-right-xs">thumb_up</mat-icon>
+            {{result.popularity}}%
+          </span>
+        </div>
+      </a>
+
+      <div *ngIf="isLast">
+        <a class="result-item tc-grey-900" [routerLink]="['/search/', query]" (click)="clear()">
+          <div fxLayout="row" layout-align="start center">
+            <mat-icon class="tc-teal-900 pad-left-xs">remove_red_eye</mat-icon>
+            <span class="push-left-sm" flex>
+              See more ...
+            </span>
+          </div>
+        </a>
+      </div>
+
+
+    </li>
+  </ul>
+</div>
+<ng-template #noSearchResults>
+  <ul fxLayout="column" class="show-results-search" tdMediaToggle="xs">
+    <li>
+      <a class="result-item tc-grey-900">Opps, no results</a>
+    </li>
+  </ul>
+</ng-template>
+<!--</div>-->
