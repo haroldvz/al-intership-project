@@ -23,6 +23,7 @@ export interface ImageData {
   id: number;
   title: string;
   vote_average: number;
+  overview:string;
 }
 
 
@@ -91,7 +92,8 @@ export class HomeComponent implements OnInit {
             image: data.results[i].backdrop_path,
             id: data.results[i].id,
             title: data.results[i].title,
-            vote_average: data.results[i].vote_average
+            vote_average: data.results[i].vote_average,
+            overview:data.results[i].overview
           });
         }
         this.data_to_gallery_slider['backdrops'] = this.backdrops_items_slider;
@@ -165,6 +167,19 @@ export class HomeComponent implements OnInit {
       this.i = 0
     }
     return this.slides[this.i].vote_average;
+  }
+
+  /**
+   *
+   *
+   * @returns {string}
+   * @memberof HomeComponent
+   */
+  getOverviewMovie(): string {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].overview;
   }
 
   /**
