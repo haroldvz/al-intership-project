@@ -9,7 +9,7 @@ const routes: Routes = [
   {path:'people', loadChildren:'./people/people.module#PeopleModule'},
   {path:'tv', loadChildren:'./tv-series/tv-series.module#TvSeriesModule'},
   {path:'about', component:AboutComponent},
-  //{path:'404-not-found', component:},
+  {path:'404-not-found', component:NotFoundComponent},
   {path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];
 

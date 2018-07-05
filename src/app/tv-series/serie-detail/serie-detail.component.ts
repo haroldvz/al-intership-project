@@ -67,8 +67,6 @@ export class SerieDetailComponent implements OnInit {
   data_credits:CreditsTVDescriptor = new CreditsTVDescriptor();
 
   constructor(
-    //private _movie_detail_service: DetailMovieService,
-    //private _movie_service: MovieService,
     private _detail_tv_service: DetailTVService,
     private route: ActivatedRoute,
     private _loadingService: TdLoadingService,
@@ -77,43 +75,25 @@ export class SerieDetailComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.routerSubscribe = this.route.params.subscribe(params => {
-
       this.LoadingRegister();
-
-
       let id: number = params['id'];
-
       this._detail_tv_service.getTVDetail(id).subscribe(
         (data) => {
           this.data = data;
           console.log(this.data);
           //this.genres = data.genres.map((element) => { return element.name }).join(', ');
           this.loadingResolve();
-         
         }
       );
 
       this._detail_tv_service.getCreditsTVSeries(id).subscribe(
-
         (data) => {
           this.data_credits = data;
-         
-        
           this.loadingResolve();
-         
         }
-
       );
-
-
-
     });
-
-
-
-
   }
 
 

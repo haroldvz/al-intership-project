@@ -1,5 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+
+/**
+ *
+ * Pipe to convert api data time to readeble time
+ * @export
+ * @class DurationTimePipe
+ * @implements {PipeTransform}
+ */
 @Pipe({
   name: 'durationTime'
 })

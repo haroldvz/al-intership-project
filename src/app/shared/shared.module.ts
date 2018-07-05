@@ -22,6 +22,9 @@ import { BarRatingModule } from "ngx-bar-rating";
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
+import { DurationTimePipe } from './pipes/duration.pipe';
+import { GetAgePipe } from './pipes/calculate-age.pipe';
+import { TruncatePipe } from './pipes/limit-text.pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -55,7 +58,10 @@ import { ReviewCardComponent } from './components/review-card/review-card.compon
     SliderComponent,
     DragScrollModule,
     BarRatingModule,
-    ReviewsComponent
+    ReviewsComponent,
+    DurationTimePipe,
+    GetAgePipe,
+    TruncatePipe,
   ],
   entryComponents: [
     DialogOverviewBiographyComponent
@@ -71,7 +77,10 @@ import { ReviewCardComponent } from './components/review-card/review-card.compon
     AboutComponent,
     SearchPageComponent,
     ReviewsComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    TruncatePipe,
+    DurationTimePipe,
+    GetAgePipe
   ],
   providers: [
     SearchService

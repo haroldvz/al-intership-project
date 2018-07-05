@@ -17,23 +17,14 @@ export class SimilarSeriesComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-
-
     this.routerSubscribe = this.route.params.subscribe(params => {
-
       let id: number = params['id'];
-
       this._detail_tv_service.getSimilarTVSeries(id).subscribe(
         (data) => {
-
           this.data = data;
           //console.log(data);
-
         }
       );
-
     });
-
   }
-
 }

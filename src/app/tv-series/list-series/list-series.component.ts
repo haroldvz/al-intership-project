@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PeopleService } from '../../shared/services/people.service';
 import { ResponseTVSeriesDescriptor } from '../../shared/types/tv-series/tv-response.type';
 import { TVSerieService } from '../../shared/services/tv-series.service';
-import { IPageChangeEvent, TdPagingBarComponent } from '@covalent/core';
+import { IPageChangeEvent, TdPagingBarComponent, TdLoadingService } from '@covalent/core';
 
 @Component({
   selector: 'app-list-series',
@@ -23,13 +23,12 @@ export class ListSeriesComponent implements OnInit {
   data: ResponseTVSeriesDescriptor = new ResponseTVSeriesDescriptor();
 
   constructor(private _tv_service: TVSerieService,
-    private route: ActivatedRoute, private _router: Router, ) { }
+    private route: ActivatedRoute, private _router: Router,
+    private _loadingService: TdLoadingService, ) { }
 
   ngOnInit() {
 
     this.routerSubscribe = this.route.params.subscribe(params => {
-
-
       let category: string = params['category'];
       this._actual_category = category;
       if (params['page']) {
@@ -37,14 +36,9 @@ export class ListSeriesComponent implements OnInit {
       } else {
         this._actual_page = 1;
       }
-
       this.getTVSeries();
-
     });
-
-
   }
-
 
 
   /**
@@ -77,20 +71,18 @@ export class ListSeriesComponent implements OnInit {
             console.log(this.data)
             this._total_results = data.total_results;
             this._total_pages = data.total_pages;
-            //this.loadingResolve();
+            this.loadingResolve();
           }
         );
-
       } break;
       case 'top-rated': {
-
         this._tv_service.getTopRatedTVSeries(this._actual_page).subscribe(
           (data) => {
             this.data = data;
             console.log(this.data)
             this._total_results = data.total_results;
             this._total_pages = data.total_pages;
-            //this.loadingResolve();
+            this.loadingResolve();
           }
         );
 
@@ -103,7 +95,7 @@ export class ListSeriesComponent implements OnInit {
             console.log(this.data)
             this._total_results = data.total_results;
             this._total_pages = data.total_pages;
-            //this.loadingResolve();
+            this.loadingResolve();
           }
         );
 
@@ -116,16 +108,14 @@ export class ListSeriesComponent implements OnInit {
             console.log(this.data)
             this._total_results = data.total_results;
             this._total_pages = data.total_pages;
-            //this.loadingResolve();
+            this.loadingResolve();
           }
         );
 
       } break;
       default: {
-        console.log("404");
+        this._router.navigate(['/404-not-found/']);
       } break;
-
-
     }
   }
 
@@ -143,5 +133,22 @@ export class ListSeriesComponent implements OnInit {
   }
 
 
+  /**
+   *
+   *
+   * @memberof ListMoviesComponent
+   */
+  LoadingRegister(): void {
+    this._loadingService.register('list-series');
+  }
+
+  /**
+   *
+   *
+   * @memberof ListMoviesComponent
+   */
+  loadingResolve(): void {
+    this._loadingService.resolve('list-series');
+  }
 
 }

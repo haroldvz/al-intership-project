@@ -11,28 +11,38 @@ import { TdMediaService } from '@covalent/core';
 })
 export class SerieCreditsComponent implements OnInit, AfterContentInit {
 
-
-  public gridByBreakpoint = {
+  gridByBreakpoint = {
     xl: 8,
     lg: 5,
     md: 4,
     sm: 3,
     xs: 1
   }
-
-
   @Input() public data;
-
   @ViewChild('grid') grid: MatGridList;
 
 
+  /**
+   *Creates an instance of SerieCreditsComponent.
+   * @param {ObservableMedia} observableMedia
+   * @param {BreakpointObserver} breakpointObserver
+   * @param {TdMediaService} _mediaService
+   * @memberof SerieCreditsComponent
+   */
   constructor(private observableMedia: ObservableMedia,
     public breakpointObserver: BreakpointObserver,
     public _mediaService: TdMediaService, ) { }
 
+
+
   ngOnInit() {
   }
 
+  /**
+   *
+   *
+   * @memberof SerieCreditsComponent
+   */
   ngAfterContentInit(): void {
     this.observableMedia.asObservable().subscribe((change: MediaChange) => {
       this.grid.cols = this.gridByBreakpoint[change.mqAlias];

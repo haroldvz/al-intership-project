@@ -10,19 +10,19 @@ p {
     color: white;
 }
 
-.toolbar-navigation{
-	height:50px !important;
+.toolbar-navigation {
+    height: 50px !important;
 }
 
 .link-mat-list-item:hover {
-    background-color:#424242 !important;
+    background-color: #424242 !important;
 }
 
 a.link-mat-list-item.active_item {
     color: white !important;
     background-color: #00796b !important;
     font-weight: bold;
-    .mat-icon{
+    .mat-icon {
         color: white;
     }
 }

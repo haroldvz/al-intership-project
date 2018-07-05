@@ -3,6 +3,13 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor} from '@angular/co
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment.prod';
 
+/**
+ * Interceptor for pass api params to request
+ *
+ * @export
+ * @class MainInterceptor
+ * @implements {HttpInterceptor}
+ */
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
 

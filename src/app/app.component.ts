@@ -16,9 +16,6 @@ export class AppComponent implements OnInit {
 
   name = 'Movies';
 
-
-
-
   menu_routes: Object[] = [
     /*{
       icon: 'home',
@@ -71,50 +68,7 @@ export class AppComponent implements OnInit {
 
   ];
 
-
-  usermenu: Object[] = [
-    {
-      icon: 'swap_horiz',
-      route: '.',
-      title: 'Switch account',
-    }, {
-      icon: 'tune',
-      route: '.',
-      title: 'Account settings',
-    }, {
-      icon: 'exit_to_app',
-      route: '.',
-      title: 'Sign out',
-    },
-  ];
-
-  second_menu: Object[] = [
-
-    {
-      route: '/home',
-      title: 'Home'
-    },
-
-    {
-      route: '/movies',
-      title: 'Movies'
-    },
-    {
-      route: '/tv',
-      title: 'TV'
-    },
-    {
-      route: '/people',
-      title: 'People'
-    },
-    {
-      route: '/about',
-      title: 'About'
-    }
-
-  ];
-
-  routes: Object[] = [
+  navbar_routes: Object[] = [
     {
       name: 'Home',
       path: '/home',
@@ -171,7 +125,6 @@ export class AppComponent implements OnInit {
       
     });
   }
-
   // Theme toggle
   get activeTheme(): string {
     return localStorage.getItem('theme');

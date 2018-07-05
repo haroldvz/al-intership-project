@@ -57,8 +57,7 @@
                 font-size: 1.2m;
                 color: white;
             }
-
-            .feature-cast-name{
+            .feature-cast-name {
                 font-family: 'Source Sans Pro', Arial, sans-serif;
                 font-weight: 900;
                 font-size: 1.1em;
@@ -66,19 +65,16 @@
             }
             color: white;
             text-align: justify;
-           
         }
     }
 }
 
-.navbar-detail-movie{
-
+.navbar-detail-movie {
     .toolbar-item {
         color: white;
     }
-    
-    .mat-toolbar-row, .mat-toolbar-single-row {
+    .mat-toolbar-row,
+    .mat-toolbar-single-row {
         height: 50px;
     }
-
 }

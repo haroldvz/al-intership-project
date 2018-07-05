@@ -1,5 +1,3 @@
-
-
 <td-layout [class]="activeTheme">
   <!--Menu content-->
   <td-navigation-drawer flex [sidenavTitle]="name" logo="assets:covalent">
@@ -12,7 +10,6 @@
           <mat-divider class="bgc-grey-800"></mat-divider>
         </div>
       </a>
-
     </mat-nav-list>
     <div td-navigation-drawer-menu>
       <mat-nav-list>
@@ -24,13 +21,11 @@
     </div>
   </td-navigation-drawer>
   <!--End Menu content-->
-
   <td-layout-nav color="primary" logo="assets:covalent" navigationRoute="/" id="app-top">
     <button mat-icon-button td-menu-button tdLayoutToggle>
       <mat-icon>menu</mat-icon>
     </button>
     <div td-toolbar-content layout="row" layout-align="start center" class="" flex>
-
       <span hide-gt-xs class="mat-subhead">Movies</span>
       <span hide-xs class="mat-subhead">Movies</span>
       <span flex></span>
@@ -38,37 +33,32 @@
     </div>
     <!--Section toolbar-->
     <!--<span>
-        <button mat-icon-button matTooltip="More" [mat-menu-trigger-for]="more">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu xPosition="before" #more="matMenu">
-            <button mat-menu-item *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">
-              <mat-icon>brightness_high</mat-icon>
-              <span>Light Mode</span>
-            </button>
-            <button mat-menu-item *ngIf="activeTheme != 'theme-dark'" (click)="theme('theme-dark')">
-              <mat-icon>brightness_low</mat-icon>
-              <span>Dark Mode</span>
-            </button>
-        </mat-menu>
-      </span>-->
+          <button mat-icon-button matTooltip="More" [mat-menu-trigger-for]="more">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu xPosition="before" #more="matMenu">
+              <button mat-menu-item *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">
+                <mat-icon>brightness_high</mat-icon>
+                <span>Light Mode</span>
+              </button>
+              <button mat-menu-item *ngIf="activeTheme != 'theme-dark'" (click)="theme('theme-dark')">
+                <mat-icon>brightness_low</mat-icon>
+                <span>Dark Mode</span>
+              </button>
+          </mat-menu>
+          </span>-->
     <div>
-        
-     
-        <!--pull-bottom-xl pull-top-md make the fuck efect-->
-        <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper bgc-grey-800" flex>
-          <a mat-tab-link class="toolbar-item" *ngFor="let route of routes; let i = index" [routerLink]="[route['path']]" routerLinkActive
-            #itemnb="routerLinkActive" [active]="itemnb.isActive">
-            <span hide-xs>{{route['name']}}</span>
-            <span hide-gt-xs>
-              <mat-icon>{{route['icon']}}</mat-icon>
-            </span>
-          </a>
-        </nav>
-    
-
+      <!--pull-bottom-xl pull-top-md make the fuck efect-->
+      <nav mat-stretch-tabs mat-tab-nav-bar class="text-upper bgc-grey-800" flex>
+        <a mat-tab-link class="toolbar-item" *ngFor="let route of navbar_routes; let i = index" [routerLink]="[route['path']]" routerLinkActive
+          #itemnb="routerLinkActive" [active]="itemnb.isActive">
+          <span hide-xs>{{route['name']}}</span>
+          <span hide-gt-xs>
+            <mat-icon>{{route['icon']}}</mat-icon>
+          </span>
+        </a>
+      </nav>
     </div>
-
     <!--End secction toolbar-->
     <!-- router outlet goes here -->
     <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''" class="bgc-grey-500">
@@ -78,9 +68,12 @@
     <app-footer></app-footer>
     <td-layout-footer>
       <div layout="row" layout-align="start center">
-        <span class="mat-caption">Made with
-          <mat-icon class="text-md">favorite</mat-icon> by
-          <span class="text-nodecoration tc-blue-700">Harold</span>, built on Angular v6 + Covalent Teradata + Angular Material.</span>
+        <span class="mat-caption">
+          Made with
+          <mat-icon class="text-md">favorite</mat-icon>
+          by
+          <span class="text-nodecoration tc-blue-700">Harold</span>, built on Angular 6 + Covalent Teradata + Angular Material.
+        </span>
       </div>
     </td-layout-footer>
   </td-layout-nav>

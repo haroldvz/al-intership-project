@@ -12,7 +12,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class SerieVideosComponent implements OnInit {
 
   private routerSubscribe;
-  //public data: ResponseVideoDescriptor = new ResponseVideoDescriptor();
 
   constructor(private _detail_tv_service: DetailTVService,
     private route: ActivatedRoute,
@@ -20,28 +19,9 @@ export class SerieVideosComponent implements OnInit {
 
   @Input() public data;
 
-  private base_video_url:string = environment.api_video_url;
+  private base_video_url: string = environment.api_video_url;
 
   ngOnInit() {
-
-
-    /*this.routerSubscribe = this.route.params.subscribe(params => {
-
-      let id: number = params['id'];
-
-      this._detail_tv_service.getTVVideos(id).subscribe(
-        (data) => {
-
-          this.data = data;
-          console.log(data);
-
-        }
-      );
-
-    });*/
-
-
-
   }
 
   /**
@@ -51,7 +31,7 @@ export class SerieVideosComponent implements OnInit {
    * @returns
    * @memberof SerieVideosComponent
    */
-  makeSafeVideoURL(param:string){
+  makeSafeVideoURL(param: string) {
     return this._sanitizer.bypassSecurityTrustResourceUrl(this.base_video_url + param);
   }
 
