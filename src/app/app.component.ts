@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 import { TdMediaService } from '@covalent/core';
 import { fadeAnimation } from './shared/animations/animations';
 import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,8 @@ import { NavigationEnd, Router } from '@angular/router';
   animations: [fadeAnimation]
 
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+ 
 
   name = 'Movies';
 
@@ -92,6 +95,8 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  subscription:Subscription;
+
   /**
    *Creates an instance of AppComponent.
    * @param {TdMediaService} media
@@ -116,7 +121,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events.subscribe(evt => {
+
+    this.subscription= this.router.events.pipe(
+      filter(event=> event instanceof NavigationEnd)
+    )
+    .subscribe(()=>window.scrollTo(0,0));
+
+
+    /*this.router.events.subscribe(evt => {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
@@ -126,8 +138,14 @@ export class AppComponent implements OnInit {
       }
       
       
-    });
+    });*/
   }
+
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+   }
+
   // Theme toggle
   get activeTheme(): string {
     return localStorage.getItem('theme');
