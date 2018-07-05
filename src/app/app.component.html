@@ -1,6 +1,6 @@
 <td-layout [class]="activeTheme">
   <!--Menu content-->
-  <td-navigation-drawer flex [sidenavTitle]="name" logo="assets:covalent">
+  <td-navigation-drawer flex [sidenavTitle]="name" logo="assets:logo-movie">
     <mat-nav-list>
       <a class="link-mat-list-item" *ngFor="let item of menu_routes; let i=index" mat-list-item [routerLink]="[item.route]" routerLinkActive="active_item">
         <mat-icon>{{item.icon}}</mat-icon>
@@ -11,17 +11,17 @@
         </div>
       </a>
     </mat-nav-list>
-    <div td-navigation-drawer-menu>
+   <!-- <div td-navigation-drawer-menu>
       <mat-nav-list>
         <a *ngFor="let item of usermenu" mat-list-item>
           <mat-icon>{{item.icon}}</mat-icon>
           {{item.title}}
         </a>
       </mat-nav-list>
-    </div>
+    </div>-->
   </td-navigation-drawer>
   <!--End Menu content-->
-  <td-layout-nav color="primary" logo="assets:covalent" navigationRoute="/" id="app-top">
+  <td-layout-nav color="primary" logo="assets:logo-movie" navigationRoute="/" id="app-top">
     <button mat-icon-button td-menu-button tdLayoutToggle>
       <mat-icon>menu</mat-icon>
     </button>

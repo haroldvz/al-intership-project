@@ -109,6 +109,9 @@ export class AppComponent implements OnInit {
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'covalent-mark',
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
+      
+      this._iconRegistry.addSvgIconInNamespace('assets', 'logo-movie',
+      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/logos/logo_movie_one.svg'));
 
   }
 
