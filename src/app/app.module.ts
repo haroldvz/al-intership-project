@@ -15,6 +15,7 @@ import { FooterComponent } from './shared/layout/footer/footer.component';
 import { TvSeriesModule } from './tv-series/tv-series.module';
 import { NotFoundComponent } from './shared/layout/not-found/not-found.component';
 import { SharedModule } from './shared/shared.module';
+import { MainInterceptor } from './app-interceptor.interceptor';
 
 
 
@@ -39,7 +40,14 @@ import { SharedModule } from './shared/shared.module';
     FooterComponent,
     NotFoundComponent,
   ],
-  providers: [TdMediaService],
+  providers: [
+    TdMediaService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MainInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
