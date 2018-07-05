@@ -22,11 +22,15 @@
                 <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
                 <span class="pad-top-sm white">({{data.vote_count}})</span>
               </div>
-              <p>
-                <mat-icon style="color:white;">event</mat-icon>
-                <span class="md-headline">{{data.first_air_date|date:'mediumDate'}}</span>
+              <div fxLayout="row">
+                <div fxLayout="column">
+                  <span class="md-headline">
+                    <mat-icon class="white">event</mat-icon>
+                    {{data.first_air_date|date:'mediumDate'}}</span>
 
-              </p>
+                  <span>{{data.first_air_date|timeAgo}}</span>
+                </div>
+              </div>
               <p>
                 <!--<span class="genres">{{genres}}</span>-->
               </p>

@@ -11,7 +11,19 @@ import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
 import { DragScrollDirective } from 'ngx-drag-scroll';
 import { ResponseDescriptor } from '../../shared/types/movies/response.type';
-import { NgxGalleryComponent } from 'ngx-gallery';
+
+/**
+ * Interface for data main slider
+ *
+ * @export
+ * @interface ImageData
+ */
+export interface ImageData {
+  image: string;
+  id: number;
+  title: string;
+  vote_average: number;
+}
 
 
 @Component({
@@ -19,22 +31,23 @@ import { NgxGalleryComponent } from 'ngx-gallery';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
+
 export class HomeComponent implements OnInit {
 
   @ViewChild('nav', { read: DragScrollDirective }) ds: DragScrollDirective;
 
   leftNavDisabled = false;
   rightNavDisabled = false;
-
   private routerSubscribe;
   images_data: ImagesMoviesDescriptor = new ImagesMoviesDescriptor();
-
   data: ResponseDescriptor = new ResponseDescriptor();
+  data2: ResponseDescriptor = new ResponseDescriptor();
   backdrops_items_slider = [];
   backdrops_items = [];
   data_to_gallery_slider = {};
-
-
+  slides: ImageData[] = []
+  i = 0;
 
   /**
    *Creates an instance of HomeComponent.
@@ -62,28 +75,35 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   /**
    *
    *
    * @memberof HomeComponent
    */
   ngOnInit() {
-    this._movie_service.getPopularMovies(1).subscribe(
+    this._movie_service.getUpcomingMovies(1).subscribe(
       (data) => {
-        this.data = data;
-        console.log(this.data);
+        this.data2 = data;
+        //console.log(this.data);
         for (let i = 0; i < data.results.length; i++) {
           this.backdrops_items_slider.push({ file_path: data.results[i].backdrop_path })
+          this.slides.push({
+            image: data.results[i].backdrop_path,
+            id: data.results[i].id,
+            title: data.results[i].title,
+            vote_average: data.results[i].vote_average
+          });
         }
         this.data_to_gallery_slider['backdrops'] = this.backdrops_items_slider;
+
+
       }
     );
 
-    this._movie_service.getUpcomingMovies(1).subscribe(
+    this._movie_service.getTopRatedMovies(1).subscribe(
       (data) => {
         this.data = data;
-        console.log(this.data);
+        //console.log(this.data);
         /*for (let i = 0; i < data.results.length; i++) {
           this.backdrops_items.push({ file_path: data.results[i].backdrop_path })
         }
@@ -91,27 +111,80 @@ export class HomeComponent implements OnInit {
       }
     );
 
-
   }
 
 
+  /**
+   *
+   *
+   * @returns {string}
+   * @memberof HomeComponent
+   */
+  getSlide(): string {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].image;
 
-  /*
-  moveLeft() {
-    this.ds.moveLeft();
   }
 
-  moveRight() {
-    this.ds.moveRight();
+  /**
+   *
+   *
+   * @returns {number}
+   * @memberof HomeComponent
+   */
+  getIdMovie(): number {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].id;
   }
 
-  leftBoundStat(reachesLeftBound: boolean) {
-    this.leftNavDisabled = reachesLeftBound;
+  /**
+   *
+   *
+   * @returns {string}
+   * @memberof HomeComponent
+   */
+  getTitleMovie(): string {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].title;
   }
 
-  rightBoundStat(reachesRightBound: boolean) {
-    this.rightNavDisabled = reachesRightBound;
-  }*/
+  /**
+   *
+   *
+   * @returns {number}
+   * @memberof HomeComponent
+   */
+  getVoteAverageMovie(): number {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].vote_average;
+  }
+
+  /**
+   *
+   *
+   * @memberof HomeComponent
+   */
+  getPrev() {
+    this.i = this.i === 0 ? 19 : this.i - 1;
+  }
+
+  /**
+   *
+   *
+   * @memberof HomeComponent
+   */
+  getNext() {
+    this.i = this.i === this.slides.length ? this.i : this.i + 1;
+  }
+
 
 }
 

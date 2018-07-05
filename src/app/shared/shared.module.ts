@@ -25,6 +25,7 @@ import { ReviewCardComponent } from './components/review-card/review-card.compon
 import { DurationTimePipe } from './pipes/duration.pipe';
 import { GetAgePipe } from './pipes/calculate-age.pipe';
 import { TruncatePipe } from './pipes/limit-text.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
@@ -39,7 +40,8 @@ import { TruncatePipe } from './pipes/limit-text.pipe';
     ReactiveFormsModule,
     NgxGalleryModule,
     DragScrollModule,
-    BarRatingModule
+    BarRatingModule,
+    NgbModule
   ],
   exports: [
     GallerySliderComponent,
@@ -62,6 +64,7 @@ import { TruncatePipe } from './pipes/limit-text.pipe';
     DurationTimePipe,
     GetAgePipe,
     TruncatePipe,
+    NgbModule
   ],
   entryComponents: [
     DialogOverviewBiographyComponent

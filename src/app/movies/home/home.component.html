@@ -3,17 +3,56 @@
     <app-slider [data]="data_to_gallery_slider" [data_all]="data"></app-slider>
   </div>-->
 
-  <div *ngIf="data.results" style="padding:5%;">
-    <h2>Upcoming Movies</h2>
-    <div fxLayout="row wrap" diameter="20" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
-      fxLayoutAlign="center">
 
-      <div flex *ngFor="let item of data.results.slice(0,8); let i = index;" fxLayoutAlign="center center">
-        <app-movie-card [data]="item" class="item"></app-movie-card>
+  <!--<ngb-carousel *ngIf="data2.results">
+    <ng-template ngbSlide *ngFor="let item of data2.results">
+      <img src="https://image.tmdb.org/t/p/w300/{{item.poster_path}}" alt="Random first slide">
+      <div class="carousel-caption">
+        <h3>{{item.title}}</h3>
+     
       </div>
-    </div>
+    </ng-template>
+  </ngb-carousel>-->
+  <div fxLayout="column">
+    <h2>Upcoming movies</h2>
+  </div>
 
-    <!-- <div dragScroll drag-scroll-y-disabled="true" scrollbar-hidden="true" #nav>
+  <div fxLayout="row" fxLayoutAlign="center center">
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" fxLayoutAlign="center center">
+
+      <div *ngIf="slides.length>0" fxLayoutAlign="center center">
+        <div class="carousel-inner" role="listbox" fxLayoutAlign="center center">
+          <a [routerLink]="['/movie/',getIdMovie()]">
+            <img class="image-slider" src="https://image.tmdb.org/t/p/original/{{ getSlide() }}" alt="{{getSlide()}}">
+          </a>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="pad-top-sm">
+
+    <button mat-button class="combined-accent-color" (click)='getPrev()'>Prev</button>
+    <button mat-button class="combined-accent-color" (click)='getNext()'>Next</button>
+
+  </div>
+
+
+  <div fxLayout="column">
+    <div *ngIf="data.results" style="padding:5%;">
+      <h2>Top rated movies</h2>
+      <div fxLayout="row wrap" diameter="20" *tdLoading="'list-movies'; mode:'indeterminate'; type:'circle'; strategy:'replace'; color:'accent';"
+        fxLayoutAlign="center">
+
+        <div flex *ngFor="let item of data.results.slice(0,8); let i = index;" fxLayoutAlign="center center">
+          <app-movie-card [data]="item" class="item"></app-movie-card>
+        </div>
+      </div>
+
+      <!-- <div dragScroll drag-scroll-y-disabled="true" scrollbar-hidden="true" #nav>
 
       <div *ngIf="data.results">
 
@@ -27,6 +66,7 @@
       <button mat-raised-button color="accent" (click)="moveLeft()">Go to start</button>
      
     </div>-->
+    </div>
   </div>
 
   <!--<div layout-gt-xs="row">

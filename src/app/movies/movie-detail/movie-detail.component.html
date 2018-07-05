@@ -21,8 +21,8 @@
             <div class="movie-title">
               <h2>{{data.title}}</h2>
               <div fxLayout="row">
-              <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
-              <span class="pad-top-sm white" >({{data.vote_count}})</span>
+                <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
+                <span class="pad-top-sm white">({{data.vote_count}})</span>
               </div>
               <p>
                 <mat-chip-list>
@@ -31,12 +31,21 @@
 
                 <!-- <span class="genres">{{genres}}</span>-->
               </p>
-              <p>
-                <mat-icon class="white">event</mat-icon>
-                <span class="md-headline">{{data.release_date|date:'mediumDate'}}</span>
-                <mat-icon class="white pad-left-sm">access_time</mat-icon>
-                <span class="md-headline">{{data.runtime | durationTime}}</span>
-              </p>
+              <div fxLayout="row">
+
+                <div fxLayout="column">
+                  <span class="md-headline">
+                    <mat-icon class="white">event</mat-icon>
+                    {{data.release_date|date:'mediumDate'}}</span>
+                  <span>{{data.release_date|timeAgo}}</span>
+                </div>
+                <div fxLayout="column">
+                  <span class="md-headline"><mat-icon class="white pad-left-sm">access_time</mat-icon>
+                  {{data.runtime | durationTime}}</span>
+                </div>
+
+
+              </div>
             </div>
             <div class="movie-overview">
               <h2>Overview:</h2>

@@ -15,7 +15,7 @@ import { FooterComponent } from './shared/layout/footer/footer.component';
 import { TvSeriesModule } from './tv-series/tv-series.module';
 import { NotFoundComponent } from './shared/layout/not-found/not-found.component';
 import { SharedModule } from './shared/shared.module';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -32,6 +32,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     //shared-module
     SharedModule,
+    NgbModule.forRoot(),
   ],
   declarations: [
     AppComponent,
