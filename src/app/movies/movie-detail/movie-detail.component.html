@@ -20,8 +20,10 @@
           <div fxLayout="column" class="detail-description-content">
             <div class="movie-title">
               <h2>{{data.title}}</h2>
+              <div fxLayout="row">
               <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
-              <span>Votes ({{data.vote_count}})</span>
+              <span class="pad-top-sm white" >({{data.vote_count}})</span>
+              </div>
               <p>
                 <mat-chip-list>
                   <mat-chip color="accent" *ngFor="let item of genres; let i = index;">{{item.name}}</mat-chip>
@@ -31,7 +33,7 @@
               </p>
               <p>
                 <mat-icon class="white">event</mat-icon>
-                <span class="md-headline">{{data.release_date}}</span>
+                <span class="md-headline">{{data.release_date|date:'mediumDate'}}</span>
                 <mat-icon class="white pad-left-sm">access_time</mat-icon>
                 <span class="md-headline">{{data.runtime | durationTime}}</span>
               </p>
