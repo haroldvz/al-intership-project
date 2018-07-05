@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 // Adjust your logo position
 /*@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
@@ -8,25 +9,27 @@
       top: -4px;
     }
 }*/
+
 /* ink bar style */
 
 @import '~@ngx-gallery/core/styles/gallery';
 @import '~ngx-bar-rating/themes/br-fontawesome-theme';
 @import '~ngx-bar-rating/themes/br-stars-theme';
-.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
-  height: 5px;
-} 
-
-
-.mat-grid-tile .mat-figure{
-  display: block !important;
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    height: 5px;
 }
 
-
-.white{
-  color:white;
+.mat-grid-tile .mat-figure {
+    display: block !important;
 }
 
-mat-toolbar .mat-icon.mat-icon-logo { width: 40px; height: 40px; }
+.white {
+    color: white;
+}
 
-
+mat-toolbar .mat-icon.mat-icon-logo {
+    width: 40px;
+    height: 40px;
+    color: black;
+}
