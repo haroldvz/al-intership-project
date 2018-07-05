@@ -19,13 +19,20 @@
 
   <div fxLayout="row" fxLayoutAlign="center center">
 
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" fxLayoutAlign="center center">
+    <div id="carouselExampleControls" class="carousel " data-ride="carousel" fxLayoutAlign="center center">
 
       <div *ngIf="slides.length>0" fxLayoutAlign="center center">
         <div class="carousel-inner" role="listbox" fxLayoutAlign="center center">
-          <a [routerLink]="['/movie/',getIdMovie()]">
-            <img class="image-slider" src="https://image.tmdb.org/t/p/original/{{ getSlide() }}" alt="{{getSlide()}}">
-          </a>
+          <div class="content">
+            <a [routerLink]="['/movie/',getIdMovie()]">
+              <div class="content-overlay"></div>
+              <img class="image-slider" src="https://image.tmdb.org/t/p/original/{{ getSlide() }}" alt="{{getSlide()}}">
+              <div class="content-details fadeIn-left">
+                <h3>{{getTitleMovie()}}</h3>
+                <p>This is a short description</p>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -33,7 +40,7 @@
 
     </div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="pad-top-sm">
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
 
     <button mat-button class="combined-accent-color" (click)='getPrev()'>Prev</button>
     <button mat-button class="combined-accent-color" (click)='getNext()'>Next</button>
