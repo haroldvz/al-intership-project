@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy {
  
 
-  name = 'Movies';
+  name = 'CornTime';
 
   menu_routes: Object[] = [
     /*{
@@ -116,7 +116,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
       
       this._iconRegistry.addSvgIconInNamespace('assets', 'logo-movie',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/logos/logo_movie_one.svg'));
+      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/logos/popcorn_4.svg'));
 
   }
 
