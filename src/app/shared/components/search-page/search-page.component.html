@@ -16,11 +16,18 @@
           <div class="content">
             <a [routerLink]="['/movie/',item.id]">
               <div class="content-overlay"></div>
-              <div *ngIf="item.profile_path != '';else posterBlock">
+              <div *ngIf="item.profile_path != '' && item.profile_path != null ;else posterBlock">
                 <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.profile_path}}">
               </div>
+
               <ng-template #posterBlock>
-                <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.poster_path}}">
+                <div *ngIf="item.poster_path != '' && item.profile_path != null && item.poster_path != null;else noimageBlock">
+                    <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.poster_path}}">
+                </div>
+                <ng-template #noimageBlock>
+                    <img mat-card-image class="container-img-movie" src="assets/images/no-img_300_450.png">
+                </ng-template>
+                
               </ng-template>
 
               <div class="content-details fadeIn-left">
@@ -43,7 +50,7 @@
   </div>
 
 </div>
-<div fxLayout="column">
+<!--<div fxLayout="column">
   <div *ngIf="basicData.length>0">
     <div fxLayout="column" fxLayoutAlign="center center">
       <td-data-table [data]="basicData" [columns]="configWidthColumns" (rowClick)="goToTarget($event)" [clickable]="true">
@@ -53,4 +60,4 @@
       </td-data-table>
     </div>
   </div>
-</div>
+</div>-->
