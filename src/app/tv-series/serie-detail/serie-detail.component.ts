@@ -47,12 +47,13 @@ export class SerieDetailComponent implements OnInit {
       tab_number: 2,
       icon: 'tv',
     },
-    {
+    /*{
       name: 'Images',
       tab_number: 3,
       icon: 'tv',
-    },
+    },*/
     {
+      
       name: 'Videos',
       tab_number: 4,
       icon: 'tv',
