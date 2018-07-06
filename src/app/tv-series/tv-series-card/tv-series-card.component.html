@@ -6,7 +6,7 @@
         <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{data.poster_path}}">
         <div class="content-details fadeIn-left">
           <h3>{{data.name}}</h3>
-          <p>This is a short description</p>
+          <p>{{data.first_air_date|date:'mediumDate'}}</p>
         </div>
       </a>
     </div>

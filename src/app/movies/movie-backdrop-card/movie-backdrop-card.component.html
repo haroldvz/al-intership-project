@@ -1,22 +1,40 @@
 <div class="app-movie-backdrop-card">
   <mat-card class="movie-backdrop flex-item" flex-item>
     <div class="movie-backdrop-container">
-      <div *ngIf="data.backdrop_path;else noBackdropImage ">
-        <img mat-card-image class="img-movie-backdrop" src="https://image.tmdb.org/t/p/w500{{data.backdrop_path}}">
+      <div *ngIf="data.name;else titleBlock">
+        <a [routerLink]="['/tv-detail/', data.id ]">
+          <div *ngIf="data.backdrop_path;else noBackdropImage ">
+            <img mat-card-image class="img-movie-backdrop" src="https://image.tmdb.org/t/p/w500{{data.backdrop_path}}">
+          </div>
+          <ng-template #noBackdropImage>
+            <img mat-card-image src="assets/images/no-backdrop-image.png" class="" />
+          </ng-template>
+        </a>
+
       </div>
-      <ng-template #noBackdropImage>
-        <img mat-card-image src="assets/images/no-backdrop-image.png" class="" />
+      <ng-template #titleBlock>
+
+        <a [routerLink]="['/movie/', data.id ]">
+          <div *ngIf="data.backdrop_path;else noBackdropImage ">
+            <img mat-card-image class="img-movie-backdrop" src="https://image.tmdb.org/t/p/w500{{data.backdrop_path}}">
+          </div>
+          <ng-template #noBackdropImage>
+            <img mat-card-image src="assets/images/no-backdrop-image.png" class="" />
+          </ng-template>
+        </a>
+
       </ng-template>
+
     </div>
     <mat-card-content>
       <!--For Movies-->
       <h2 class="movie-backdrop-card-title">
         <div *ngIf="data.title">
-          <a [routerLink]="['/movie/', data.id ]">{{data.title}}</a>
+          {{data.title}}
         </div>
         <!--For TVSeries-->
         <div *ngIf="data.name">
-          <a [routerLink]="['/tv-detail/', data.id ]">{{data.name}}</a>
+          {{data.name}}
         </div>
       </h2>
       <!--<p>{{data.popularity}}</p>-->
