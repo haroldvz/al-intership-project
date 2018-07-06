@@ -1,8 +1,15 @@
+
+/**
+ * PersonImagesComponent's component class
+ *
+ * Class that set up the PersonImagesComponent's component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { DetailPersonService } from '../../shared/services/detail-person.service';
 import { ActivatedRoute } from '@angular/router';
-import { ImagesMoviesDescriptor } from '../../shared/types/movies/images.type';
-import { ImagesPersonDescriptor } from '../../shared/types/person/images-person.type';
 
 @Component({
   selector: 'app-person-images',

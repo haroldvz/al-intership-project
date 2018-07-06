@@ -30,7 +30,7 @@ export class DetailTVService {
 
 
     /**
-     *
+     * Get the primary TV show details by id.
      *
      * @param {number} id_movie
      * @returns
@@ -48,7 +48,7 @@ export class DetailTVService {
 
 
     /**
-     *
+     * Get a list of similar TV shows. These items are assembled by looking at keywords and genres
      *
      * @param {number} id_movie
      * @returns
@@ -65,6 +65,13 @@ export class DetailTVService {
     }
 
 
+    /**
+     *Get the credits (cast and crew) that have been added to a TV show.
+     *
+     * @param {number} id_tv
+     * @returns
+     * @memberof DetailTVService
+     */
     getCreditsTVSeries(id_tv: number) {
         let url = this.url + id_tv + '/credits';
         let args = '';
@@ -95,7 +102,7 @@ export class DetailTVService {
     }
 
     /**
-     *
+     * Get the videos that have been added to a TV show.
      *
      * @param {number} id_tv
      * @returns

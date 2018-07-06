@@ -21,7 +21,7 @@ export class MovieService {
   constructor(private _api_service: ApiService) { }
 
   /**
-   *
+   * Get the top rated movies on TMDb.
    * @param {number} page
    * @returns
    * @memberof MovieService
@@ -37,7 +37,7 @@ export class MovieService {
   }
 
   /**
-   *
+   * Get a list of the current popular movies on TMDb. This list updates daily.
    *
    * @param {number} page
    * @returns
@@ -55,6 +55,13 @@ export class MovieService {
   }
 
 
+  /**
+   *
+   *
+   * @param {number} page
+   * @returns
+   * @memberof MovieService
+   */
   getNowPlayingMovies(page: number) {
     let url = this.url + '/now_playing';
     let args = '&page=' + page;
@@ -68,6 +75,13 @@ export class MovieService {
 
 
 
+  /**
+   *
+   *
+   * @param {number} page
+   * @returns
+   * @memberof MovieService
+   */
   getLatestMovies(page: number) {
     let url = this.url + '/latest';
     let args = '&page=' + page;
@@ -79,6 +93,15 @@ export class MovieService {
 
   }
 
+
+  /**
+   *Get a list of upcoming movies in theatres. This is a release type query that looks for all 
+   movies that have a release type of 2 or 3 within the specified date range.
+   *
+   * @param {number} page
+   * @returns
+   * @memberof MovieService
+   */
   getUpcomingMovies(page: number) {
     let url = this.url + '/upcoming';
     let args = '&page=' + page;

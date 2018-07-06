@@ -1,3 +1,12 @@
+
+/**
+ * List movie's component class
+ *
+ * Class that set up the List movie's component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
@@ -40,7 +49,7 @@ export class ListMoviesComponent implements OnInit {
   ) { }
 
   /**
-   *
+   * 
    *
    * @memberof ListMoviesComponent
    */
@@ -61,8 +70,8 @@ export class ListMoviesComponent implements OnInit {
 
 
   /**
-   *
-   *
+   * Get the movies list depends of this._actual_category (url param)
+   * cases: popular, top-rated, now-playing, upcoming (latest breaks with api)
    * @memberof ListMoviesComponent
    */
   getMovies() {
@@ -128,8 +137,8 @@ export class ListMoviesComponent implements OnInit {
 
 
   /**
-   *
-   *
+   * Listen the change of filter and navigate to teh correspond route and page 1 (reset the filter)
+   * 
    * @param {*} event
    * @memberof ListMoviesComponent
    */
@@ -143,7 +152,7 @@ export class ListMoviesComponent implements OnInit {
 
 
   /**
-   *
+   * Listen the page change and navigate to the corresponding route
    *
    * @param {IPageChangeEvent} event
    * @memberof ListMoviesComponent
@@ -160,7 +169,7 @@ export class ListMoviesComponent implements OnInit {
   }
 
   /**
-  *
+  * Register the loading widget
   *
   * @memberof ListMoviesComponent
   */
@@ -169,7 +178,7 @@ export class ListMoviesComponent implements OnInit {
   }
 
   /**
-   *
+   * Resolve the loading widget
    *
    * @memberof ListMoviesComponent
    */

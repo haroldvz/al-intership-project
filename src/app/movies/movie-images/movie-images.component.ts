@@ -1,3 +1,14 @@
+
+
+/**
+ * MovieImagesComponent component class
+ *
+ * Class that set up the MovieImagesComponent component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DetailMovieService } from '../../shared/services/detail-movie.service';
@@ -35,8 +46,8 @@ export class MovieImagesComponent implements OnInit {
       this._detail_movie_service.getMovieImages(id).subscribe(
         (data) => {
           this.data = data;
-          console.log("DATA en movieimage");
-          console.log(this.data);
+          //console.log("DATA en movieimage");
+          //console.log(this.data);
         }
       );
     });

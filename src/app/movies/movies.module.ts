@@ -1,3 +1,12 @@
+
+/**
+ * MoviesModule component module
+ *
+ * Module that set up the MoviesModule component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
 import { NgModule } from '@angular/core';
 import { ListMoviesComponent } from './list-movies/list-movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';

@@ -1,11 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
 
+/**
+ * Homes's component class
+ *
+ * Class that set up the home's component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry, MatCardModule } from '@angular/material';
 import { TdMediaService } from '@covalent/core';
-
-// Load shared
-import { TdLoadingService } from '@covalent/core';
 import { ImagesMoviesDescriptor } from '../../shared/types/movies/images.type';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
@@ -23,7 +28,7 @@ export interface ImageData {
   id: number;
   title: string;
   vote_average: number;
-  overview:string;
+  overview: string;
 }
 
 
@@ -93,7 +98,7 @@ export class HomeComponent implements OnInit {
             id: data.results[i].id,
             title: data.results[i].title,
             vote_average: data.results[i].vote_average,
-            overview:data.results[i].overview
+            overview: data.results[i].overview
           });
         }
         this.data_to_gallery_slider['backdrops'] = this.backdrops_items_slider;
@@ -105,11 +110,6 @@ export class HomeComponent implements OnInit {
     this._movie_service.getTopRatedMovies(1).subscribe(
       (data) => {
         this.data = data;
-        //console.log(this.data);
-        /*for (let i = 0; i < data.results.length; i++) {
-          this.backdrops_items.push({ file_path: data.results[i].backdrop_path })
-        }
-        this.data_to_gallery_slider['backdrops'] = this.backdrops_items;*/
       }
     );
 
@@ -117,7 +117,7 @@ export class HomeComponent implements OnInit {
 
 
   /**
-   *
+   * Get the image interface attribute (the image url)
    *
    * @returns {string}
    * @memberof HomeComponent
@@ -131,7 +131,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   *
+   * Get the movie id attribute
    *
    * @returns {number}
    * @memberof HomeComponent
@@ -144,7 +144,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   *
+   * Get the title of the movie
    *
    * @returns {string}
    * @memberof HomeComponent
@@ -157,7 +157,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   *
+   * Get the vote average
    *
    * @returns {number}
    * @memberof HomeComponent
@@ -170,7 +170,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   *
+   * Get the movie overview 
    *
    * @returns {string}
    * @memberof HomeComponent
@@ -183,7 +183,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   *
+   * Go to prev image slider
    *
    * @memberof HomeComponent
    */
@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   *
+   * Go to next image slider
    *
    * @memberof HomeComponent
    */

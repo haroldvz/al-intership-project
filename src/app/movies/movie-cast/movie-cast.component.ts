@@ -13,6 +13,12 @@ import { TdMediaService } from '@covalent/core';
 })
 export class MovieCastComponent implements OnInit, AfterContentInit {
 
+  /**
+   * Object with the numbers of columns depends the screen size,
+   * used for mat list grid
+   *
+   * @memberof MovieCastComponent
+   */
   gridByBreakpoint = {
     xl: 8,
     lg: 5,

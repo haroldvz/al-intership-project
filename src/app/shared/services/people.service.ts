@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { environment } from './../../../environments/environment';
 import { ApiService } from './api.service';
@@ -19,7 +18,7 @@ export class PeopleService {
   constructor(private _api_service: ApiService) { }
 
   /**
-   *
+   * Get the list of popular people on TMDb. This list updates daily.
    *
    * @param {number} page
    * @returns

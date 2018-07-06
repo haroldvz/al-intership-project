@@ -19,7 +19,8 @@ export class SearchService {
   constructor(private _api_service: ApiService) { }
 
   /**
-   *
+   * Search multiple models in a single request. Multi search currently supports 
+   * searching for movies, tv shows and people in a single request.
    *
    * @param {number} page
    * @param {string} query
@@ -40,9 +41,9 @@ export class SearchService {
 
 
 
-  
 
-  }
+
+}
 
 
 

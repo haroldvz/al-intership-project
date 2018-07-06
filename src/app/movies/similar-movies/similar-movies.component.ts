@@ -1,3 +1,13 @@
+
+
+/**
+ * SimilarMoviesComponent component class
+ *
+ * Class that set up the SimilarMoviesComponent component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { DetailMovieService } from '../../shared/services/detail-movie.service';
 import { ActivatedRoute } from '@angular/router';
