@@ -1,20 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { TdSearchBoxComponent } from '@covalent/core';
 import { Router } from '@angular/router';
-import { SearchService } from '../../services/search.service';
-// Observable operators
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map'
-// Observable class extensions
 import 'rxjs/add/observable/of';
+import { TdSearchBoxComponent } from '@covalent/core';
 import { ResponseSearchDescriptor } from '../../types/search/search-response.type';
+import { SearchService } from '../../services/search.service';
 
 export interface State {
   flag: string;
@@ -70,7 +67,7 @@ export class SearchComponent implements OnInit {
   //material search
   stateCtrl = new FormControl();
   filteredStates: Observable<State[]>;
-  query:string;
+  query: string;
 
   //covalent search
   @ViewChild('searchInput') searchBar: TdSearchBoxComponent;

@@ -1,10 +1,18 @@
+
+
+/**
+ * ListPeopleComponent's component class
+ *
+ * Class that set up the ListPeopleComponent's component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { PeopleService } from '../../shared/services/people.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponsePeopleDescriptor } from '../../shared/types/person/response-person.type';
 import { IPageChangeEvent } from '@covalent/core';
-
-
 
 @Component({
   selector: 'app-list-people',
@@ -33,7 +41,7 @@ export class ListPeopleComponent implements OnInit {
 
 
   /**
-   *
+   * Shows the popular people with the correspond page
    *
    * @memberof ListPeopleComponent
    */
@@ -52,8 +60,8 @@ export class ListPeopleComponent implements OnInit {
   }
 
   /**
-   *
-   *
+   * Get popular people  with the correspond page and category,
+   * if the category not exits then navigate to 404-not-found component
    * @memberof ListPeopleComponent
    */
   getPeople() {
@@ -77,7 +85,7 @@ export class ListPeopleComponent implements OnInit {
 
 
   /**
-   *
+   * 
    *
    * @param {*} event
    * @memberof ListPeopleComponent
@@ -90,7 +98,7 @@ export class ListPeopleComponent implements OnInit {
   }
 
   /**
-   *
+   * Listen the page change
    *
    * @param {IPageChangeEvent} event
    * @memberof ListPeopleComponent

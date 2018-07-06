@@ -1,3 +1,12 @@
+
+/**
+ * PersonDetailComponent's component class
+ *
+ * Class that set up the PersonDetailComponent's component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { DetailPersonService } from '../../shared/services/detail-person.service';
 import { ActivatedRoute } from '@angular/router';

@@ -10,6 +10,7 @@ export class SearchDescriptor {
     public vote_average: number;
     public vote_count: number;
     public poster_path: string;
+    public profile_path: string;
     public first_air_date: string;
     public popularity: number;
     //public genres: GenreDescriptor[] = [];
@@ -48,7 +49,7 @@ export class SearchDescriptor {
         search_descriptor.vote_count = rawData.hasOwnProperty('vote_count') ? rawData.vote_count : 0;
         search_descriptor.poster_path = rawData.hasOwnProperty('poster_path') ? rawData.poster_path : '';
         search_descriptor.backdrop_path = rawData.hasOwnProperty('backdrop_path') ? rawData.backdrop_path : '';
-
+        search_descriptor.profile_path = rawData.hasOwnProperty('profile_path') ? rawData.profile_path : '';
         search_descriptor.original_name = rawData.hasOwnProperty('original_name') ? rawData.original_name : '';
         search_descriptor.media_type = rawData.hasOwnProperty('media_type') ? rawData.media_type : '';
 

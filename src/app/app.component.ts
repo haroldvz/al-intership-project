@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 import { TdMediaService } from '@covalent/core';
 import { fadeAnimation } from './shared/animations/animations';
 import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +14,10 @@ import { NavigationEnd, Router } from '@angular/router';
   animations: [fadeAnimation]
 
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+ 
 
-  name = 'Movies';
+  name = 'CornTime';
 
   menu_routes: Object[] = [
     /*{
@@ -92,6 +95,8 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  subscription:Subscription;
+
   /**
    *Creates an instance of AppComponent.
    * @param {TdMediaService} media
@@ -111,12 +116,19 @@ export class AppComponent implements OnInit {
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
       
       this._iconRegistry.addSvgIconInNamespace('assets', 'logo-movie',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/logos/logo_movie_one.svg'));
+      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/logos/popcorn_4.svg'));
 
   }
 
   ngOnInit() {
-    this.router.events.subscribe(evt => {
+
+    this.subscription= this.router.events.pipe(
+      filter(event=> event instanceof NavigationEnd)
+    )
+    .subscribe(()=>window.scrollTo(0,0));
+
+
+    /*this.router.events.subscribe(evt => {
       if (!(evt instanceof NavigationEnd)) {
         return;
       }
@@ -126,8 +138,14 @@ export class AppComponent implements OnInit {
       }
       
       
-    });
+    });*/
   }
+
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+   }
+
   // Theme toggle
   get activeTheme(): string {
     return localStorage.getItem('theme');

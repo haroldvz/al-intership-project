@@ -1,3 +1,12 @@
+
+/**
+ * MovieDetailComponent component class
+ *
+ * Class that set up the MovieDetailComponent component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { DetailMovieService } from '../../shared/services/detail-movie.service';
 import { ActivatedRoute } from '@angular/router';

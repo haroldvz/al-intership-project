@@ -13,15 +13,16 @@ export class FooterComponent implements OnInit {
   constructor(public media: TdMediaService,
     private _iconRegistry: MatIconRegistry,
     private _domSanitizer: DomSanitizer) {
-      
-      
+
+
     this._iconRegistry.addSvgIconInNamespace('assets', 'teradata-ux',
-    this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/teradata-ux.svg'));
+      this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/teradata-ux.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'covalent',
-    this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent.svg'));
+      this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'covalent-mark',
-    this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
-  
+      this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
+    this._iconRegistry.addSvgIconInNamespace('assets', 'main-logo',
+      this._domSanitizer.bypassSecurityTrustResourceUrl('assets/logos/popcorn_4.svg'));
   }
 
   ngOnInit() {

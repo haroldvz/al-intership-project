@@ -26,7 +26,7 @@ export class DetailMovieService {
 
 
   /**
-   *
+   * Get the primary information about a movie.
    *
    * @param {number} id_movie
    * @returns
@@ -44,8 +44,9 @@ export class DetailMovieService {
 
 
   /**
-   *
-   *
+   * Get a list of similar movies. 
+   * This is not the same as the "Recommendation" system you see on the website.
+   * These items are assembled by looking at keywords and genres.
    * @param {number} id_movie
    * @returns
    * @memberof DetailMovieService
@@ -62,7 +63,7 @@ export class DetailMovieService {
 
 
   /**
-   *
+   * Get the images that belong to a movie.
    *
    * @param {number} id_movie
    * @returns

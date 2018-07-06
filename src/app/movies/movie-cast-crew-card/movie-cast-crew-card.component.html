@@ -1,23 +1,25 @@
 <div class="app-cast-card">
   <mat-card class="cast-card">
     <div class="cast-image-container">
-      <div *ngIf="data.profile_path; else noImage">
-        <img mat-card-image class="img-cast" src="https://image.tmdb.org/t/p/w235_and_h235_face{{data.profile_path}}">
-        <!--<p>asdasdasdsda</p>-->
-      </div>
-      <ng-template #noImage>
-        <div *ngIf="data.gender == 1;else imageMale">
-          <img mat-card-image src="assets/images/no-person-img-female-color_512_512.png" class="" />
+      <a [routerLink]="['/person/', data.id ]">
+        <div *ngIf="data.profile_path; else noImage">
+          <img mat-card-image class="img-cast" src="https://image.tmdb.org/t/p/w235_and_h235_face{{data.profile_path}}">
+          <!--<p>asdasdasdsda</p>-->
         </div>
-        <ng-template #imageMale>
-          <img mat-card-image src="assets/images/no-person-img-male-color_225_225.png" class="" />
-        </ng-template>
+        <ng-template #noImage>
+          <div *ngIf="data.gender == 1;else imageMale">
+            <img mat-card-image src="assets/images/no-person-img-female-color_512_512.png" class="" />
+          </div>
+          <ng-template #imageMale>
+            <img mat-card-image src="assets/images/no-person-img-male-color_225_225.png" class="" />
+          </ng-template>
 
-      </ng-template>
+        </ng-template>
+      </a>
     </div>
     <mat-card-content>
       <h2 class="cast-card-title">
-        <a [routerLink]="['/person/', data.id ]">{{data.name}}</a>
+        {{data.name}}
       </h2>
       <div *ngIf="data.character">
         <p>{{data.character}}</p>

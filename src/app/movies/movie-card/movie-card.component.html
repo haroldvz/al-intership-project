@@ -1,9 +1,18 @@
 <div class="app-movie-card">
   <mat-card class="movie-card flex-item" flex-item>
-    <div class="">
+    <div class="content">
+    <a [routerLink]="['/movie/',data.id]">
+      <div class="content-overlay"></div>
       <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{data.poster_path}}">
+      <div class="content-details fadeIn-left">
+        <h3>{{data.title}}</h3>
+        <p>{{data.release_date|date:'mediumDate'}}</p>
+      </div>
+    </a>
     </div>
-    <mat-card-title class="movie-card-title"><a [routerLink]="['/movie/', data.id]">{{data.title}}</a></mat-card-title>
+   <!-- <mat-card-title class="movie-card-title">
+      <a [routerLink]="['/movie/', data.id]">{{data.title}}</a>
+    </mat-card-title>-->
     <mat-card-subtitle>
       <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
     </mat-card-subtitle>

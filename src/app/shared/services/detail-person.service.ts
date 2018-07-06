@@ -29,7 +29,7 @@ export class DetailPersonService {
 
 
   /**
-   *
+   * Get the primary person details by id.
    *
    * @param {number} id_person
    * @returns
@@ -47,7 +47,7 @@ export class DetailPersonService {
 
 
   /**
-   *
+   * Get the movie credits for a person.
    *
    * @param {number} id_person
    * @returns
@@ -64,8 +64,8 @@ export class DetailPersonService {
   }
 
   /**
-   *
-   *
+   * Get the tv credits for a person.
+   * 
    * @param {number} id_person
    * @returns
    * @memberof DetailPersonService
@@ -82,7 +82,7 @@ export class DetailPersonService {
 
 
    /**
-   *
+   * Get the images for a person.
    *
    * @param {number} id_person
    * @returns

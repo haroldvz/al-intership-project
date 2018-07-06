@@ -54,7 +54,7 @@ export class SliderComponent implements OnInit {
     ];
 
 
-    if (this.data.backdrops) {
+    if (this.data.backdrops && this.data_all.results) {
 
       for (let i = 0; i < this.data.backdrops.length; i++) {
         this.galleryImages.push({ small: 'https://image.tmdb.org/t/p/w342' + this.data.backdrops[i].file_path, medium: 'https://image.tmdb.org/t/p/w1400_and_h450_bestv2' + this.data.backdrops[i].file_path, big: 'https://image.tmdb.org/t/p/w1400_and_h450_bestv2' + this.data.backdrops[i].file_path, 
@@ -77,11 +77,13 @@ changeMoviePreview(change: { index: number; image: NgxGalleryImage; }) {
 
 getIdSelectedMovie(): number {
 
+  if(this.selectedImage){
   if(this.data_all.results){return this.data_all.results.filter(
     movie =>
     this.selectedImage.description.indexOf(movie.title) !== -1)[0].id;}else{
       return 0;
     }
+  }
   
  }
 

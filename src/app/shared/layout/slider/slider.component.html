@@ -1,4 +1,5 @@
-<ngx-gallery  [options]="galleryOptions"  [images]="galleryImages"
+<ngx-gallery #ngxgallery [options]="galleryOptions"  [images]="galleryImages"
 (previewOpen)="goToMovie()"
+(onClick)="goToMovie()"
 (change)="changeMoviePreview($event)"
 ></ngx-gallery>

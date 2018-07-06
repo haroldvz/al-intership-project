@@ -28,6 +28,7 @@
     "@covalent/highlight": "^2.0.0-beta.2",
     "@covalent/http": "^2.0.0-beta.2",
     "@covalent/markdown": "^2.0.0-beta.2",
+    "@ng-bootstrap/ng-bootstrap": "^2.2.0",
     "@ngx-gallery/core": "^2.2.1",
     "@ngx-gallery/lightbox": "^2.2.1",
     "angular-font-awesome": "^3.1.2",

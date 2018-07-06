@@ -1,17 +1,35 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
 
+/**
+ * Homes's component class
+ *
+ * Class that set up the home's component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry, MatCardModule } from '@angular/material';
 import { TdMediaService } from '@covalent/core';
-
-// Load shared
-import { TdLoadingService } from '@covalent/core';
 import { ImagesMoviesDescriptor } from '../../shared/types/movies/images.type';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
 import { DragScrollDirective } from 'ngx-drag-scroll';
 import { ResponseDescriptor } from '../../shared/types/movies/response.type';
-import { NgxGalleryComponent } from 'ngx-gallery';
+
+/**
+ * Interface for data main slider
+ *
+ * @export
+ * @interface ImageData
+ */
+export interface ImageData {
+  image: string;
+  id: number;
+  title: string;
+  vote_average: number;
+  overview: string;
+}
 
 
 @Component({
@@ -19,22 +37,23 @@ import { NgxGalleryComponent } from 'ngx-gallery';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
+
 export class HomeComponent implements OnInit {
 
   @ViewChild('nav', { read: DragScrollDirective }) ds: DragScrollDirective;
 
   leftNavDisabled = false;
   rightNavDisabled = false;
-
   private routerSubscribe;
   images_data: ImagesMoviesDescriptor = new ImagesMoviesDescriptor();
-
   data: ResponseDescriptor = new ResponseDescriptor();
+  data2: ResponseDescriptor = new ResponseDescriptor();
   backdrops_items_slider = [];
   backdrops_items = [];
   data_to_gallery_slider = {};
-
-
+  slides: ImageData[] = []
+  i = 0;
 
   /**
    *Creates an instance of HomeComponent.
@@ -62,56 +81,125 @@ export class HomeComponent implements OnInit {
   }
 
 
-
   /**
    *
    *
    * @memberof HomeComponent
    */
   ngOnInit() {
-    this._movie_service.getPopularMovies(1).subscribe(
-      (data) => {
-        this.data = data;
-        console.log(this.data);
-        for (let i = 0; i < data.results.length; i++) {
-          this.backdrops_items_slider.push({ file_path: data.results[i].backdrop_path })
-        }
-        this.data_to_gallery_slider['backdrops'] = this.backdrops_items_slider;
-      }
-    );
-
     this._movie_service.getUpcomingMovies(1).subscribe(
       (data) => {
-        this.data = data;
-        console.log(this.data);
-        /*for (let i = 0; i < data.results.length; i++) {
-          this.backdrops_items.push({ file_path: data.results[i].backdrop_path })
+        this.data2 = data;
+        //console.log(this.data);
+        for (let i = 0; i < data.results.length; i++) {
+          this.backdrops_items_slider.push({ file_path: data.results[i].backdrop_path })
+          this.slides.push({
+            image: data.results[i].backdrop_path,
+            id: data.results[i].id,
+            title: data.results[i].title,
+            vote_average: data.results[i].vote_average,
+            overview: data.results[i].overview
+          });
         }
-        this.data_to_gallery_slider['backdrops'] = this.backdrops_items;*/
+        this.data_to_gallery_slider['backdrops'] = this.backdrops_items_slider;
+
+
       }
     );
 
+    this._movie_service.getTopRatedMovies(1).subscribe(
+      (data) => {
+        this.data = data;
+      }
+    );
 
   }
 
 
+  /**
+   * Get the image interface attribute (the image url)
+   *
+   * @returns {string}
+   * @memberof HomeComponent
+   */
+  getSlide(): string {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].image;
 
-  /*
-  moveLeft() {
-    this.ds.moveLeft();
   }
 
-  moveRight() {
-    this.ds.moveRight();
+  /**
+   * Get the movie id attribute
+   *
+   * @returns {number}
+   * @memberof HomeComponent
+   */
+  getIdMovie(): number {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].id;
   }
 
-  leftBoundStat(reachesLeftBound: boolean) {
-    this.leftNavDisabled = reachesLeftBound;
+  /**
+   * Get the title of the movie
+   *
+   * @returns {string}
+   * @memberof HomeComponent
+   */
+  getTitleMovie(): string {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].title;
   }
 
-  rightBoundStat(reachesRightBound: boolean) {
-    this.rightNavDisabled = reachesRightBound;
-  }*/
+  /**
+   * Get the vote average
+   *
+   * @returns {number}
+   * @memberof HomeComponent
+   */
+  getVoteAverageMovie(): number {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].vote_average;
+  }
+
+  /**
+   * Get the movie overview 
+   *
+   * @returns {string}
+   * @memberof HomeComponent
+   */
+  getOverviewMovie(): string {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].overview;
+  }
+
+  /**
+   * Go to prev image slider
+   *
+   * @memberof HomeComponent
+   */
+  getPrev() {
+    this.i = this.i === 0 ? 19 : this.i - 1;
+  }
+
+  /**
+   * Go to next image slider
+   *
+   * @memberof HomeComponent
+   */
+  getNext() {
+    this.i = this.i === this.slides.length ? this.i : this.i + 1;
+  }
+
 
 }
 

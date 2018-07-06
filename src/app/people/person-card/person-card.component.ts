@@ -1,3 +1,13 @@
+
+
+/**
+ * PersonCardComponent's component class
+ *
+ * Class that set up the PersonCardComponent's component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({

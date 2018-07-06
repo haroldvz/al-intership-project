@@ -1,3 +1,12 @@
+
+/**
+ * MovieVideosComponent component class
+ *
+ * Class that set up the MovieVideosComponent component implementation
+ * @author Harold Velez <harold.velez.zambrano@correounivalle.edu.co>
+ *
+ */
+
 import { Component, OnInit, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';

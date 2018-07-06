@@ -13,15 +13,25 @@
     <div class="movie-detail-backdrop" [ngStyle]="{'background-image': 'url(' + base_img_url_backdrop_path + data.backdrop_path + ')'}">
       <div fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="center" [ngStyle]="myStyles" tdMediaToggle="gt-sm">
         <div fxLayout="column" [ngClass]="{'poster-image':true,'push-lg': _mediaService.query('lg'), 'push-right-none': _mediaService.query('lg')}">
-          <img src="https://image.tmdb.org/t/p/w300/{{data.poster_path}}" class="img-fluid rounded">
+
+
+          <div *ngIf="data.poster_path != '' && data.poster_path != null;else noImage">
+            <img src="https://image.tmdb.org/t/p/w300/{{data.poster_path}}" class="img-fluid rounded">
+          </div>
+          <ng-template #noImage>
+            <img mat-card-image src="assets/images/no-img_300_450.png" class="container-img-movie" />
+          </ng-template>
+
 
         </div>
         <div fxLayout="column" class="push-lg push-right-none">
           <div fxLayout="column" class="detail-description-content">
             <div class="movie-title">
               <h2>{{data.title}}</h2>
-              <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
-              <span>Votes ({{data.vote_count}})</span>
+              <div fxLayout="row">
+                <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
+                <span class="pad-top-sm white">({{data.vote_count}})</span>
+              </div>
               <p>
                 <mat-chip-list>
                   <mat-chip color="accent" *ngFor="let item of genres; let i = index;">{{item.name}}</mat-chip>
@@ -29,12 +39,22 @@
 
                 <!-- <span class="genres">{{genres}}</span>-->
               </p>
-              <p>
-                <mat-icon class="white">event</mat-icon>
-                <span class="md-headline">{{data.release_date}}</span>
-                <mat-icon class="white pad-left-sm">access_time</mat-icon>
-                <span class="md-headline">{{data.runtime | durationTime}}</span>
-              </p>
+              <div fxLayout="row">
+
+                <div fxLayout="column">
+                  <span class="md-headline">
+                    <mat-icon class="white">event</mat-icon>
+                    {{data.release_date|date:'mediumDate'}}</span>
+                  <span>{{data.release_date|timeAgo}}</span>
+                </div>
+                <div fxLayout="column">
+                  <span class="md-headline">
+                    <mat-icon class="white pad-left-sm">access_time</mat-icon>
+                    {{data.runtime | durationTime}}</span>
+                </div>
+
+
+              </div>
             </div>
             <div class="movie-overview">
               <h2>Overview:</h2>

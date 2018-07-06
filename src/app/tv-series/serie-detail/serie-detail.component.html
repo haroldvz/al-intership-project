@@ -12,18 +12,32 @@
     <div class="movie-detail-backdrop" [ngStyle]="{'background-image': 'url(' + base_img_url_backdrop_path + data.backdrop_path + ')'}">
       <div fxLayout.sm="row" fxLayout.xs="column" fxLayoutAlign="center" [ngStyle]="myStyles" tdMediaToggle="gt-sm">
         <div fxLayout="column" [ngClass]="{'poster-image':true,'push-lg': _mediaService.query('lg'), 'push-right-none': _mediaService.query('lg')}">
-          <img src="https://image.tmdb.org/t/p/w300/{{data.poster_path}}" class="img-fluid rounded">
+
+          <div *ngIf="data.poster_path != '' && data.poster_path != null;else noImage">
+            <img src="https://image.tmdb.org/t/p/w300/{{data.poster_path}}" class="img-fluid rounded">
+          </div>
+          <ng-template #noImage>
+            <img mat-card-image src="assets/images/no-img_300_450.png" class="container-img-movie" />
+          </ng-template>
+
         </div>
         <div fxLayout="column" class="push-lg push-right-none">
           <div fxLayout="column" class="detail-description-content">
             <div class="movie-title">
               <h2>{{data.name}}</h2>
-              <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
-              <p>
-                <mat-icon style="color:white;">event</mat-icon>
-                <span class="md-headline">{{data.first_air_date}}</span>
+              <div fxLayout="row">
+                <bar-rating [(rate)]="data.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
+                <span class="pad-top-sm white">({{data.vote_count}})</span>
+              </div>
+              <div fxLayout="row">
+                <div fxLayout="column">
+                  <span class="md-headline">
+                    <mat-icon class="white">event</mat-icon>
+                    {{data.first_air_date|date:'mediumDate'}}</span>
 
-              </p>
+                  <span>{{data.first_air_date|timeAgo}}</span>
+                </div>
+              </div>
               <p>
                 <!--<span class="genres">{{genres}}</span>-->
               </p>
@@ -85,10 +99,10 @@
       <app-serie-videos [data]="data.videos"></app-serie-videos>
     </div>
     <div *ngSwitchCase="'5'">
-        <app-reviews [data]="data.reviews"></app-reviews>
+      <app-reviews [data]="data.reviews"></app-reviews>
     </div>
     <div *ngSwitchCase="'6'">
-      
+
     </div>
   </div>
 </section>

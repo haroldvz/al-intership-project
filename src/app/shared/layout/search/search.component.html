@@ -60,6 +60,7 @@
         </div>
       </a>
 
+      <!--To show see more option and go to search page-->
       <div *ngIf="isLast">
         <a class="result-item tc-grey-900" [routerLink]="['/search/', query]" (click)="clear()">
           <div fxLayout="row" layout-align="start center">
@@ -70,8 +71,6 @@
           </div>
         </a>
       </div>
-
-
     </li>
   </ul>
 </div>
