@@ -1,4 +1,4 @@
-<div *ngIf="data" >
+<div *ngIf="data.length>0;else noresults" >
   <div fxLayout="row wrap" fxLayoutAlign="center center" class="card-container-video">
     <div *ngFor="let item of data" >
       <mat-card class="video-card ">
@@ -15,3 +15,6 @@
     </div>
   </div>
 </div>
+<ng-template #noresults>
+    <h2>Videos not found</h2>
+</ng-template>
