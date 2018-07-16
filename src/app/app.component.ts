@@ -27,44 +27,44 @@ export class AppComponent implements OnInit, OnDestroy {
     },*/
     //Movies
     {
-      icon: 'library_books',
+      icon: 'star',
       route: '/movies/popular',
       title: 'Popular movies',
     }, {
-      icon: 'color_lens',
+      icon: 'movie_creation',
       route: '/movies/now-playing',
       title: 'Playing now movies',
     }, {
-      icon: 'view_quilt',
+      icon: 'event',
       route: '/movies/upcoming',
       title: 'Upcoming movies',
     }, {
-      icon: 'picture_in_picture',
+      icon: 'trending_up',
       route: '/movies/top-rated',
       title: 'Top rated movies',
     },
     //TV
     {
-      icon: 'library_books',
+      icon: 'live_tv',
       route: '/tv/airing-today',
       title: 'Airing today TV series',
     },
     {
-      icon: 'library_books',
+      icon: 'tv',
       route: '/tv/on-the-air',
       title: 'On the Air TV series',
     }, {
-      icon: 'color_lens',
+      icon: 'star',
       route: '/tv/popular',
       title: 'Popular TV series',
     }, {
-      icon: 'view_quilt',
+      icon: 'trending_up',
       route: '/tv/top-rated',
       title: 'Top rated TV series',
     },
     //People
     {
-      icon: 'library_books',
+      icon: 'star',
       route: '/people/popular',
       title: 'Popular people',
     }
