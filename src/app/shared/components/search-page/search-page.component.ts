@@ -26,18 +26,10 @@ export class SearchPageComponent implements OnInit {
   ];
 
   query_input;
-
   routerSubscribe;
-
   searchCtrl: FormControl;
   searchValueChages: Observable<string>;
-
-  basicData: any[] = [
-
-
-
-  ]
-
+  basicData: any[] = []
   query_to_show:string;
 
   constructor(private _search_service: SearchService,
@@ -51,23 +43,19 @@ export class SearchPageComponent implements OnInit {
     //this.searchCtrl.setValue('Search here...');
   }
 
+  /**
+   *
+   *
+   * @memberof SearchPageComponent
+   */
   ngOnInit() {
-
-
-
     if (this.searchCtrl.value == null) {
-
-      
-
       this.routerSubscribe = this.route.params.subscribe(params => {
         //this.LoadingRegister();
         let query: string = params['query'];
-        
         console.log(query);
-
         this._search_service.multiSearch(1, query).subscribe(
           (data) => {
-
             this.data = data;
             this.data.results.sort(this.predicateBy("popularity"))
             for (let i = 0; i < this.data.results.length; i++) {
@@ -90,8 +78,6 @@ export class SearchPageComponent implements OnInit {
               );
             }
 
-            console.log("dataasdasdas");
-            console.log(this.data);
           }
         );
 
@@ -111,15 +97,10 @@ export class SearchPageComponent implements OnInit {
 
   updateResults() {
 
-
-
     if (this.searchCtrl.value != "" && this.searchCtrl.value != null) {
-
       this.query_to_show = this.searchCtrl.value;
-
       this._search_service.multiSearch(1, this.searchCtrl.value).subscribe(
         (data) => {
-
           this.data = data;
           this.data.results.sort(this.predicateBy("popularity"))
           for (let i = 0; i < this.data.results.length; i++) {
@@ -137,26 +118,20 @@ export class SearchPageComponent implements OnInit {
                 "img": "https://robohash.org/ullamquaedeleniti.png?size=50x50&set=set1",
                 "date": this.data.results[i].release_date,
                 "media_type": this.data.results[i].media_type,
-
               }
             );
           }
-
-          console.log("dataasdasdas");
-          console.log(this.data);
         }
       );
-
     }
-
-
-
   }
 
-  getResults() {
-    console.log(this.query_input);
-  }
-
+  /**
+   * Go to respective route depends of the media type
+   *
+   * @param {*} event
+   * @memberof SearchPageComponent
+   */
   goToTarget(event: any): void {
     let id = event.row.id;
     let media_type = event.row.media_type;
@@ -169,7 +144,6 @@ export class SearchPageComponent implements OnInit {
       route = "/movie/"
     }
     this._router.navigate([route, id]);
-    //console.log(event);
   }
 
   /**

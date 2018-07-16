@@ -1,14 +1,11 @@
 <div class="container-search-controls">
-<h2>Search results</h2>
-<mat-form-field class="example-full-width">
-  <input [formControl]="searchCtrl" value="" matInput placeholder="Search everything...">
-</mat-form-field>
-
-<h3>Looking for: {{query_to_show}}</h3>
-<p>Results sort by popularity</p>
+  <h2>Search results</h2>
+  <mat-form-field class="example-full-width">
+    <input [formControl]="searchCtrl" value="" matInput placeholder="Search everything...">
+  </mat-form-field>
+  <h3>Looking for: {{query_to_show}}</h3>
+  <p>Results sort by popularity</p>
 </div>
-
-
 <div class="container-movies">
   <div fxLayout="row wrap" diameter="20" fxLayoutAlign="center">
     <div flex *ngFor="let item of data.results; let i = index;" fxLayoutAlign="center center">
@@ -16,82 +13,61 @@
         <mat-card class="movie-card flex-item" flex-item>
           <div class="content">
             <div *ngIf="item.media_type=='movie'">
-            <a [routerLink]="['/movie/',item.id]">
-              <div class="content-overlay"></div>
-              <div *ngIf="item.profile_path != '' && item.profile_path != null ;else posterBlock">
-                <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.profile_path}}">
-              </div>
+              <a [routerLink]="['/movie/',item.id]">
+                <div class="content-overlay"></div>
 
-              <ng-template #posterBlock>
-                <div *ngIf="item.poster_path != '' && item.profile_path != null && item.poster_path != null;else noimageBlock">
-                    <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.poster_path}}">
+
+                <div *ngIf="item.poster_path != ''  && item.poster_path != null;else noimageBlock">
+                  <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.poster_path}}">
                 </div>
                 <ng-template #noimageBlock>
-                    <img mat-card-image class="container-img-movie" src="assets/images/no-img_300_450.png">
+                  <img mat-card-image class="container-img-movie" src="assets/images/no-img_300_450.png">
                 </ng-template>
-                
-              </ng-template>
 
-              <div class="content-details fadeIn-left">
-                <h3>{{item.title}}</h3>
-                <p>{{item.name}}</p>
-              </div>
-            </a>
-            </div>
-
-
-            <div *ngIf="item.media_type=='tv'">
-                <a [routerLink]="['/tv-detail/',item.id]">
-                  <div class="content-overlay"></div>
-                  <div *ngIf="item.profile_path != '' && item.profile_path != null ;else posterBlock">
-                    <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.profile_path}}">
-                  </div>
-    
-                  <ng-template #posterBlock>
-                    <div *ngIf="item.poster_path != '' && item.profile_path != null && item.poster_path != null;else noimageBlock">
-                        <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.poster_path}}">
-                    </div>
-                    <ng-template #noimageBlock>
-                        <img mat-card-image class="container-img-movie" src="assets/images/no-img_300_450.png">
-                    </ng-template>
-                    
-                  </ng-template>
-    
-                  <div class="content-details fadeIn-left">
-                    <h3>{{item.title}}</h3>
-                    <p>{{item.name}}</p>
-                  </div>
-                </a>
+                <div class="content-details fadeIn-left">
+                  <h3>{{item.title}}</h3>
+                  <p>{{item.name}}</p>
                 </div>
+              </a>
+            </div>
+            <div *ngIf="item.media_type=='tv'">
+              <a [routerLink]="['/tv-detail/',item.id]">
+                <div class="content-overlay"></div>
 
 
-                <div *ngIf="item.media_type=='person'">
-                    <a [routerLink]="['/person/',item.id]">
-                      <div class="content-overlay"></div>
-                      <div *ngIf="item.profile_path != '' && item.profile_path != null ;else posterBlock">
-                        <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.profile_path}}">
-                      </div>
-        
-                      <ng-template #posterBlock>
-                        <div *ngIf="item.poster_path != '' && item.profile_path != null && item.poster_path != null;else noimageBlock">
-                            <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.poster_path}}">
-                        </div>
-                        <ng-template #noimageBlock>
-                            <img mat-card-image class="container-img-movie" src="assets/images/no-img_300_450.png">
-                        </ng-template>
-                        
-                      </ng-template>
-        
-                      <div class="content-details fadeIn-left">
-                        <h3>{{item.title}}</h3>
-                        <p>{{item.name}}</p>
-                      </div>
-                    </a>
-                    </div>
+                <div *ngIf="item.poster_path != '' && item.poster_path != null;else noimageBlock">
+                  <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.poster_path}}">
+                </div>
+                <ng-template #noimageBlock>
+                  <img mat-card-image class="container-img-movie" src="assets/images/no-img_300_450.png">
+                </ng-template>
+
+                <div class="content-details fadeIn-left">
+                  <h3>{{item.name}}</h3>
+
+                </div>
+              </a>
+            </div>
+            <div *ngIf="item.media_type=='person'">
+              <a [routerLink]="['/person/',item.id]">
+                <div class="content-overlay"></div>
+                <div *ngIf="item.profile_path != '' && item.profile_path != null ;else noimageBlock">
+                  <img mat-card-image class="container-img-movie" src="https://image.tmdb.org/t/p/w300/{{item.profile_path}}">
+                </div>
+                <ng-template #noimageBlock>
+                  <img mat-card-image class="container-img-movie" src="assets/images/no-img_300_450.png">
+                </ng-template>
+
+                <div class="content-details fadeIn-left">
+                  <h3>{{item.name}}</h3>
+                  <!--<p>{{item.name}}</p>-->
+                </div>
+              </a>
+            </div>
           </div>
           <!-- <mat-card-title class="movie-card-title">
-                  <a [routerLink]="['/movie/', data.id]">{{data.title}}</a>
-                </mat-card-title>-->
+                 <a [routerLink]="['/movie/', data.id]">{{data.title}}</a>
+                 </mat-card-title>-->
           <mat-card-subtitle>
             <bar-rating [(rate)]="item.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
           </mat-card-subtitle>
@@ -101,7 +77,6 @@
       </div>
     </div>
   </div>
-
 </div>
 <!--<div fxLayout="column">
   <div *ngIf="basicData.length>0">
@@ -113,4 +88,4 @@
       </td-data-table>
     </div>
   </div>
-</div>-->
+  </div>-->
