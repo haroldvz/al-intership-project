@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
   private routerSubscribe;
   images_data: ImagesMoviesDescriptor = new ImagesMoviesDescriptor();
   data: ResponseDescriptor = new ResponseDescriptor();
-  data2: ResponseDescriptor = new ResponseDescriptor();
+  upcoming_movies: ResponseDescriptor = new ResponseDescriptor();
   backdrops_items_slider = [];
   backdrops_items = [];
   data_to_gallery_slider = {};
@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this._movie_service.getUpcomingMovies(1).subscribe(
       (data) => {
-        this.data2 = data;
+        this.upcoming_movies = data;
         //console.log(this.data);
         for (let i = 0; i < data.results.length; i++) {
           this.backdrops_items_slider.push({ file_path: data.results[i].backdrop_path })
@@ -113,6 +113,16 @@ export class HomeComponent implements OnInit {
       }
     );
 
+  }
+
+
+  /**
+   * Move to left the dragScroll movies carousel
+   *
+   * @memberof HomeComponent
+   */
+  moveLeft() {
+    this.ds.moveLeft();
   }
 
 

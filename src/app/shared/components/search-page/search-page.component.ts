@@ -7,7 +7,7 @@ import { ResponseSearchDescriptor } from '../../types/search/search-response.typ
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-const DECIMAL_FORMAT: (v: any) => any = (v: number) => v.toFixed(2);
+
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -109,7 +109,7 @@ export class SearchPageComponent implements OnInit {
 
         this._total_results = data.total_results;
         this._total_pages = data.total_pages;
-        console.log(this._total_pages);
+      
         this.data.results.sort(this.predicateBy("popularity"))
         for (let i = 0; i < this.data.results.length; i++) {
           let name: string = '';
