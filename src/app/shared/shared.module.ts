@@ -26,6 +26,7 @@ import { DurationTimePipe } from './pipes/duration.pipe';
 import { GetAgePipe } from './pipes/calculate-age.pipe';
 import { TruncatePipe } from './pipes/limit-text.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {SlideshowModule} from 'ng-simple-slideshow';
 @NgModule({
   imports: [
     CommonModule,
@@ -41,7 +42,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgxGalleryModule,
     DragScrollModule,
     BarRatingModule,
-    NgbModule
+    NgbModule,
+    SlideshowModule
   ],
   exports: [
     GallerySliderComponent,
@@ -64,7 +66,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DurationTimePipe,
     GetAgePipe,
     TruncatePipe,
-    NgbModule
+    NgbModule,
+    SlideshowModule
   ],
   entryComponents: [
     DialogOverviewBiographyComponent

@@ -53,6 +53,7 @@ export class SerieDetailComponent implements OnInit {
       icon: 'tv',
     },*/
     {
+      
       name: 'Videos',
       tab_number: 4,
       icon: 'tv',

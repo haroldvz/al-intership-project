@@ -75,6 +75,7 @@ export class ListMoviesComponent implements OnInit {
    * @memberof ListMoviesComponent
    */
   getMovies() {
+    this.pagingMoviesBar.navigateToPage(this._actual_page);
     switch (this._actual_category) {
       case 'popular': {
         this._movie_service.getPopularMovies(this._actual_page).subscribe(
