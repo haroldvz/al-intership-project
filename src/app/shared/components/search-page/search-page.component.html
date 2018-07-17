@@ -76,7 +76,17 @@
         </mat-card>
       </div>
     </div>
+
+
   </div>
+  <div fxLayout="row" fxLayoutAlign="end">
+    <!--See documentation about paging-bar covalent https://teradata.github.io/covalent/#/components/paging-->
+    <td-paging-bar #pagingSearchBar pageLinkCount="5" [firstLast]="false" [pageSize]="20" [total]="_total_results" (change)="changeOfPage($event)">
+      {{pagingSearchBar.range}}
+      <span hide-xs>of {{pagingSearchBar.total}}</span>
+    </td-paging-bar>
+  </div>
+  <!--End container movies list-->
 </div>
 <!--<div fxLayout="column">
   <div *ngIf="basicData.length>0">

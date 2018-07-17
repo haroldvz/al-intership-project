@@ -62,6 +62,9 @@ export class ListSeriesComponent implements OnInit {
    * @memberof ListSeriesComponent
    */
   getTVSeries() {
+
+    this.pagingTVBar.navigateToPage(this._actual_page);
+
     switch (this._actual_category) {
 
       case 'popular': {
