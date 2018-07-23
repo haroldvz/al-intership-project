@@ -60,17 +60,21 @@
 
                 <div class="content-details fadeIn-left">
                   <h3>{{item.name}}</h3>
-                  <!--<p>{{item.name}}</p>-->
+
                 </div>
               </a>
             </div>
           </div>
-          <!-- <mat-card-title class="movie-card-title">
-                 <a [routerLink]="['/movie/', data.id]">{{data.title}}</a>
-                 </mat-card-title>-->
-          <mat-card-subtitle>
-            <bar-rating [(rate)]="item.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
-          </mat-card-subtitle>
+
+
+          <div *ngIf="item.media_type=='movie' || item.media_type=='tv';else personNameBlock">
+            <mat-card-subtitle>
+              <bar-rating [(rate)]="item.vote_average" [theme]="'fontawesome'" [max]="10" [readOnly]="true"></bar-rating>
+            </mat-card-subtitle>
+          </div>
+          <ng-template #personNameBlock>
+            <mat-card-title class="movie-card-title">{{item.name}}</mat-card-title>
+          </ng-template>
           <mat-card-content>
           </mat-card-content>
         </mat-card>

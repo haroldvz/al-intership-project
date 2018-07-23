@@ -63,13 +63,13 @@ export class SearchPageComponent implements OnInit {
         if (params['page']) {
           let page: number = +params['page'];
           this._actual_page = page;
-        
+
         } else {
           this._actual_page = 1;//default value
-          
+
         }
 
-        
+
         let query: string = params['query'];
         this.getResults(query);
 
@@ -83,7 +83,7 @@ export class SearchPageComponent implements OnInit {
         this._actual_page = 1;
         this.updateResults();
         this._router.navigate(['/search/', this.query_to_show, { 'page': this._actual_page }]);
-        
+
       }
     );
 
@@ -109,7 +109,7 @@ export class SearchPageComponent implements OnInit {
 
         this._total_results = data.total_results;
         this._total_pages = data.total_pages;
-      
+
         this.data.results.sort(this.predicateBy("popularity"))
         for (let i = 0; i < this.data.results.length; i++) {
           let name: string = '';
