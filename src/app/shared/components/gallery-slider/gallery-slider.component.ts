@@ -1,9 +1,6 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GalleryItem, ImageItem, GalleryRef, Gallery } from '@ngx-gallery/core';
 import { Observable } from 'rxjs';
-import { ImagesMoviesDescriptor } from '../../shared/types/movies/images.type';
-import { Lightbox } from '@ngx-gallery/lightbox';
-
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 
 @Component({

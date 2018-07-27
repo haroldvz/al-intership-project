@@ -8,14 +8,10 @@
  */
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry, MatCardModule } from '@angular/material';
 import { TdMediaService } from '@covalent/core';
-import { ImagesMoviesDescriptor } from '../../shared/types/movies/images.type';
-import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../../shared/services/movie.service';
+import { MovieService } from './../../services/movie.service';
 import { DragScrollDirective } from 'ngx-drag-scroll';
-import { ResponseDescriptor } from '../../shared/types/movies/response.type';
+import { ResponseDescriptor } from './../../types/movies/response.type';
 
 /**
  * Interface for data main slider
@@ -45,11 +41,10 @@ export class HomeComponent implements OnInit {
 
   leftNavDisabled = false;
   rightNavDisabled = false;
-  private routerSubscribe;
-  images_data: ImagesMoviesDescriptor = new ImagesMoviesDescriptor();
+  
   data: ResponseDescriptor = new ResponseDescriptor();
   upcoming_movies: ResponseDescriptor = new ResponseDescriptor();
-  backdrops_items_slider = [];
+ 
   backdrops_items = [];
   data_to_gallery_slider = {};
   slides: ImageData[] = []
@@ -66,17 +61,7 @@ export class HomeComponent implements OnInit {
    */
   constructor(
     public media: TdMediaService,
-    //private _movie_service:MovieService,//movie service
-    private _iconRegistry: MatIconRegistry,
-    private _domSanitizer: DomSanitizer,
-    private _movie_service: MovieService,
-    private route: ActivatedRoute, ) {
-    this._iconRegistry.addSvgIconInNamespace('assets', 'teradata-ux',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/teradata-ux.svg'));
-    this._iconRegistry.addSvgIconInNamespace('assets', 'covalent',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent.svg'));
-    this._iconRegistry.addSvgIconInNamespace('assets', 'covalent-mark',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
+    private _movie_service: MovieService,) {
 
   }
 
@@ -90,9 +75,8 @@ export class HomeComponent implements OnInit {
     this._movie_service.getUpcomingMovies(1).subscribe(
       (data) => {
         this.upcoming_movies = data;
-        //console.log(this.data);
+   
         for (let i = 0; i < data.results.length; i++) {
-          this.backdrops_items_slider.push({ file_path: data.results[i].backdrop_path })
           this.slides.push({
             image: data.results[i].backdrop_path,
             id: data.results[i].id,
@@ -101,9 +85,6 @@ export class HomeComponent implements OnInit {
             overview: data.results[i].overview
           });
         }
-        this.data_to_gallery_slider['backdrops'] = this.backdrops_items_slider;
-
-
       }
     );
 
@@ -212,4 +193,5 @@ export class HomeComponent implements OnInit {
 
 
 }
+
 

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MovieDescriptor } from '../../shared/types/movies/detail-movie.type';
+import { MovieDescriptor } from '../../types/movies/detail-movie.type';
+
 
 @Component({
   selector: 'app-movie-card',

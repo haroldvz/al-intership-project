@@ -3,7 +3,7 @@
     <div *ngFor="let item of data" >
       <mat-card class="video-card ">
         <div class="bgc-grey-600">
-          <iframe class="video-container" [src]="makeSafeVideoURL(item.key)"></iframe>
+          <iframe class="video-container" [src]="makeSafeVideoURL(item.key)" allowfullscreen></iframe>
         </div>
         <mat-card-content>
           <h2 class="video-card-title">

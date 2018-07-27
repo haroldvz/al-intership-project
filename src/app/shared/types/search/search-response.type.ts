@@ -24,12 +24,12 @@ export class ResponseSearchDescriptor {
         response.total_pages = rawData.hasOwnProperty('total_pages') ? rawData.total_pages : 0;
         response.total_results = rawData.hasOwnProperty('total_results') ? rawData.total_results : 0;
 
-        let movie: SearchDescriptor;
+        let res: SearchDescriptor;
         if (rawData.hasOwnProperty("results")) {
             for (var i = 0; i < rawData.results.length; i++) {
                 let row: any = rawData.results[i];
-                movie = SearchDescriptor.import(row);
-                response.results.push(movie);
+                res = SearchDescriptor.import(row);
+                response.results.push(res);
             }
         }
         return response;
