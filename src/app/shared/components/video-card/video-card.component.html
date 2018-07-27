@@ -1,15 +1,21 @@
-<div *ngIf="data" >
+<div *ngIf="data" class="card-container-video">
   <div fxLayout="row wrap" fxLayoutAlign="center center" class="card-container-video">
-    <div *ngFor="let item of data" >
+    <div *ngFor="let item of data">
       <mat-card class="video-card ">
         <div class="bgc-grey-600">
           <iframe class="video-container" [src]=" (base_video_url + item.key) | safe" allowfullscreen></iframe>
         </div>
         <mat-card-content>
           <h2 class="video-card-title">
-            {{item.name}}
+
+            <div *ngIf="item.name; else blockTitle">
+              {{item.name}}
+            </div>
+            <ng-template #blockTitle>
+              {{item.title}}
+            </ng-template>
           </h2>
-         
+
         </mat-card-content>
       </mat-card>
     </div>

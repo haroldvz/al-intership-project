@@ -10,6 +10,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
+import { EmbedVideoService } from 'ngx-embed-video/dist';
 
 @Component({
   selector: 'app-movie-videos',
@@ -21,15 +22,16 @@ export class MovieVideosComponent implements OnInit {
   @Input() public data;
 
   base_video_url:string = environment.api_video_url;
-
+  
   /**
    *Creates an instance of MovieVideosComponent.
    * @param {DomSanitizer} _sanitizer
    * @memberof MovieVideosComponent
    */
-  constructor(private _sanitizer: DomSanitizer) { }
+  constructor(private _sanitizer: DomSanitizer,) { }
 
   ngOnInit() {
+   
   }
 
   /**
