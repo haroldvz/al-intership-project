@@ -3,9 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './shared/layout/not-found/not-found.component';
 import { AboutComponent } from './shared/layout/about/about.component';
 import { SearchPageComponent } from './shared/components/search-page/search-page.component';
+import { HomeComponent } from './shared/components/home/home.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'movies', pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path:'home', component:HomeComponent},
   {path:'movies', loadChildren:'./movies/movies.module#MoviesModule'},
   {path:'people', loadChildren:'./people/people.module#PeopleModule'},
   {path:'tv', loadChildren:'./tv-series/tv-series.module#TvSeriesModule'},

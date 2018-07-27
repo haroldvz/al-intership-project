@@ -1,5 +1,12 @@
 import { MovieDescriptor } from "../movies/detail-movie.type";
 
+
+/**
+ *
+ *
+ * @export
+ * @class PersonDescriptor
+ */
 export class PersonDescriptor {
 
     public id: number;

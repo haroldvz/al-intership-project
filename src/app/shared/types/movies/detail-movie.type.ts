@@ -2,6 +2,12 @@ import { GenreDescriptor } from "./../genres/genres.type";
 import { VideoDescriptor } from "../video.type";
 import { ReviewDescriptor } from "../reviews/review";
 
+/**
+ *
+ *
+ * @export
+ * @class MovieDescriptor
+ */
 export class MovieDescriptor {
 
     public id: number;

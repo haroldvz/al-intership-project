@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GallerySliderComponent } from '../movies/gallery-slider/gallery-slider.component';
 import { GalleryModule } from '@ngx-gallery/core';
 import { LightboxModule } from '@ngx-gallery/lightbox';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -27,6 +26,10 @@ import { GetAgePipe } from './pipes/calculate-age.pipe';
 import { TruncatePipe } from './pipes/limit-text.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {SlideshowModule} from 'ng-simple-slideshow';
+import { GallerySliderComponent } from './components/gallery-slider/gallery-slider.component';
+import { HomeComponent } from './components/home/home.component';
+import { MovieCardComponent } from './components/movie-card/movie-card.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -43,7 +46,8 @@ import {SlideshowModule} from 'ng-simple-slideshow';
     DragScrollModule,
     BarRatingModule,
     NgbModule,
-    SlideshowModule
+    SlideshowModule,
+    
   ],
   exports: [
     GallerySliderComponent,
@@ -67,7 +71,11 @@ import {SlideshowModule} from 'ng-simple-slideshow';
     GetAgePipe,
     TruncatePipe,
     NgbModule,
-    SlideshowModule
+    SlideshowModule,
+    GallerySliderComponent,
+    HomeComponent,
+    MovieCardComponent
+  
   ],
   entryComponents: [
     DialogOverviewBiographyComponent
@@ -86,7 +94,9 @@ import {SlideshowModule} from 'ng-simple-slideshow';
     ReviewCardComponent,
     TruncatePipe,
     DurationTimePipe,
-    GetAgePipe
+    GetAgePipe,
+    HomeComponent,
+    MovieCardComponent,
   ],
   providers: [
     SearchService

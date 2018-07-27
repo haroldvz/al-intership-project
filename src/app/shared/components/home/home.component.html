@@ -1,7 +1,4 @@
 <section class="bgc-grey-500">
-
-
-
   <!--<div *ngIf="data_to_gallery_slider.backdrops">
      <app-slider [data]="data_to_gallery_slider" [data_all]="data"></app-slider>
      </div>-->
@@ -17,14 +14,7 @@
   <div fxLayout="column" fxLayoutAlign="center center" class="home-title">
     <h2>Upcoming movies</h2>
   </div>
-  <div *ngIf="imageUrls.length>0" fxLayoutAlign="center center">
-    <div class="container-slideshow" >
-    <slideshow [height]="'550px'" [minHeight]="'525px'" [autoPlay]="true" [showArrows]="true" [imageUrls]="imageUrls">
-    </slideshow>
-  </div>
-  </div>
-
-  <!--<div fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayoutAlign="center center">
     <div id="carouselExampleControls" class="carousel " data-ride="carousel" fxLayoutAlign="center center">
       <div *ngIf="slides.length>0" fxLayoutAlign="center center">
         <div class="carousel-inner" role="listbox" fxLayoutAlign="center center">
@@ -45,7 +35,7 @@
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
     <button mat-button class="combined-accent-color" (click)='getPrev()'>Prev</button>
     <button mat-button class="combined-accent-color" (click)='getNext()'>Next</button>
-  </div>-->
+  </div>
   <div fxLayout="column">
     <div *ngIf="data.results" style="padding:5%;">
       <h2>Top rated movies</h2>

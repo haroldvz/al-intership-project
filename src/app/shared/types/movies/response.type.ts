@@ -1,6 +1,12 @@
 import { MovieDescriptor } from "./detail-movie.type";
 
 
+/**
+ *
+ *
+ * @export
+ * @class ResponseDescriptor
+ */
 export class ResponseDescriptor {
 
     public page: number;

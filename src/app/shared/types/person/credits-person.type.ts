@@ -1,5 +1,11 @@
 import { GenreDescriptor } from "../genres/genres.type";
 
+/**
+ *
+ *
+ * @export
+ * @class CreditsPersonDescriptor
+ */
 export class CreditsPersonDescriptor {
 
     public id: number;

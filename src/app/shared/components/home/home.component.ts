@@ -8,15 +8,25 @@
  */
 
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry, MatCardModule } from '@angular/material';
 import { TdMediaService } from '@covalent/core';
-import { ImagesMoviesDescriptor } from './../../types/movies/images.type';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from './../../services/movie.service';
 import { DragScrollDirective } from 'ngx-drag-scroll';
 import { ResponseDescriptor } from './../../types/movies/response.type';
-import { IImage } from 'ng-simple-slideshow';
+
+/**
+ * Interface for data main slider
+ *
+ * @export
+ * @interface ImageData
+ */
+export interface ImageData {
+  image: string;
+  id: number;
+  title: string;
+  vote_average: number;
+  overview: string;
+}
+
 
 @Component({
   selector: 'app-home',
@@ -29,10 +39,17 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('nav', { read: DragScrollDirective }) ds: DragScrollDirective;
 
-  imageUrls: IImage[] = [];
+  leftNavDisabled = false;
+  rightNavDisabled = false;
+  
   data: ResponseDescriptor = new ResponseDescriptor();
   upcoming_movies: ResponseDescriptor = new ResponseDescriptor();
  
+  backdrops_items = [];
+  data_to_gallery_slider = {};
+  slides: ImageData[] = []
+  i = 0;
+
   /**
    *Creates an instance of HomeComponent.
    * @param {TdMediaService} media
@@ -44,20 +61,10 @@ export class HomeComponent implements OnInit {
    */
   constructor(
     public media: TdMediaService,
-    private _router: Router,
-    //private _movie_service:MovieService,//movie service
-    private _iconRegistry: MatIconRegistry,
-    private _domSanitizer: DomSanitizer,
-    private _movie_service: MovieService,
-    private route: ActivatedRoute, ) {
-    this._iconRegistry.addSvgIconInNamespace('assets', 'teradata-ux',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/teradata-ux.svg'));
-    this._iconRegistry.addSvgIconInNamespace('assets', 'covalent',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent.svg'));
-    this._iconRegistry.addSvgIconInNamespace('assets', 'covalent-mark',
-      this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
+    private _movie_service: MovieService,) {
 
   }
+
 
   /**
    *
@@ -65,17 +72,19 @@ export class HomeComponent implements OnInit {
    * @memberof HomeComponent
    */
   ngOnInit() {
-
     this._movie_service.getUpcomingMovies(1).subscribe(
       (data) => {
         this.upcoming_movies = data;
-        for (let i = 0; i < this.upcoming_movies.results.length; i++) {
-          this.imageUrls.push({
-            url: 'https://image.tmdb.org/t/p/w1280/' + this.upcoming_movies.results[i].backdrop_path,
-            caption: this.upcoming_movies.results[i].title, clickAction: () => this._router.navigate(['/movie/', this.upcoming_movies.results[i].id])
-          })
+   
+        for (let i = 0; i < data.results.length; i++) {
+          this.slides.push({
+            image: data.results[i].backdrop_path,
+            id: data.results[i].id,
+            title: data.results[i].title,
+            vote_average: data.results[i].vote_average,
+            overview: data.results[i].overview
+          });
         }
-
       }
     );
 
@@ -88,5 +97,101 @@ export class HomeComponent implements OnInit {
   }
 
 
+  /**
+   * Move to left the dragScroll movies carousel
+   *
+   * @memberof HomeComponent
+   */
+  moveLeft() {
+    this.ds.moveLeft();
+  }
+
+
+  /**
+   * Get the image interface attribute (the image url)
+   *
+   * @returns {string}
+   * @memberof HomeComponent
+   */
+  getSlide(): string {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].image;
+
+  }
+
+  /**
+   * Get the movie id attribute
+   *
+   * @returns {number}
+   * @memberof HomeComponent
+   */
+  getIdMovie(): number {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].id;
+  }
+
+  /**
+   * Get the title of the movie
+   *
+   * @returns {string}
+   * @memberof HomeComponent
+   */
+  getTitleMovie(): string {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].title;
+  }
+
+  /**
+   * Get the vote average
+   *
+   * @returns {number}
+   * @memberof HomeComponent
+   */
+  getVoteAverageMovie(): number {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].vote_average;
+  }
+
+  /**
+   * Get the movie overview 
+   *
+   * @returns {string}
+   * @memberof HomeComponent
+   */
+  getOverviewMovie(): string {
+    if (this.i > 19) {
+      this.i = 0
+    }
+    return this.slides[this.i].overview;
+  }
+
+  /**
+   * Go to prev image slider
+   *
+   * @memberof HomeComponent
+   */
+  getPrev() {
+    this.i = this.i === 0 ? 19 : this.i - 1;
+  }
+
+  /**
+   * Go to next image slider
+   *
+   * @memberof HomeComponent
+   */
+  getNext() {
+    this.i = this.i === this.slides.length ? this.i : this.i + 1;
+  }
+
+
 }
+
 
