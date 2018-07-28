@@ -29,6 +29,7 @@ import {SlideshowModule} from 'ng-simple-slideshow';
 import { GallerySliderComponent } from './components/gallery-slider/gallery-slider.component';
 import { HomeComponent } from './components/home/home.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
+import { SafePipe } from './pipes/sanitizer.pipe';
 
 @NgModule({
   imports: [
@@ -68,14 +69,14 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
     BarRatingModule,
     ReviewsComponent,
     DurationTimePipe,
+    SafePipe,
     GetAgePipe,
     TruncatePipe,
     NgbModule,
     SlideshowModule,
     GallerySliderComponent,
     HomeComponent,
-    MovieCardComponent
-  
+    MovieCardComponent,
   ],
   entryComponents: [
     DialogOverviewBiographyComponent
@@ -95,6 +96,7 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
     TruncatePipe,
     DurationTimePipe,
     GetAgePipe,
+    SafePipe,
     HomeComponent,
     MovieCardComponent,
   ],

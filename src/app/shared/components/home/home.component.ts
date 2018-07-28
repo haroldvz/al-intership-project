@@ -12,7 +12,8 @@ import { TdMediaService } from '@covalent/core';
 import { MovieService } from './../../services/movie.service';
 import { DragScrollDirective } from 'ngx-drag-scroll';
 import { ResponseDescriptor } from './../../types/movies/response.type';
-
+import { IImage } from 'ng-simple-slideshow';
+import { Router } from '@angular/router';
 /**
  * Interface for data main slider
  *
@@ -35,20 +36,24 @@ export interface ImageData {
 })
 
 
-export class HomeComponent implements OnInit {
-
+export class HomeComponent implements OnInit{
+  
+  
+  
   @ViewChild('nav', { read: DragScrollDirective }) ds: DragScrollDirective;
 
   leftNavDisabled = false;
   rightNavDisabled = false;
-  
+
   data: ResponseDescriptor = new ResponseDescriptor();
   upcoming_movies: ResponseDescriptor = new ResponseDescriptor();
- 
+
   backdrops_items = [];
   data_to_gallery_slider = {};
   slides: ImageData[] = []
   i = 0;
+
+  imageUrls: IImage[] = [];
 
   /**
    *Creates an instance of HomeComponent.
@@ -61,7 +66,8 @@ export class HomeComponent implements OnInit {
    */
   constructor(
     public media: TdMediaService,
-    private _movie_service: MovieService,) {
+    private _movie_service: MovieService,
+    private _router: Router, ) {
 
   }
 
@@ -75,15 +81,22 @@ export class HomeComponent implements OnInit {
     this._movie_service.getUpcomingMovies(1).subscribe(
       (data) => {
         this.upcoming_movies = data;
-   
-        for (let i = 0; i < data.results.length; i++) {
-          this.slides.push({
-            image: data.results[i].backdrop_path,
-            id: data.results[i].id,
-            title: data.results[i].title,
-            vote_average: data.results[i].vote_average,
-            overview: data.results[i].overview
-          });
+
+        for (let i = 0; i < this.upcoming_movies.results.length; i++) {
+          /*this.slides.push({
+            image: this.upcoming_movies.results[i].backdrop_path,
+            id: this.upcoming_movies.results[i].id,
+            title: this.upcoming_movies.results[i].title,
+            vote_average: this.upcoming_movies.results[i].vote_average,
+            overview: this.upcoming_movies.results[i].overview
+          });*/
+          let item_data = {
+            url: 'https://image.tmdb.org/t/p/w1280' + data.results[i].backdrop_path,
+            title: this.upcoming_movies.results[i].title,
+            caption: this.upcoming_movies.results[i].title,
+            clickAction: ()=> this._router.navigate(['/movie/',  this.upcoming_movies.results[i].id ])
+          }
+          this.imageUrls.push(item_data)
         }
       }
     );
