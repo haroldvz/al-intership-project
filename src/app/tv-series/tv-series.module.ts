@@ -4,7 +4,6 @@ import { TvSeriesRoutingModule } from './tv-series-routing.module';
 import { ListSeriesComponent } from './list-series/list-series.component';
 import { SerieDetailComponent } from './serie-detail/serie-detail.component';
 import { SerieImagesComponent } from './serie-images/serie-images.component';
-import { SerieVideosComponent } from './serie-videos/serie-videos.component';
 import { TVSerieService } from '../shared/services/tv-series.service';
 import { SharedModule } from '../shared/shared.module';
 import { TvSeriesCardComponent } from './tv-series-card/tv-series-card.component';
@@ -24,7 +23,6 @@ import { SerieReviewsComponent } from './serie-reviews/serie-reviews.component';
     ListSeriesComponent, 
     SerieDetailComponent, 
     SerieImagesComponent, 
-    SerieVideosComponent, 
     TvSeriesCardComponent, 
     SerieCreditsComponent, 
     SerieCreditsCardComponent, 

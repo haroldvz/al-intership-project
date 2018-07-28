@@ -30,6 +30,7 @@ import { GallerySliderComponent } from './components/gallery-slider/gallery-slid
 import { HomeComponent } from './components/home/home.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { SafePipe } from './pipes/sanitizer.pipe';
+import { VideoCardComponent } from './components/video-card/video-card.component';
 
 @NgModule({
   imports: [
@@ -77,6 +78,7 @@ import { SafePipe } from './pipes/sanitizer.pipe';
     GallerySliderComponent,
     HomeComponent,
     MovieCardComponent,
+    VideoCardComponent,
   ],
   entryComponents: [
     DialogOverviewBiographyComponent
@@ -99,6 +101,7 @@ import { SafePipe } from './pipes/sanitizer.pipe';
     SafePipe,
     HomeComponent,
     MovieCardComponent,
+    VideoCardComponent,
   ],
   providers: [
     SearchService
