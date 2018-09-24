@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
  
+  title = 'CornTime'
 
   name = 'CornTime';
 
