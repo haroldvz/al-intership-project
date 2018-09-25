@@ -7,7 +7,7 @@
  *
  */
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
 import { ResponseDescriptor } from '../../shared/types/movies/response.type';
@@ -19,15 +19,20 @@ import { TdLoadingService } from '@covalent/core';
   templateUrl: './list-movies.component.html',
   styleUrls: ['./list-movies.component.scss']
 })
-export class ListMoviesComponent implements OnInit {
+export class ListMoviesComponent implements OnInit, OnDestroy {
+  
+  /**
+   * 
+   */
+  ngOnDestroy(): void {
+    
+  }
 
-  routerSubscribe;
   total_results: number;
   _actual_page: number;
   _actual_category: string;
   _total_pages: number;
   data: ResponseDescriptor = new ResponseDescriptor();
-  animate;
 
   @ViewChild('pagingMoviesBar') pagingMoviesBar: TdPagingBarComponent;
 
@@ -41,7 +46,7 @@ export class ListMoviesComponent implements OnInit {
    * @memberof ListMoviesComponent
    */
   constructor(
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
     private _movie_service: MovieService,
     private _loadingService: TdLoadingService,
     public _mediaService: TdMediaService,
@@ -54,7 +59,7 @@ export class ListMoviesComponent implements OnInit {
    * @memberof ListMoviesComponent
    */
   ngOnInit() {
-    this.routerSubscribe = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.LoadingRegister();
       let category: string = params['category'];
       if (params['page']) {
@@ -69,6 +74,14 @@ export class ListMoviesComponent implements OnInit {
   }
 
 
+  getActiveRoute():ActivatedRoute{
+    return this.route;
+  }
+
+  setActiveRoute(params):void{
+    this.route.params = params;
+  }
+
   /**
    * Get the movies list depends of this._actual_category (url param)
    * cases: popular, top-rated, now-playing, upcoming (latest breaks with api)
@@ -81,7 +94,6 @@ export class ListMoviesComponent implements OnInit {
         this._movie_service.getPopularMovies(this._actual_page).subscribe(
           (data) => {
             this.data = data;
-            console.log(data)
             this.total_results = data.total_results;
             this._total_pages = data.total_pages;
             this.loadingResolve();
@@ -130,7 +142,9 @@ export class ListMoviesComponent implements OnInit {
 
       } break;
       default: {
-        this._router.navigate(['/404-not-found/']);
+        this._actual_category = 'popular';
+        this._actual_page = 1;
+        this.getMovies();//calls again with new data
       } break;
     }
 
@@ -175,7 +189,7 @@ export class ListMoviesComponent implements OnInit {
   * @memberof ListMoviesComponent
   */
   LoadingRegister(): void {
-    this._loadingService.register('movie-detail');
+    this._loadingService.register('list-movies');
   }
 
   /**
@@ -184,6 +198,6 @@ export class ListMoviesComponent implements OnInit {
    * @memberof ListMoviesComponent
    */
   loadingResolve(): void {
-    this._loadingService.resolve('movie-detail');
+    this._loadingService.resolve('list-movies');
   }
 }

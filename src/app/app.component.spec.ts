@@ -2,12 +2,12 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
-import { Routes, RouterLinkActive } from '@angular/router';
+import { Routes } from '@angular/router';
 import { HomeComponent } from './shared/components/home/home.component';
-import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 
 const testRoutes: Routes = [
