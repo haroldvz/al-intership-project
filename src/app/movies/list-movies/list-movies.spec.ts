@@ -1,6 +1,6 @@
 import { ListMoviesComponent } from "./list-movies.component";
 import { async, TestBed, ComponentFixture } from "@angular/core/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, EventEmitter } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterTestingModule } from "@angular/router/testing";
 import { MovieService } from "../../shared/services/movie.service";
@@ -13,6 +13,8 @@ import { of } from "rxjs";
 import { ActivatedRouteStub } from "../../../testing/activated-route-stub";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { movies } from "../../../testing/models/movies";
+import { By } from "@angular/platform-browser";
+import { MatSelectChange, MatSelect } from "@angular/material";
 
 
 const testRoutes: Routes = [
@@ -85,6 +87,7 @@ describe('List Movies Component', () => {
         debugElement = fixture.debugElement;
         movies_component = fixture.componentInstance;
         movie_service = TestBed.get(MovieService);
+        navigateSpy.calls.reset();
     });
 
     afterEach(() => {
@@ -113,6 +116,7 @@ describe('List Movies Component', () => {
 
         beforeEach(()=>{
             
+            navigateSpy.calls.reset();
             
         });
 
@@ -156,7 +160,7 @@ describe('List Movies Component', () => {
     describe('When getMovies is called',()=>{
 
         beforeEach(()=>{
-
+            navigateSpy.calls.reset();
         });
 
         it('should call movie service when the category is popular', () => {
@@ -208,5 +212,39 @@ describe('List Movies Component', () => {
           });
 
 
+    });
+
+    describe('When changeFilter() is called',()=>{
+
+        //ngCircleProgressModule
+
+        beforeEach(()=>{
+            navigateSpy.calls.reset();
+        });
+
+        afterEach(()=>{
+            navigateSpy.calls.reset();
+        });
+
+        it('should set the variables and navigate to list movies with the category selected',async(()=>{
+            fixture.detectChanges();
+
+            let select: MatSelect;
+            const selectDebug = fixture.debugElement.query(By.css('mat-select'));
+            select = selectDebug.nativeElement;
+            const evt = new MatSelectChange(select,'latest');
+            movies_component.changeFilter(evt);//call the function
+
+
+            expect(movies_component._actual_category).toEqual('latest');
+            expect(movies_component._actual_page).toEqual(1);
+            fixture.whenStable().then(() => { 
+                fixture.detectChanges();
+                //expect(movies_component._router.navigate).toHaveBeenCalledTimes(1);
+                console.log(movies_component._router);
+
+            });
+            
+        }));
     });
 });

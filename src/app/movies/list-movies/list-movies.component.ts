@@ -50,7 +50,7 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
     private _movie_service: MovieService,
     private _loadingService: TdLoadingService,
     public _mediaService: TdMediaService,
-    private _router: Router,
+    public _router: Router,//try change to private and test it
   ) { }
 
   /**
@@ -158,7 +158,7 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
    * @memberof ListMoviesComponent
    */
   changeFilter(event: any) {
-    //console.log(event.value);
+    console.log(event);
     this._actual_category = event.value;
     this._actual_page = 1;//go to page 1 in the new list
     this.pagingMoviesBar.navigateToPage(1);
