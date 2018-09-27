@@ -73,15 +73,6 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
     });
   }
 
-
-  getActiveRoute():ActivatedRoute{
-    return this.route;
-  }
-
-  setActiveRoute(params):void{
-    this.route.params = params;
-  }
-
   /**
    * Get the movies list depends of this._actual_category (url param)
    * cases: popular, top-rated, now-playing, upcoming (latest breaks with api)
@@ -158,10 +149,10 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
    * @memberof ListMoviesComponent
    */
   changeFilter(event: any) {
-    console.log(event);
+    //console.log(event);
     this._actual_category = event.value;
     this._actual_page = 1;//go to page 1 in the new list
-    this.pagingMoviesBar.navigateToPage(1);
+    this.pagingMoviesBar.navigateToPage(1);//this navigates to specific valid page
     this._router.navigate(['/movies/', this._actual_category, { 'page': this._actual_page }]);
   }
 
@@ -173,12 +164,12 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
    * @memberof ListMoviesComponent
    */
   changeOfPage(event: IPageChangeEvent): void {
-
+    //console.log(event);
     this._actual_page = event.page;
     //console.log(this._actual_page);
-    window.scroll(0, 0);
-    document.body.scrollTop = 0;
-    document.querySelector('body').scrollTo(0, 0);
+    //window.scroll(0, 0);
+    //document.body.scrollTop = 0;
+    //document.querySelector('body').scrollTo(0, 0);
     this._router.navigate(['/movies/', this._actual_category, { 'page': this._actual_page }]);
 
   }

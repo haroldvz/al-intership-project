@@ -1,5 +1,5 @@
 import { ListMoviesComponent } from "./list-movies.component";
-import { async, TestBed, ComponentFixture } from "@angular/core/testing";
+import { async, TestBed, ComponentFixture, tick, fakeAsync } from "@angular/core/testing";
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, EventEmitter } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -15,22 +15,19 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { movies } from "../../../testing/models/movies";
 import { By } from "@angular/platform-browser";
 import { MatSelectChange, MatSelect } from "@angular/material";
+import { IPageChangeEvent } from "@covalent/core";
 
 
 const testRoutes: Routes = [
     {
-      path: 'home',
-      component: HomeComponent
+        path: 'home',
+        component: HomeComponent
     },
     {//this route have to exists, if not, show error (ERROR: 'Unhandled Promise rejection:', 'Cannot match any routes. URL Segment:)
         path: 'movies/:category',
         component: ListMoviesComponent
     },
-  ];
-
-//Spies
-const navigateSpy = jasmine.createSpy('navigate');
-
+];
 
 describe('List Movies Component', () => {
 
@@ -40,27 +37,22 @@ describe('List Movies Component', () => {
     let location: Location;
     let router: Router;
     let debugElement: DebugElement;
-    let param = { category: 'top-rated', page:1 };
+    let param = { category: 'top-rated', page: 1 };
     let movies_component: ListMoviesComponent;
+    let navigateSpy: any;
 
-    //let params: Subject<Params>;
-
-    let activateRoute = new ActivatedRouteStub({ category: 'popular', page:1 });
-
-    //beforeEach(() => activateRoute.setParamMap({ category: 'popular', page:1 }));
+    //let activateRoute = new ActivatedRouteStub({ category: 'popular', page: 1 });
 
     beforeEach(async(() => {
-        //params = new Subject<Params>();
-        //params.next({ 'category': 'popular', 'page':1 });
-    
+
         TestBed.configureTestingModule({
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
             declarations: [ListMoviesComponent],
             imports: [
-                CommonModule, 
-                RouterTestingModule,
+                CommonModule,
+                RouterTestingModule.withRoutes([]),
                 SharedModule,
-                HttpClientTestingModule,BrowserAnimationsModule
+                HttpClientTestingModule, BrowserAnimationsModule
             ],
             /*providers: [
               { provide: MovieService, useValue: UserServiceMock }, { provide: SearchService, useValue: SearchServiceMock }],*/
@@ -68,14 +60,14 @@ describe('List Movies Component', () => {
                 MovieService,
                 {
                     provide: ActivatedRoute, useValue: {
-                        params:of(param)
+                        params: of(param)
                     }
                 },
-                {
+                /*{
                     provide: Router, useClass: class {
-                      navigate = navigateSpy;
+                        navigate = navigateSpy;
                     }
-                },
+                },*/
             ],
         }).compileComponents();;
     }));
@@ -87,12 +79,14 @@ describe('List Movies Component', () => {
         debugElement = fixture.debugElement;
         movies_component = fixture.componentInstance;
         movie_service = TestBed.get(MovieService);
-        navigateSpy.calls.reset();
+        navigateSpy = spyOn(movies_component._router, 'navigate');
+
     });
 
     afterEach(() => {
         movies_component.ngOnDestroy();
-     });
+        navigateSpy.calls.reset();
+    });
 
     it('should create an instance', () => {
         expect(movies_component).toBeTruthy();
@@ -100,72 +94,83 @@ describe('List Movies Component', () => {
 
     describe('When the component is created', () => {
         it('should create the global variables', () => {
-          expect(movies_component.total_results)
-            .toBeUndefined();
-          expect(movies_component._actual_page)
-            .toBeUndefined();
-          expect(movies_component._actual_category)
-            .toBeUndefined();
-          expect(movies_component.data)
-            .toBeDefined();
+            expect(movies_component.total_results)
+                .toBeUndefined();
+            expect(movies_component._actual_page)
+                .toBeUndefined();
+            expect(movies_component._actual_category)
+                .toBeUndefined();
+            expect(movies_component.data)
+                .toBeDefined();
         });
-      });
-    
+    });
 
-    describe('ngOnInit()',()=>{
 
-        beforeEach(()=>{
-            
+    describe('ngOnInit()', () => {
+
+        beforeEach(() => {
             navigateSpy.calls.reset();
-            
         });
 
-        describe('When ngOnInit is called',()=>{
-            it('should set default params (category: popular and page:1) if the category or page are invalid params', async(() => {
+        describe('When ngOnInit is called', () => {
+            it('should set default params (category: popular and page:1) if the category is invalid', async(() => {
                 const category = 'invalid-category';
-                const page = -8;
-                movies_component.route.params =  of({ category: category, page: page });
+                const page = 1;
+                movies_component.route.params = of({ category: category, page: page });
                 movies_component.ngOnInit();
                 expect(movies_component._actual_category).toEqual('popular');
+                expect(movies_component._actual_page).toEqual(1);
+            }));
+
+            it('should set default params (page:1) if the page not exists', async(() => {
+                const category = 'latest';
+                movies_component.route.params = of({ category: category });
+                movies_component.ngOnInit();
+                expect(movies_component._actual_category).toEqual('latest');
                 expect(movies_component._actual_page).toEqual(1);
             }));
 
             it('should read the params and set variables category and page', async(() => {
                 const category = 'now-playing';
                 const page = 1;
-                movies_component.route.params =  of({ category: category, page: page });
+                movies_component.route.params = of({ category: category, page: page });
                 movies_component.ngOnInit();
                 expect(movies_component._actual_category).toEqual(category);
                 expect(movies_component._actual_page).toEqual(page);
             }));
-            it('should set the category with the param value (top-rated) [value from providers in testbed config]', async(() => {
+            it('should set the category with the param value (top-rated) [value from providers in testbed config]', fakeAsync(() => {
                 movies_component.ngOnInit();
+                tick();
+                /*fixture.whenStable().then(() => {
+                    expect(movies_component._actual_category).toBe('top-rated');
+                    expect(movies_component._actual_page).toBe(1);
+                });*/
                 expect(movies_component._actual_category).toBe('top-rated');
                 expect(movies_component._actual_page).toBe(1);
-               
+
             }));
 
             it('should call the functions', async(() => {
-                spyOn(movies_component,'LoadingRegister');
-                spyOn(movies_component,'getMovies');
+                spyOn(movies_component, 'LoadingRegister');
+                spyOn(movies_component, 'getMovies');
                 movies_component.ngOnInit();
                 expect(movies_component.LoadingRegister).toHaveBeenCalledTimes(1);
                 expect(movies_component.getMovies).toHaveBeenCalledTimes(1);
-               
+
             }));
         });
     });
 
 
-    describe('When getMovies is called',()=>{
+    describe('When getMovies is called', () => {
 
-        beforeEach(()=>{
+        beforeEach(() => {
             navigateSpy.calls.reset();
         });
 
         it('should call movie service when the category is popular', () => {
 
-            spyOn(movie_service,'getPopularMovies').and.returnValue(of(movies));
+            spyOn(movie_service, 'getPopularMovies').and.returnValue(of(movies));
 
             let page = 1;
             movies_component._actual_page = page;
@@ -173,15 +178,16 @@ describe('List Movies Component', () => {
             movies_component.getMovies();
             console.log(movies_component.data);
             expect(movie_service.getPopularMovies)
-              .toHaveBeenCalledTimes(1);
+                .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
-           
-          });
+
+        });
 
 
-          it('should call movie service when the category is top-rated', () => {
+        it('should call movie service when the category is top-rated', async(() => {
 
-            spyOn(movie_service,'getTopRatedMovies').and.returnValue(of(movies));
+            //Spies
+            spyOn(movie_service, 'getTopRatedMovies').and.returnValue(of(movies));
 
             let page = 1;
             movies_component._actual_page = page;
@@ -189,16 +195,17 @@ describe('List Movies Component', () => {
             movies_component.getMovies();
             console.log(movies_component.data);
             expect(movie_service.getTopRatedMovies)
-              .toHaveBeenCalledTimes(1);
+                .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
             expect(movies_component._total_pages).toEqual(movies.total_pages);
-           
-          });
+
+        }));
 
 
-          it('should call movie service (getPopularmovies) when the category is invalid', () => {
+        it('should call movie service (getPopularmovies) when the category is invalid', () => {
 
-            spyOn(movie_service,'getPopularMovies').and.returnValue(of(movies));
+            //Spies
+            spyOn(movie_service, 'getPopularMovies').and.returnValue(of(movies));
 
             let page = 1;
             movies_component._actual_page = page;
@@ -206,45 +213,139 @@ describe('List Movies Component', () => {
             movies_component.getMovies();
             console.log(movies_component.data);
             expect(movie_service.getPopularMovies)
-              .toHaveBeenCalledTimes(1);
+                .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
-           
-          });
+
+        });
+
+
+        it('should call movie service (getLatestMovies) when the category is valid (latest)', () => {
+
+            //Spies
+            spyOn(movie_service, 'getLatestMovies').and.returnValue(of(movies));
+
+            let page = 1;
+            movies_component._actual_page = page;
+            movies_component._actual_category = 'latest';
+            movies_component.getMovies();
+            console.log(movies_component.data);
+            expect(movie_service.getLatestMovies)
+                .toHaveBeenCalledTimes(1);
+            expect(movies_component.data).toEqual(movies);
+
+        });
+
+
+        it('should call movie service (getLatestMovies) when the category is valid (now-playing)', () => {
+
+            //Spies
+            spyOn(movie_service, 'getNowPlayingMovies').and.returnValue(of(movies));
+
+            let page = 1;
+            movies_component._actual_page = page;
+            movies_component._actual_category = 'now-playing';
+            movies_component.getMovies();
+            console.log(movies_component.data);
+            expect(movie_service.getNowPlayingMovies)
+                .toHaveBeenCalledTimes(1);
+            expect(movies_component.data).toEqual(movies);
+
+        });
+
+
+        it('should call movie service (getUpcomingMovies) when the category is valid (upcoming)', () => {
+
+            //Spies
+            spyOn(movie_service, 'getUpcomingMovies').and.returnValue(of(movies));
+
+            let page = 1;
+            movies_component._actual_page = page;
+            movies_component._actual_category = 'upcoming';
+            movies_component.getMovies();
+            console.log(movies_component.data);
+            expect(movie_service.getUpcomingMovies)
+                .toHaveBeenCalledTimes(1);
+            expect(movies_component.data).toEqual(movies);
+
+        });
 
 
     });
 
-    describe('When changeFilter() is called',()=>{
+    describe('When changeFilter() is called', () => {
 
         //ngCircleProgressModule
 
-        beforeEach(()=>{
+        beforeEach(() => {
             navigateSpy.calls.reset();
         });
 
-        afterEach(()=>{
+        afterEach(() => {
             navigateSpy.calls.reset();
         });
 
-        it('should set the variables and navigate to list movies with the category selected',async(()=>{
-            fixture.detectChanges();
+        it('should set the variables and navigate to list movies with the category selected', async(() => {
 
+            //Definitions block
+            //Spies
+            spyOn(movies_component.pagingMoviesBar, 'navigateToPage').and.callThrough();
+
+            //variables and constants
             let select: MatSelect;
             const selectDebug = fixture.debugElement.query(By.css('mat-select'));
             select = selectDebug.nativeElement;
-            const evt = new MatSelectChange(select,'latest');
-            movies_component.changeFilter(evt);//call the function
+            const evt = new MatSelectChange(select, 'latest');
+            //reset router spy
+            navigateSpy.calls.reset();
+            //call the function
+            movies_component.changeFilter(evt);
 
+            //---Expects----
 
             expect(movies_component._actual_category).toEqual('latest');
             expect(movies_component._actual_page).toEqual(1);
-            fixture.whenStable().then(() => { 
-                fixture.detectChanges();
-                //expect(movies_component._router.navigate).toHaveBeenCalledTimes(1);
-                console.log(movies_component._router);
 
+            fixture.whenStable().then(() => {
+                //fixture.detectChanges();//if i call this, the category will be top-rated, looks like call the ngOninit with the initial params (top-rated, page 1)
+                //Verify spies
+                expect(movies_component.pagingMoviesBar.navigateToPage).toHaveBeenCalledTimes(1);
+                expect(navigateSpy).toHaveBeenCalledTimes(2);
+                expect(navigateSpy).toHaveBeenCalledWith(['/movies/', movies_component._actual_category, { 'page': 1 }]);
             });
-            
+
         }));
+    });
+
+
+    describe('When changeOfPage() is called', () => {
+
+        beforeEach(() => {
+            navigateSpy.calls.reset();
+        });
+
+        afterEach(() => {
+            navigateSpy.calls.reset();
+        });
+
+        it('should set the _actual_page with the value page from event and navigate to the correct URL', () => {
+            //fixture.detectChanges();//if I do this, calls navigate !!!, so have to reset spy
+            //navigateSpy.calls.reset();
+            //Definitions block
+            let ipageChangeEvent: IPageChangeEvent;
+            ipageChangeEvent = {
+                fromRow: 1,
+                maxPage: 992,
+                page: 1,//the page to redirect
+                pageSize: 20,
+                toRow: 20,
+                total: 19826,
+            }
+            //Call the function
+            movies_component.changeOfPage(ipageChangeEvent);
+            //Verify Spies
+            expect(navigateSpy).toHaveBeenCalledTimes(1);
+            expect(navigateSpy).toHaveBeenCalledWith(['/movies/', movies_component._actual_category, { 'page': 1 }]);
+        });
+
     });
 });
