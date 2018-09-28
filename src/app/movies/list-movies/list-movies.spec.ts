@@ -14,7 +14,7 @@ import { ActivatedRouteStub } from "../../../testing/activated-route-stub";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { movies } from "../../../testing/models/movies";
 import { By } from "@angular/platform-browser";
-import { MatSelectChange, MatSelect } from "@angular/material";
+import { MatSelectChange, MatSelect, MatTabChangeEvent, MatTab } from "@angular/material";
 import { IPageChangeEvent } from "@covalent/core";
 
 
@@ -106,6 +106,7 @@ describe('List Movies Component', () => {
     });
 
 
+    
     describe('ngOnInit()', () => {
 
         beforeEach(() => {
@@ -176,7 +177,7 @@ describe('List Movies Component', () => {
             movies_component._actual_page = page;
             movies_component._actual_category = 'popular';
             movies_component.getMovies();
-            console.log(movies_component.data);
+            //console.log(movies_component.data);
             expect(movie_service.getPopularMovies)
                 .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
@@ -193,7 +194,7 @@ describe('List Movies Component', () => {
             movies_component._actual_page = page;
             movies_component._actual_category = 'top-rated';
             movies_component.getMovies();
-            console.log(movies_component.data);
+            //console.log(movies_component.data);
             expect(movie_service.getTopRatedMovies)
                 .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
@@ -211,7 +212,7 @@ describe('List Movies Component', () => {
             movies_component._actual_page = page;
             movies_component._actual_category = 'invalidcategoryy';
             movies_component.getMovies();
-            console.log(movies_component.data);
+            //console.log(movies_component.data);
             expect(movie_service.getPopularMovies)
                 .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
@@ -228,7 +229,7 @@ describe('List Movies Component', () => {
             movies_component._actual_page = page;
             movies_component._actual_category = 'latest';
             movies_component.getMovies();
-            console.log(movies_component.data);
+            //console.log(movies_component.data);
             expect(movie_service.getLatestMovies)
                 .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
@@ -245,7 +246,7 @@ describe('List Movies Component', () => {
             movies_component._actual_page = page;
             movies_component._actual_category = 'now-playing';
             movies_component.getMovies();
-            console.log(movies_component.data);
+            //console.log(movies_component.data);
             expect(movie_service.getNowPlayingMovies)
                 .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
@@ -262,7 +263,7 @@ describe('List Movies Component', () => {
             movies_component._actual_page = page;
             movies_component._actual_category = 'upcoming';
             movies_component.getMovies();
-            console.log(movies_component.data);
+            //console.log(movies_component.data);
             expect(movie_service.getUpcomingMovies)
                 .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
@@ -294,6 +295,7 @@ describe('List Movies Component', () => {
             let select: MatSelect;
             const selectDebug = fixture.debugElement.query(By.css('mat-select'));
             select = selectDebug.nativeElement;
+            
             const evt = new MatSelectChange(select, 'latest');
             //reset router spy
             navigateSpy.calls.reset();

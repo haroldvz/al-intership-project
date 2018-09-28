@@ -14,6 +14,9 @@ import { ResponseDescriptor } from '../../shared/types/movies/response.type';
 import { TdMediaService, TdPagingBarComponent, IPageChangeEvent } from '@covalent/core';
 import { TdLoadingService } from '@covalent/core';
 
+/**
+ * Component
+ */
 @Component({
   selector: 'app-list-movies',
   templateUrl: './list-movies.component.html',
@@ -22,18 +25,36 @@ import { TdLoadingService } from '@covalent/core';
 export class ListMoviesComponent implements OnInit, OnDestroy {
   
   /**
-   * 
+   * on destroy
    */
   ngOnDestroy(): void {
     
   }
 
+  /**
+   * Total results of list movies component
+   */
   total_results: number;
+  /**
+   * Actual page of list movies component
+   */
   _actual_page: number;
+  /**
+   * Actual category of list movies component
+   */
   _actual_category: string;
+  /**
+   * Total pages of list movies component
+   */
   _total_pages: number;
+  /**
+   * Data  of list movies component
+   */
   data: ResponseDescriptor = new ResponseDescriptor();
 
+  /**
+   * View child of list movies component
+   */
   @ViewChild('pagingMoviesBar') pagingMoviesBar: TdPagingBarComponent;
 
   /**
@@ -149,7 +170,6 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
    * @memberof ListMoviesComponent
    */
   changeFilter(event: any) {
-    //console.log(event);
     this._actual_category = event.value;
     this._actual_page = 1;//go to page 1 in the new list
     this.pagingMoviesBar.navigateToPage(1);//this navigates to specific valid page
@@ -164,14 +184,8 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
    * @memberof ListMoviesComponent
    */
   changeOfPage(event: IPageChangeEvent): void {
-    //console.log(event);
     this._actual_page = event.page;
-    //console.log(this._actual_page);
-    //window.scroll(0, 0);
-    //document.body.scrollTop = 0;
-    //document.querySelector('body').scrollTo(0, 0);
     this._router.navigate(['/movies/', this._actual_category, { 'page': this._actual_page }]);
-
   }
 
   /**
