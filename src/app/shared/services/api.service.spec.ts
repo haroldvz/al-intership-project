@@ -20,9 +20,7 @@ describe('API service', () => {
 
     let httpClientSpy: { get: jasmine.Spy };
     let api_service: ApiService;
-    let httpmock: HttpTestingController;
     let route: Router;
-
 
     beforeEach(() => {
 
@@ -80,7 +78,7 @@ describe('API service', () => {
 
 /** Test with mocks */
 describe('Test with mocks', () => {
-    let httpClient: HttpClient;
+
     let httpTestingController: HttpTestingController;
     let api_service: ApiService;
 
@@ -95,7 +93,6 @@ describe('Test with mocks', () => {
 
         // Inject the http, test controller, and service-under-test
         // as they will be referenced by each test.
-        httpClient = TestBed.get(HttpClient);
         httpTestingController = TestBed.get(HttpTestingController);
         api_service = TestBed.get(ApiService);
 

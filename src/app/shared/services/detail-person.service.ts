@@ -40,6 +40,7 @@ export class DetailPersonService {
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        console.log('Person detail',data);
         return PersonDescriptor.import(data);
       }
     ));
@@ -58,6 +59,7 @@ export class DetailPersonService {
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        console.log('Person credits',data);
         return CreditsPersonDescriptor.import(data);
       }
     ));
@@ -75,6 +77,7 @@ export class DetailPersonService {
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        console.log('Person tv credits',data);
         return CreditsTVPersonDescriptor.import(data);
       }
     ));
@@ -93,6 +96,7 @@ export class DetailPersonService {
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        console.log('Person Image',data);
         return ImagesPersonDescriptor.import(data);
       }
     ));
