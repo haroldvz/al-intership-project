@@ -7,7 +7,7 @@
  *
  */
 
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { ListMoviesComponent } from './list-movies/list-movies.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MovieImagesComponent } from './movie-images/movie-images.component';
@@ -19,6 +19,7 @@ import { SimilarMoviesComponent } from './similar-movies/similar-movies.componen
 import { MovieCastCrewCardComponent } from './movie-cast-crew-card/movie-cast-crew-card.component';
 import { SharedModule } from '../shared/shared.module';
 import { DetailMovieService } from '../shared/services/detail-movie.service';
+import { GlobalErrorHandlerService } from '../shared/services/global-error-handler.service';
 
 
 

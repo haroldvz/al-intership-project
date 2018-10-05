@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TdMediaService } from '@covalent/core';
@@ -19,9 +17,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
-    BrowserModule,
     CommonModule,
-    BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot([]),
     HttpClientModule,
@@ -41,11 +37,15 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   ],
   providers: [
     TdMediaService,
+    
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MainInterceptor,
       multi: true
-    }
+    },
+    /*{
+      provide: ErrorHandler, useClass: GlobalErrorHandlerService
+    },*/
   ],
   bootstrap: [AppComponent]
 })

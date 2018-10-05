@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GalleryModule } from '@ngx-gallery/core';
 import { LightboxModule } from '@ngx-gallery/lightbox';
@@ -31,6 +31,9 @@ import { HomeComponent } from './components/home/home.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { SafePipe } from './pipes/sanitizer.pipe';
 import { VideoCardComponent } from './components/video-card/video-card.component';
+import { GlobalErrorHandlerService } from './services/global-error-handler.service';
+import { ErrorComponent } from './components/error/error.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -49,10 +52,12 @@ import { VideoCardComponent } from './components/video-card/video-card.component
     BarRatingModule,
     NgbModule,
     SlideshowModule,
+    BrowserAnimationsModule,
     
   ],
   exports: [
     GallerySliderComponent,
+    BrowserAnimationsModule,
     GalleryModule,
     LightboxModule,
     FlexLayoutModule,
@@ -102,9 +107,11 @@ import { VideoCardComponent } from './components/video-card/video-card.component
     HomeComponent,
     MovieCardComponent,
     VideoCardComponent,
+    ErrorComponent,
   ],
   providers: [
-    SearchService
+    SearchService,
+    
   ]
 })
 export class SharedModule { }

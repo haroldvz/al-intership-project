@@ -27,6 +27,7 @@ const testRoutes: Routes = [
         path: 'movies/:category',
         component: ListMoviesComponent
     },
+    
 ];
 
 describe('List Movies Component', () => {
@@ -181,6 +182,8 @@ describe('List Movies Component', () => {
             expect(movie_service.getPopularMovies)
                 .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
+            expect(movie_service.getPopularMovies).toHaveBeenCalledWith(1);
+     
 
         });
 

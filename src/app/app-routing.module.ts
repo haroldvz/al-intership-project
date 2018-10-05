@@ -4,6 +4,7 @@ import { NotFoundComponent } from './shared/layout/not-found/not-found.component
 import { AboutComponent } from './shared/layout/about/about.component';
 import { SearchPageComponent } from './shared/components/search-page/search-page.component';
 import { HomeComponent } from './shared/components/home/home.component';
+import { ErrorComponent } from './shared/components/error/error.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'tv', loadChildren:'./tv-series/tv-series.module#TvSeriesModule'},
   {path:'search/:query', component:SearchPageComponent},
   {path:'about', component:AboutComponent},
+  {path:'error', component:ErrorComponent},
   {path:'404-not-found', component:NotFoundComponent},
   {path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];

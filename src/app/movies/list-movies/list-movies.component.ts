@@ -49,6 +49,7 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
   _total_pages: number;
   /**
    * Data  of list movies component
+   * This data represents the movies response (ResponseDescritor)
    */
   data: ResponseDescriptor = new ResponseDescriptor();
 
