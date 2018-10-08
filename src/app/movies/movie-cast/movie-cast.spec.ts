@@ -8,6 +8,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { SharedModule } from "../../shared/shared.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MovieService } from "../../shared/services/movie.service";
+import { configureTestSuite } from "../../../testing/configure-testbed";
 
 describe('Movies Cast component',()=>{
 
@@ -18,8 +19,9 @@ describe('Movies Cast component',()=>{
     let debugElement: DebugElement;
     let movie_cast_component: MovieCastComponent;
 
-    beforeEach(async(() => {
+    configureTestSuite();
 
+    beforeAll(done => (async () => {
         TestBed.configureTestingModule({
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
             declarations: [MovieCastComponent],
@@ -40,8 +42,29 @@ describe('Movies Cast component',()=>{
                     }
                 },*/
             ],
+        });
+
+        await TestBed.compileComponents();
+    })().then(done).catch(done.fail));
+
+    /*
+    beforeEach(async(() => {
+
+        TestBed.configureTestingModule({
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [MovieCastComponent],
+            imports: [
+                CommonModule,
+                RouterTestingModule.withRoutes([]),
+                SharedModule,
+                HttpClientTestingModule, BrowserAnimationsModule
+            ],
+           
+            providers: [
+                MovieService,
+            ],
         }).compileComponents();;
-    }));
+    }));*/
 
     beforeEach(() => {
         router = TestBed.get(Router);

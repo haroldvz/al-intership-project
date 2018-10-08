@@ -1,5 +1,6 @@
+
 import { ListMoviesComponent } from "./list-movies.component";
-import { async, TestBed, ComponentFixture, tick, fakeAsync } from "@angular/core/testing";
+import { async, TestBed, ComponentFixture, tick, fakeAsync, getTestBed } from "@angular/core/testing";
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, EventEmitter } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterTestingModule } from "@angular/router/testing";
@@ -16,6 +17,7 @@ import { movies } from "../../../testing/models/movies";
 import { By } from "@angular/platform-browser";
 import { MatSelectChange, MatSelect, MatTabChangeEvent, MatTab } from "@angular/material";
 import { IPageChangeEvent } from "@covalent/core";
+import { configureTestSuite } from "../../../testing/configure-testbed";
 
 
 const testRoutes: Routes = [
@@ -42,8 +44,7 @@ describe('List Movies Component', () => {
     let movies_component: ListMoviesComponent;
     let navigateSpy: any;
 
-    //let activateRoute = new ActivatedRouteStub({ category: 'popular', page: 1 });
-
+    /*
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
@@ -55,8 +56,6 @@ describe('List Movies Component', () => {
                 SharedModule,
                 HttpClientTestingModule, BrowserAnimationsModule
             ],
-            /*providers: [
-              { provide: MovieService, useValue: UserServiceMock }, { provide: SearchService, useValue: SearchServiceMock }],*/
             providers: [
                 MovieService,
                 {
@@ -64,14 +63,34 @@ describe('List Movies Component', () => {
                         params: of(param)
                     }
                 },
-                /*{
-                    provide: Router, useClass: class {
-                        navigate = navigateSpy;
-                    }
-                },*/
             ],
         }).compileComponents();;
-    }));
+    }));*/
+
+    configureTestSuite();
+
+    beforeAll(done => (async () => {
+        TestBed.configureTestingModule({
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [ListMoviesComponent],
+            imports: [
+                CommonModule,
+                RouterTestingModule.withRoutes([]),
+                SharedModule,
+                HttpClientTestingModule, BrowserAnimationsModule
+            ],
+            providers: [
+                MovieService,
+                {
+                    provide: ActivatedRoute, useValue: {
+                        params: of(param)
+                    }
+                },
+            ],
+        });
+
+        await TestBed.compileComponents();
+    })().then(done).catch(done.fail));
 
     beforeEach(() => {
         router = TestBed.get(Router);
@@ -83,6 +102,8 @@ describe('List Movies Component', () => {
         navigateSpy = spyOn(movies_component._router, 'navigate');
 
     });
+
+
 
     afterEach(() => {
         movies_component.ngOnDestroy();
@@ -115,6 +136,15 @@ describe('List Movies Component', () => {
         });
 
         describe('When ngOnInit is called', () => {
+             it('should set the category with the param value (top-rated) [value from providers in testbed config]', fakeAsync(() => {
+                movies_component.ngOnInit();
+                tick();
+                
+                expect(movies_component._actual_category).toBe('top-rated');
+                expect(movies_component._actual_page).toBe(1);
+
+            }));
+            
             it('should set default params (category: popular and page:1) if the category is invalid', async(() => {
                 const category = 'invalid-category';
                 const page = 1;
@@ -140,17 +170,7 @@ describe('List Movies Component', () => {
                 expect(movies_component._actual_category).toEqual(category);
                 expect(movies_component._actual_page).toEqual(page);
             }));
-            it('should set the category with the param value (top-rated) [value from providers in testbed config]', fakeAsync(() => {
-                movies_component.ngOnInit();
-                tick();
-                /*fixture.whenStable().then(() => {
-                    expect(movies_component._actual_category).toBe('top-rated');
-                    expect(movies_component._actual_page).toBe(1);
-                });*/
-                expect(movies_component._actual_category).toBe('top-rated');
-                expect(movies_component._actual_page).toBe(1);
-
-            }));
+           
 
             it('should call the functions', async(() => {
                 spyOn(movies_component, 'LoadingRegister');
