@@ -162,15 +162,8 @@ export class MovieDetailComponent implements OnInit {
   }
 
 
-  /**
-   *
-   *
-   * @param {number} item_number
-   * @memberof MovieDetailComponent
-   */
-  setItem(item_number: number): void {
-    this.selected_item = item_number;
-  }
+ 
+  
 
   /**
    *

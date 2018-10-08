@@ -1,7 +1,7 @@
 
 import { ListMoviesComponent } from "./list-movies.component";
-import { async, TestBed, ComponentFixture, tick, fakeAsync, getTestBed } from "@angular/core/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, EventEmitter } from "@angular/core";
+import { async, tick, fakeAsync } from "@angular/core/testing";
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterTestingModule } from "@angular/router/testing";
 import { MovieService } from "../../shared/services/movie.service";
@@ -11,15 +11,15 @@ import { SharedModule } from "../../shared/shared.module";
 import { HomeComponent } from "../../shared/components/home/home.component";
 import { Location } from '@angular/common'; //Fix error (Null provider for location)
 import { of } from "rxjs";
-import { ActivatedRouteStub } from "../../../testing/activated-route-stub";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { movies } from "../../../testing/models/movies";
 import { By } from "@angular/platform-browser";
 import { MatSelectChange, MatSelect, MatTabChangeEvent, MatTab } from "@angular/material";
 import { IPageChangeEvent } from "@covalent/core";
+import { getTestBed, TestBed, ComponentFixture } from "@angular/core/testing";
 import { configureTestSuite } from "../../../testing/configure-testbed";
 
-
+/*
 const testRoutes: Routes = [
     {
         path: 'home',
@@ -30,7 +30,7 @@ const testRoutes: Routes = [
         component: ListMoviesComponent
     },
     
-];
+];*/
 
 describe('List Movies Component', () => {
 
@@ -71,7 +71,7 @@ describe('List Movies Component', () => {
 
     beforeAll(done => (async () => {
         TestBed.configureTestingModule({
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
             declarations: [ListMoviesComponent],
             imports: [
                 CommonModule,
@@ -128,7 +128,7 @@ describe('List Movies Component', () => {
     });
 
 
-    
+
     describe('ngOnInit()', () => {
 
         beforeEach(() => {
@@ -136,15 +136,14 @@ describe('List Movies Component', () => {
         });
 
         describe('When ngOnInit is called', () => {
-             it('should set the category with the param value (top-rated) [value from providers in testbed config]', fakeAsync(() => {
+            it('should set the category with the param value (top-rated) [value from providers in testbed config]', fakeAsync(() => {
                 movies_component.ngOnInit();
                 tick();
-                
+
                 expect(movies_component._actual_category).toBe('top-rated');
                 expect(movies_component._actual_page).toBe(1);
 
             }));
-            
             it('should set default params (category: popular and page:1) if the category is invalid', async(() => {
                 const category = 'invalid-category';
                 const page = 1;
@@ -170,7 +169,7 @@ describe('List Movies Component', () => {
                 expect(movies_component._actual_category).toEqual(category);
                 expect(movies_component._actual_page).toEqual(page);
             }));
-           
+
 
             it('should call the functions', async(() => {
                 spyOn(movies_component, 'LoadingRegister');
@@ -203,7 +202,7 @@ describe('List Movies Component', () => {
                 .toHaveBeenCalledTimes(1);
             expect(movies_component.data).toEqual(movies);
             expect(movie_service.getPopularMovies).toHaveBeenCalledWith(1);
-     
+
 
         });
 
@@ -318,7 +317,7 @@ describe('List Movies Component', () => {
             let select: MatSelect;
             const selectDebug = fixture.debugElement.query(By.css('mat-select'));
             select = selectDebug.nativeElement;
-            
+
             const evt = new MatSelectChange(select, 'latest');
             //reset router spy
             navigateSpy.calls.reset();

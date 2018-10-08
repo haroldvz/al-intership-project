@@ -2,12 +2,15 @@ import { TestBed, async, ComponentFixture } from "@angular/core/testing";
 import { Router } from "@angular/router";
 import { MovieCastComponent } from "./movie-cast.component";
 import { HttpTestingController, HttpClientTestingModule } from "@angular/common/http/testing";
-import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterTestingModule } from "@angular/router/testing";
 import { SharedModule } from "../../shared/shared.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MovieService } from "../../shared/services/movie.service";
+import { ObservableMedia } from "@angular/flex-layout";
+import { TdMediaService } from "@covalent/core";
+
 import { configureTestSuite } from "../../../testing/configure-testbed";
 
 describe('Movies Cast component',()=>{
@@ -23,24 +26,16 @@ describe('Movies Cast component',()=>{
 
     beforeAll(done => (async () => {
         TestBed.configureTestingModule({
-            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
             declarations: [MovieCastComponent],
             imports: [
                 CommonModule,
                 RouterTestingModule.withRoutes([]),
-                SharedModule,
+                //SharedModule,
                 HttpClientTestingModule, BrowserAnimationsModule
             ],
-            /*providers: [
-              { provide: MovieService, useValue: UserServiceMock }, { provide: SearchService, useValue: SearchServiceMock }],*/
             providers: [
-                MovieService,
-               
-                /*{
-                    provide: Router, useClass: class {
-                        navigate = navigateSpy;
-                    }
-                },*/
+                MovieService,ObservableMedia,TdMediaService,
             ],
         });
 
