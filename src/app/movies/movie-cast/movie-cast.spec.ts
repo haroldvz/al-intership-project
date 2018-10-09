@@ -10,8 +10,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MovieService } from "../../shared/services/movie.service";
 import { ObservableMedia } from "@angular/flex-layout";
 import { TdMediaService } from "@covalent/core";
+import { shallow } from './../../../testing/enzyme';
+import { configureTestSuite } from "../../../testing/configure-testbed.spec";
 
-import { configureTestSuite } from "../../../testing/configure-testbed";
 
 describe('Movies Cast component',()=>{
 
@@ -81,11 +82,12 @@ describe('Movies Cast component',()=>{
 
 
 
-        it('should set internal attributes (grid) with the correct value',()=>{
+        it('should set internal attributes (grid) with the correct value',async(()=>{
 
-            
+            //movie_cast_component.ngAfterContentInit();
+            console.log(movie_cast_component.grid.cols);
 
-        });
+        }));
 
     });
 

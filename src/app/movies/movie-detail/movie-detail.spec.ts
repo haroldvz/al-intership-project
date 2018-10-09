@@ -15,6 +15,10 @@ import { MovieDescriptor } from "../../shared/types/movies/detail-movie.type";
 import { MovieService } from "../../shared/services/movie.service";
 import { movie_credits } from "../../../testing/models/movie_credits";
 
+
+//Test without configureTestSuit hack
+//Questions: How to test the tab change component with selectItem? (ngSwitch)
+
 describe('Movie Detail component', () => {
 
     let movie_service: MovieService;
@@ -118,6 +122,17 @@ describe('Movie Detail component', () => {
             expect(movie_service.getMovieCredits).toHaveBeenCalledWith(1);
 
             expect(movie_detail_component.loadingResolve).toHaveBeenCalledTimes(1);
+
+        })
+    });
+
+
+    describe('When setItem() is called', () => {
+
+        it('should set the selected_item variable', () => {
+           expect(movie_detail_component.selected_item).toEqual(1);
+           movie_detail_component.setItem(5);
+           expect(movie_detail_component.selected_item).toEqual(5);
 
         })
 

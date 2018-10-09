@@ -6,18 +6,17 @@ import { CommonModule } from "@angular/common";
 import { RouterTestingModule } from "@angular/router/testing";
 import { MovieService } from "../../shared/services/movie.service";
 import { HttpTestingController, HttpClientTestingModule } from "@angular/common/http/testing";
-import { Router, Routes, ActivatedRoute, Params } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { SharedModule } from "../../shared/shared.module";
-import { HomeComponent } from "../../shared/components/home/home.component";
 import { Location } from '@angular/common'; //Fix error (Null provider for location)
 import { of } from "rxjs";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { movies } from "../../../testing/models/movies";
 import { By } from "@angular/platform-browser";
-import { MatSelectChange, MatSelect, MatTabChangeEvent, MatTab } from "@angular/material";
+import { MatSelectChange, MatSelect } from "@angular/material";
 import { IPageChangeEvent } from "@covalent/core";
-import { getTestBed, TestBed, ComponentFixture } from "@angular/core/testing";
-import { configureTestSuite } from "../../../testing/configure-testbed";
+import { TestBed, ComponentFixture } from "@angular/core/testing";
+import { configureTestSuite } from "../../../testing/configure-testbed.spec";
 
 /*
 const testRoutes: Routes = [
