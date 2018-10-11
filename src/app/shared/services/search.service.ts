@@ -32,6 +32,7 @@ export class SearchService {
     let args = '&query=' + query + '&page=' + page;
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        console.log(data);
         return ResponseSearchDescriptor.import(data);
       }
     ));

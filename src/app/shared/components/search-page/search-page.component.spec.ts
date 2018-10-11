@@ -5,18 +5,20 @@ import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterTestingModule } from "@angular/router/testing";
 
-import { of } from "rxjs";
+import { of, Subject } from "rxjs";
 import { SearchPageComponent } from "./search-page.component";
 import { SharedCovalentModule } from "../../shared-covalent.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SearchService } from "../../services/search.service";
+import { search_result } from "../../../../testing/models/search";
+
 
 const testRoutes: Routes = [
     {//this route have to exists, if not, show error (ERROR: 'Unhandled Promise rejection:', 'Cannot match any routes. URL Segment:)
         path: 'search/:query',
         component: SearchPageComponent
     },
-    
+
 ];
 
 describe('Search Page Component', () => {
@@ -105,41 +107,98 @@ describe('Search Page Component', () => {
         //To be undefined
         expect(search_page_component.routerSubscribe).toBeUndefined();
         expect(search_page_component.query).toBeUndefined();
-        
-        
+
+
 
     });
+
+
 
     describe('When ngOnInit() is called', () => {
 
-        
+
 
         it('should set the _actual_page attribute correctly', () => {
-
+            spyOn(search_page_component, 'getResults').and.callThrough();
             search_page_component.ngOnInit();
             expect(search_page_component._actual_page).toEqual(param.page);
+            expect(search_page_component.query).toEqual(param.query);
+            expect(search_page_component.getResults).toHaveBeenCalledTimes(1);
 
         });
 
-        describe('When searchValueChages observable is subscribe',()=>{
-
-            it('should set the attributes correctly and navigate to correct url',fakeAsync(()=>{
-                spyOn(search_page_component,'updateResults').and.callThrough();
-                search_page_component.searchCtrl.setValue('brad');
-                
-                
-                tick();
-                search_page_component.ngOnInit();
-                search_page_component.searchValueChages = of(search_page_component.searchCtrl.value);
-              
-                expect(search_page_component._actual_page).toEqual(param.page);
-                expect(search_page_component.updateResults).toHaveBeenCalledTimes(1);
-                
-                discardPeriodicTasks();
-
-            }));
-
-        });
+        /* describe('When searchValueChages observable change',()=>{
+ 
+             it('should set the attributes correctly and navigate to correct url',()=>{
+                 //spyOn(search_page_component,'updateResults').and.callThrough();
+                 
+                 //search_page_component.searchCtrl.setValue('brad');
+                 
+                 
+                 
+                 //search_page_component.ngOnInit();
+                 //search_page_component.searchValueChages = of(search_page_component.searchCtrl.value);
+               
+                 //expect(search_page_component._actual_page).toEqual(param.page);
+                 //expect(search_page_component.updateResults).toHaveBeenCalledTimes(1);
+                 
+                 
+ 
+             });
+ 
+         });*/
     });
+
+
+
+    describe('When getResults() is called', () => {
+
+        let spy;
+       
+        beforeEach(() => {
+            spy = spyOn(search_service, 'multiSearch').and.returnValue(of(search_result));
+        });
+
+        afterEach(() => {
+            
+        });
+
+        it('should set the attributes correctly', () => {
+
+            search_page_component.getResults('bradpit');
+            expect(search_page_component.query_to_show).toEqual('bradpit');
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenCalledWith(1,'bradpit');
+
+        });
+
+    });
+
+
+    describe('When updateResults() is called', () => {
+
+        let spy;
+       
+        beforeEach(() => {
+            spy = spyOn(search_service, 'multiSearch').and.returnValue(of(search_result));
+        });
+
+        afterEach(() => {
+            
+        });
+
+        it('should set the attributes correctly ', () => {
+
+            search_page_component.searchCtrl.setValue('terminator');
+            search_page_component.updateResults();
+            expect(search_page_component.query_to_show).toEqual('terminator');
+            expect(search_page_component.query_to_show).toEqual('terminator');
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenCalledWith(1,'terminator');
+
+        });
+
+    });
+
 
 });

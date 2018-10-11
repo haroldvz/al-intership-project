@@ -145,6 +145,7 @@ export class SearchPageComponent implements OnInit {
     this.pagingSearchBar.navigateToPage(this._actual_page);
     this._search_service.multiSearch(this._actual_page, query).subscribe(
       (data) => {
+        console.log(data);
         this.data = data;
 
         this._total_results = data.total_results;
