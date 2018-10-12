@@ -9,6 +9,7 @@ import { CreditsPersonDescriptor } from '../types/person/credits-person.type';
 import { CreditsTVPersonDescriptor } from '../types/person/tv-series-person.type';
 import { ImagesMoviesDescriptor } from '../types/movies/images.type';
 import { ImagesPersonDescriptor } from '../types/person/images-person.type';
+import { Observable } from 'rxjs';
 
 
 
@@ -35,7 +36,7 @@ export class DetailPersonService {
    * @returns
    * @memberof DetailPersonService
    */
-  getPersonDetail(id_person: number) {
+  getPersonDetail(id_person: number):Observable<PersonDescriptor> {
     let url = this.url + id_person;
     let args = '';
     return this._api_service.get(url, args).pipe(map(

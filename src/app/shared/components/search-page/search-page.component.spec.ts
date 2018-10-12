@@ -13,6 +13,8 @@ import { SearchService } from "../../services/search.service";
 import { search_result } from "../../../../testing/models/search";
 
 
+//SEE IN COVERAGE WHY CHANGEOFPAGE IS TESTED BUT I DONT TEST HERE!!! LINE 225 COVERAGE
+
 const testRoutes: Routes = [
     {//this route have to exists, if not, show error (ERROR: 'Unhandled Promise rejection:', 'Cannot match any routes. URL Segment:)
         path: 'search/:query',
@@ -21,15 +23,21 @@ const testRoutes: Routes = [
 
 ];
 
+
+
 describe('Search Page Component', () => {
 
     let httpmock: HttpTestingController;
     let fixture: ComponentFixture<SearchPageComponent>;
-    let router: Router;
+    //let router: Router;
     let debugElement: DebugElement;
     let search_page_component: SearchPageComponent;
     let search_service: SearchService;
     let param = { page: 1, query: 'arnold' };
+
+    let router = {
+        navigate: jasmine.createSpy('navigate')
+    }
 
     //configureTestSuite();
 
@@ -74,6 +82,9 @@ describe('Search Page Component', () => {
                         params: of(param)
                     }
                 },
+                {
+                    provide: Router, useValue: router
+                },
             ],
         }).compileComponents();;
     }));
@@ -107,16 +118,11 @@ describe('Search Page Component', () => {
         //To be undefined
         expect(search_page_component.routerSubscribe).toBeUndefined();
         expect(search_page_component.query).toBeUndefined();
-
-
-
     });
 
 
 
     describe('When ngOnInit() is called', () => {
-
-
 
         it('should set the _actual_page attribute correctly', () => {
             spyOn(search_page_component, 'getResults').and.callThrough();
@@ -124,7 +130,6 @@ describe('Search Page Component', () => {
             expect(search_page_component._actual_page).toEqual(param.page);
             expect(search_page_component.query).toEqual(param.query);
             expect(search_page_component.getResults).toHaveBeenCalledTimes(1);
-
         });
 
         /* describe('When searchValueChages observable change',()=>{
@@ -154,22 +159,20 @@ describe('Search Page Component', () => {
     describe('When getResults() is called', () => {
 
         let spy;
-       
+
         beforeEach(() => {
             spy = spyOn(search_service, 'multiSearch').and.returnValue(of(search_result));
         });
 
         afterEach(() => {
-            
+
         });
 
         it('should set the attributes correctly', () => {
-
             search_page_component.getResults('bradpit');
             expect(search_page_component.query_to_show).toEqual('bradpit');
             expect(spy).toHaveBeenCalledTimes(1);
-            expect(spy).toHaveBeenCalledWith(1,'bradpit');
-
+            expect(spy).toHaveBeenCalledWith(1, 'bradpit');
         });
 
     });
@@ -178,25 +181,64 @@ describe('Search Page Component', () => {
     describe('When updateResults() is called', () => {
 
         let spy;
-       
+
         beforeEach(() => {
             spy = spyOn(search_service, 'multiSearch').and.returnValue(of(search_result));
         });
 
         afterEach(() => {
-            
+
         });
 
         it('should set the attributes correctly ', () => {
-
             search_page_component.searchCtrl.setValue('terminator');
             search_page_component.updateResults();
             expect(search_page_component.query_to_show).toEqual('terminator');
             expect(search_page_component.query_to_show).toEqual('terminator');
             expect(spy).toHaveBeenCalledTimes(1);
-            expect(spy).toHaveBeenCalledWith(1,'terminator');
-
+            expect(spy).toHaveBeenCalledWith(1, 'terminator');
         });
+
+    });
+
+
+    describe('When goToTarget() is called', () => {
+
+        it('should go to respective route depends of the media type (person)', () => {
+            let event = {
+                row: {
+                    id: 1,
+                    media_type: 'person'
+                }
+            }
+            search_page_component.goToTarget(event);
+            expect(router.navigate).toHaveBeenCalledWith(['/person/', 1]);
+        });
+
+
+        it('should go to respective route depends of the media type (movie)', () => {
+            let event = {
+                row: {
+                    id: 1,
+                    media_type: 'movie'
+                }
+            }
+            search_page_component.goToTarget(event);
+            expect(router.navigate).toHaveBeenCalledWith(['/movie/', 1]);
+        });
+
+
+        it('should go to respective route depends of the media type (tv)', () => {
+            let event = {
+                row: {
+                    id: 1,
+                    media_type: 'tv'
+                }
+            }
+            search_page_component.goToTarget(event);
+            expect(router.navigate).toHaveBeenCalledWith(['/tv-detail/', 1]);
+        });
+
 
     });
 
