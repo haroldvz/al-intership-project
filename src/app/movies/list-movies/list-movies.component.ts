@@ -7,28 +7,55 @@
  *
  */
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../shared/services/movie.service';
 import { ResponseDescriptor } from '../../shared/types/movies/response.type';
 import { TdMediaService, TdPagingBarComponent, IPageChangeEvent } from '@covalent/core';
 import { TdLoadingService } from '@covalent/core';
 
+/**
+ * Component
+ */
 @Component({
   selector: 'app-list-movies',
   templateUrl: './list-movies.component.html',
   styleUrls: ['./list-movies.component.scss']
 })
-export class ListMoviesComponent implements OnInit {
+export class ListMoviesComponent implements OnInit, OnDestroy {
+  
+  /**
+   * on destroy
+   */
+  ngOnDestroy(): void {
+    
+  }
 
-  routerSubscribe;
+  /**
+   * Total results of list movies component
+   */
   total_results: number;
+  /**
+   * Actual page of list movies component
+   */
   _actual_page: number;
+  /**
+   * Actual category of list movies component
+   */
   _actual_category: string;
+  /**
+   * Total pages of list movies component
+   */
   _total_pages: number;
+  /**
+   * Data  of list movies component
+   * This data represents the movies response (ResponseDescritor)
+   */
   data: ResponseDescriptor = new ResponseDescriptor();
-  animate;
 
+  /**
+   * View child of list movies component
+   */
   @ViewChild('pagingMoviesBar') pagingMoviesBar: TdPagingBarComponent;
 
   /**
@@ -41,11 +68,11 @@ export class ListMoviesComponent implements OnInit {
    * @memberof ListMoviesComponent
    */
   constructor(
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
     private _movie_service: MovieService,
     private _loadingService: TdLoadingService,
     public _mediaService: TdMediaService,
-    private _router: Router,
+    public _router: Router,//try change to private and test it
   ) { }
 
   /**
@@ -54,7 +81,7 @@ export class ListMoviesComponent implements OnInit {
    * @memberof ListMoviesComponent
    */
   ngOnInit() {
-    this.routerSubscribe = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.LoadingRegister();
       let category: string = params['category'];
       if (params['page']) {
@@ -68,7 +95,6 @@ export class ListMoviesComponent implements OnInit {
     });
   }
 
-
   /**
    * Get the movies list depends of this._actual_category (url param)
    * cases: popular, top-rated, now-playing, upcoming (latest breaks with api)
@@ -81,7 +107,6 @@ export class ListMoviesComponent implements OnInit {
         this._movie_service.getPopularMovies(this._actual_page).subscribe(
           (data) => {
             this.data = data;
-            console.log(data)
             this.total_results = data.total_results;
             this._total_pages = data.total_pages;
             this.loadingResolve();
@@ -130,7 +155,9 @@ export class ListMoviesComponent implements OnInit {
 
       } break;
       default: {
-        this._router.navigate(['/404-not-found/']);
+        this._actual_category = 'popular';
+        this._actual_page = 1;
+        this.getMovies();//calls again with new data
       } break;
     }
 
@@ -144,10 +171,9 @@ export class ListMoviesComponent implements OnInit {
    * @memberof ListMoviesComponent
    */
   changeFilter(event: any) {
-    //console.log(event.value);
     this._actual_category = event.value;
     this._actual_page = 1;//go to page 1 in the new list
-    this.pagingMoviesBar.navigateToPage(1);
+    this.pagingMoviesBar.navigateToPage(1);//this navigates to specific valid page
     this._router.navigate(['/movies/', this._actual_category, { 'page': this._actual_page }]);
   }
 
@@ -159,14 +185,8 @@ export class ListMoviesComponent implements OnInit {
    * @memberof ListMoviesComponent
    */
   changeOfPage(event: IPageChangeEvent): void {
-
     this._actual_page = event.page;
-    //console.log(this._actual_page);
-    window.scroll(0, 0);
-    document.body.scrollTop = 0;
-    document.querySelector('body').scrollTo(0, 0);
     this._router.navigate(['/movies/', this._actual_category, { 'page': this._actual_page }]);
-
   }
 
   /**
@@ -175,7 +195,7 @@ export class ListMoviesComponent implements OnInit {
   * @memberof ListMoviesComponent
   */
   LoadingRegister(): void {
-    this._loadingService.register('movie-detail');
+    this._loadingService.register('list-movies');
   }
 
   /**
@@ -184,6 +204,6 @@ export class ListMoviesComponent implements OnInit {
    * @memberof ListMoviesComponent
    */
   loadingResolve(): void {
-    this._loadingService.resolve('movie-detail');
+    this._loadingService.resolve('list-movies');
   }
 }

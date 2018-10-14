@@ -15,6 +15,7 @@ import { TdLoadingService, TdMediaService } from '@covalent/core';
 import { environment } from './../../../environments/environment';
 import { MovieService } from '../../shared/services/movie.service';
 import { CreditsDescriptor, CrewDescriptor } from '../../shared/types/movies/credits.type';
+import { Helpers } from '../../shared/utils/helpers';
 
 
 
@@ -23,13 +24,31 @@ import { CreditsDescriptor, CrewDescriptor } from '../../shared/types/movies/cre
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss']
 })
-export class MovieDetailComponent implements OnInit {
+export class MovieDetailComponent extends Helpers implements OnInit {
 
+  /**
+   * Base img url backdrop path of movie detail component
+   */
   base_img_url_backdrop_path: string = environment.api_image_url + environment.api_image_backdrop_size;
+  /**
+   * Router subscribe of movie detail component
+   */
   routerSubscribe;
+  /**
+   * Data  of movie detail component
+   */
   data: MovieDescriptor = new MovieDescriptor();
+  /**
+   * Data credits of movie detail component
+   */
   data_credits: CreditsDescriptor = new CreditsDescriptor();
+  /**
+   * Data crew of movie detail component
+   */
   data_crew: CrewDescriptor[];
+  /**
+   * Genres  of movie detail component
+   */
   genres;
 
   /**
@@ -70,7 +89,11 @@ export class MovieDetailComponent implements OnInit {
     }
   ];
 
-  //use ngClass
+  //use ngStyle
+  /**
+   * My styles of movie detail component
+   * For the background random color
+   */
   myStyles = {
     'height': '100%',
     'z-index': '2',
@@ -78,7 +101,16 @@ export class MovieDetailComponent implements OnInit {
     'padding-right': ' 4%',
     'background': ' radial-gradient(ellipse at 34% 60%, rgba(' + this.getRandomInt(0, 125) + ', 30, 28, 0.95) 0%, rgba(50, 43, 25, 0.90) 100%)'
   }
+ 
+  //use ngClass
+  /**
+   * Detail media query class of movie detail component
+   */
+  detail_media_query_class = {'poster-image':true,'push-lg': this._mediaService.query('lg'), 'push-right-none': this._mediaService.query('lg')}
 
+  /**
+   * Selected item of movie detail component
+   */
   selected_item: number = 1;
 
 
@@ -92,12 +124,13 @@ export class MovieDetailComponent implements OnInit {
    * @memberof MovieDetailComponent
    */
   constructor(
+    
     private _movie_detail_service: DetailMovieService,
     private _movie_service: MovieService,
     private route: ActivatedRoute,
     private _loadingService: TdLoadingService,
     public _mediaService: TdMediaService,
-  ) { }
+  ) { super();}
 
   /**
    *
@@ -118,6 +151,7 @@ export class MovieDetailComponent implements OnInit {
           //this.genres = data.genres.map((element) => { return element.name }).join(', ');
           this.genres = data.genres;
           this.loadingResolve();
+          
           //this.movies.push(data.results);
         }
       );
@@ -171,6 +205,7 @@ export class MovieDetailComponent implements OnInit {
   setItem(item_number: number): void {
     this.selected_item = item_number;
   }
+
 
   /**
    *

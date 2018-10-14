@@ -20,8 +20,7 @@ export class DetailMovieService {
    * @param {HttpClient} _http
    * @memberof DetailMovieService
    */
-  constructor(private _http: HttpClient,
-    private _api_service: ApiService) { }
+  constructor(private _api_service: ApiService) { }
 
 
 
@@ -37,6 +36,7 @@ export class DetailMovieService {
     let args = '&append_to_response=videos,reviews';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        //console.log('Movie detail',data);
         return MovieDescriptor.import(data);
       }
     ));
@@ -74,6 +74,7 @@ export class DetailMovieService {
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        console.log('movie images',data);
         return ImagesMoviesDescriptor.import(data);
       }
     ));

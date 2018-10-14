@@ -5,6 +5,7 @@ import { environment } from './../../../environments/environment';
 import { ResponseDescriptor } from './../types/movies/response.type';
 import { ApiService } from './api.service';
 import { CreditsDescriptor } from '../types/movies/credits.type';
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -12,6 +13,8 @@ import { CreditsDescriptor } from '../types/movies/credits.type';
 export class MovieService {
 
   url = environment.api_url + '/movie';
+
+  test_s = new BehaviorSubject<string>('Default error message');
 
   /**
    *Creates an instance of MovieService.
@@ -29,6 +32,7 @@ export class MovieService {
   getTopRatedMovies(page: number) {
     let url = this.url + '/top_rated';
     let args = '&page=' + page;
+    this.test_s.next('TOPRATED');
     return this._api_service.get(url, args).pipe(map(
       (data) => {
         return ResponseDescriptor.import(data);
@@ -65,6 +69,7 @@ export class MovieService {
   getNowPlayingMovies(page: number) {
     let url = this.url + '/now_playing';
     let args = '&page=' + page;
+    this.test_s.next('NOWPLAYING');
     return this._api_service.get(url, args).pipe(map(
       (data) => {
         return ResponseDescriptor.import(data);

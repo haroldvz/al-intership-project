@@ -16,10 +16,20 @@ import { startWith, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 export class SearchPageComponent implements OnInit {
 
   @Input() public query_data;
+
+  /**
+   * Data  of search page component
+   */
   data: ResponseSearchDescriptor = new ResponseSearchDescriptor();
 
+  /**
+   * View child of search page component
+   */
   @ViewChild('pagingSearchBar') pagingSearchBar: TdPagingBarComponent;
 
+  /**
+   * Config width columns of search page component
+   */
   configWidthColumns: ITdDataTableColumn[] = [
     { name: 'name', label: 'name', width: { min: 300, max: 450 } },
     { name: 'date', label: 'date', width: 150 },
@@ -27,18 +37,52 @@ export class SearchPageComponent implements OnInit {
     { name: 'img', label: '', width: 100 },
   ];
 
-  query_input;
+  /**
+   * Query of search page component
+   */
+  query:string;
+  /**
+   * Router subscribe of search page component
+   */
   routerSubscribe;
+  /**
+   * Search ctrl of search page component
+   */
   searchCtrl: FormControl;
+  /**
+   * Search value chages of search page component
+   */
   searchValueChages: Observable<string>;
-  basicData: any[] = []
-  query_to_show: string;
+  /**
+   * Basic data of search page component
+   */
+  basicData: any[] = [];
+  /**
+   * Query to show of search page component
+   */
+  query_to_show: string = 'Search query';
 
 
-  _total_results: number;
-  _actual_page: number;
-  _total_pages: number;
+  /**
+   * Total results of search page component
+   */
+  _total_results: number = 0;
+  /**
+   * Actual page of search page component
+   */
+  _actual_page: number = 1;
+  /**
+   * Total pages of search page component
+   */
+  _total_pages: number = 0;
 
+
+  /**
+   * Creates an instance of search page component.
+   * @param _search_service 
+   * @param route 
+   * @param _router 
+   */
   constructor(private _search_service: SearchService,
     private route: ActivatedRoute,
     private _router: Router) {
@@ -56,41 +100,36 @@ export class SearchPageComponent implements OnInit {
    * @memberof SearchPageComponent
    */
   ngOnInit() {
+
+
     if (this.searchCtrl.value == null) {
       this.routerSubscribe = this.route.params.subscribe(params => {
         //this.LoadingRegister();
-
         if (params['page']) {
           let page: number = +params['page'];
           this._actual_page = page;
-
-        } else {
-          this._actual_page = 1;//default value
-
-        }
-
+        } 
 
         let query: string = params['query'];
-        this.getResults(query);
+        this.query = query;
+        this.getResults(this.query);
 
       });
 
     }
 
+    //--
     this.searchValueChages.subscribe(
       () => {
         this.pagingSearchBar.navigateToPage(1);
         this._actual_page = 1;
         this.updateResults();
-        this._router.navigate(['/search/', this.query_to_show, { 'page': this._actual_page }]);
-
+        this._router.navigate(['/search/', this.query, { 'page': this._actual_page }]);
       }
     );
-
-
+    //--
 
   }
-
 
 
   /**
@@ -102,9 +141,11 @@ export class SearchPageComponent implements OnInit {
   getResults(query: string) {
 
     this.query_to_show = query;
+    this.query = query;
     this.pagingSearchBar.navigateToPage(this._actual_page);
     this._search_service.multiSearch(this._actual_page, query).subscribe(
       (data) => {
+        console.log(data);
         this.data = data;
 
         this._total_results = data.total_results;
@@ -146,6 +187,7 @@ export class SearchPageComponent implements OnInit {
 
     if (this.searchCtrl.value != "" && this.searchCtrl.value != null) {
       this.query_to_show = this.searchCtrl.value;
+      this.query = this.searchCtrl.value;
       this._search_service.multiSearch(this._actual_page, this.searchCtrl.value).subscribe(
         (data) => {
           this.data = data;

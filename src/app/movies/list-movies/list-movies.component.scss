@@ -1,16 +1,18 @@
-.container-movies {
-    padding: 4.1%;
-}
-
-.category {
-    .title-categories {
-        color: white;
-        font-weight: bold;
+.app-list-movies{
+    .container-movies {
+        padding: 4.1%;
     }
-    .container-title-categories {
-        margin-top: 7%;
-    }
-    .category-selector {
-        margin-top: 1%;
+    
+    .category {
+        .title-categories {
+            color: white;
+            font-weight: bold;
+        }
+        .container-title-categories {
+            margin-top: 7%;
+        }
+        .category-selector {
+            margin-top: 1%;
+        }
     }
 }

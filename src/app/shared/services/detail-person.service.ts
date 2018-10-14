@@ -9,6 +9,7 @@ import { CreditsPersonDescriptor } from '../types/person/credits-person.type';
 import { CreditsTVPersonDescriptor } from '../types/person/tv-series-person.type';
 import { ImagesMoviesDescriptor } from '../types/movies/images.type';
 import { ImagesPersonDescriptor } from '../types/person/images-person.type';
+import { Observable } from 'rxjs';
 
 
 
@@ -35,11 +36,12 @@ export class DetailPersonService {
    * @returns
    * @memberof DetailPersonService
    */
-  getPersonDetail(id_person: number) {
+  getPersonDetail(id_person: number):Observable<PersonDescriptor> {
     let url = this.url + id_person;
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        console.log('Person detail',data);
         return PersonDescriptor.import(data);
       }
     ));
@@ -58,6 +60,7 @@ export class DetailPersonService {
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        console.log('Person credits',data);
         return CreditsPersonDescriptor.import(data);
       }
     ));
@@ -75,6 +78,7 @@ export class DetailPersonService {
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        console.log('Person tv credits',data);
         return CreditsTVPersonDescriptor.import(data);
       }
     ));
@@ -93,6 +97,7 @@ export class DetailPersonService {
     let args = '';
     return this._api_service.get(url, args).pipe(map(
       (data) => {
+        console.log('Person Image',data);
         return ImagesPersonDescriptor.import(data);
       }
     ));

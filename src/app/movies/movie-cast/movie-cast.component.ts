@@ -5,7 +5,9 @@ import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { TdMediaService } from '@covalent/core';
 
-
+/**
+ * Component MovieCastComponent
+ */
 @Component({
   selector: 'app-movie-cast',
   templateUrl: './movie-cast.component.html',
@@ -19,7 +21,7 @@ export class MovieCastComponent implements OnInit, AfterContentInit {
    *
    * @memberof MovieCastComponent
    */
-  gridByBreakpoint = {
+   gridByBreakpoint = {
     xl: 8,
     lg: 5,
     md: 4,
@@ -27,8 +29,10 @@ export class MovieCastComponent implements OnInit, AfterContentInit {
     xs: 1
   }
 
-
-  @Input() public data: CastDescriptor = new CastDescriptor();
+ /**
+  * Input  of movie cast component
+  */
+ @Input() public data: CastDescriptor = new CastDescriptor();
 
   @ViewChild('grid') grid: MatGridList;
 
@@ -43,6 +47,9 @@ export class MovieCastComponent implements OnInit, AfterContentInit {
     public breakpointObserver: BreakpointObserver,
     public _mediaService: TdMediaService, ) { }
 
+  /**
+   * on init
+   */
   ngOnInit() {
   }
 

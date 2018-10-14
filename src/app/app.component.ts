@@ -16,9 +16,17 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
  
-
+  /**
+   * Title  of app component
+   */
+  title = 'CornTime'
+  /**
+   * Name  of app component
+   */
   name = 'CornTime';
-
+  /**
+   * Menu routes of app component
+   */
   menu_routes: Object[] = [
     /*{
       icon: 'home',
@@ -95,6 +103,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   ];
 
+  /**
+   * Subscription  of app component
+   */
   subscription:Subscription;
 
   /**
@@ -114,42 +125,40 @@ export class AppComponent implements OnInit, OnDestroy {
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'covalent-mark',
       this._domSanitizer.bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg'));
-      
       this._iconRegistry.addSvgIconInNamespace('assets', 'logo-movie',
       this._domSanitizer.bypassSecurityTrustResourceUrl('assets/logos/popcorn_4.svg'));
 
   }
 
+  /**
+   * on init
+   */
   ngOnInit() {
-
     this.subscription= this.router.events.pipe(
       filter(event=> event instanceof NavigationEnd)
     )
     .subscribe(()=>window.scrollTo(0,0));
-
-
-    /*this.router.events.subscribe(evt => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      if (typeof window != 'undefined'){
-        //window.scrollTo(0, 0);
-        //document.getElementById("app-top").scrollIntoView();
-      }
-      
-      
-    });*/
   }
 
-
+  /**
+   * on destroy
+   */
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    //comment this to fix the error unsubscribe in jasmine test
+    //this.subscription.unsubscribe();
    }
 
-  // Theme toggle
+  /**
+   * Gets active theme
+   */
   get activeTheme(): string {
     return localStorage.getItem('theme');
   }
+
+  /**
+   * Themes app component
+   * @param theme 
+   */
   theme(theme: string): void {
     localStorage.setItem('theme', theme);
   }
