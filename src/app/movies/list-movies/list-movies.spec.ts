@@ -321,7 +321,8 @@ describe('List Movies Component', () => {
             //reset router spy
             navigateSpy.calls.reset();
             //call the function
-            movies_component.changeFilter(evt);
+            movies_component.changeFilter(evt,movies_component.pagingMoviesBar,movies_component._router,'/movies/');
+            //movies_component.changeFilter(evt);
 
             //---Expects----
 

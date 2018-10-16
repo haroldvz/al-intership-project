@@ -13,6 +13,7 @@ import { MovieService } from '../../shared/services/movie.service';
 import { ResponseDescriptor } from '../../shared/types/movies/response.type';
 import { TdMediaService, TdPagingBarComponent, IPageChangeEvent } from '@covalent/core';
 import { TdLoadingService } from '@covalent/core';
+import { Helpers } from '../../shared/utils/helpers';
 
 /**
  * Component
@@ -22,7 +23,7 @@ import { TdLoadingService } from '@covalent/core';
   templateUrl: './list-movies.component.html',
   styleUrls: ['./list-movies.component.scss']
 })
-export class ListMoviesComponent implements OnInit, OnDestroy {
+export class ListMoviesComponent extends Helpers implements OnInit, OnDestroy {
   
   /**
    * on destroy
@@ -73,7 +74,7 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
     private _loadingService: TdLoadingService,
     public _mediaService: TdMediaService,
     public _router: Router,//try change to private and test it
-  ) { }
+  ) { super(); }
 
   /**
    * 
@@ -94,6 +95,29 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
       this.getMovies();
     });
   }
+
+  get_actual_category():string{
+    return this._actual_category;
+  }
+  set_actual_category(value:string):void{
+    this._actual_category = value;
+  }
+  get_actual_page():number{
+    return this._actual_page;
+  }
+  set_actual_page(value:number):void{
+    this._actual_page = value;
+  }
+  get_paging_bar():TdPagingBarComponent{
+    return this.pagingMoviesBar;
+  }
+  set_paging_bar(value:TdPagingBarComponent):void{
+    this.pagingMoviesBar = value;
+  }
+  get_router():Router{
+    return this._router;
+  }
+
 
   /**
    * Get the movies list depends of this._actual_category (url param)
@@ -170,12 +194,12 @@ export class ListMoviesComponent implements OnInit, OnDestroy {
    * @param {*} event
    * @memberof ListMoviesComponent
    */
-  changeFilter(event: any) {
+  /*changeFilter(event: any) {
     this._actual_category = event.value;
     this._actual_page = 1;//go to page 1 in the new list
     this.pagingMoviesBar.navigateToPage(1);//this navigates to specific valid page
     this._router.navigate(['/movies/', this._actual_category, { 'page': this._actual_page }]);
-  }
+  }*/
 
 
   /**
