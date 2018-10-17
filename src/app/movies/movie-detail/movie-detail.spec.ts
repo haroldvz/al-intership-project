@@ -72,7 +72,7 @@ describe('Movie Detail component', () => {
                     }
                 },
             ],
-        }).compileComponents();;
+        }).compileComponents();
     }));
 
     beforeEach(() => {

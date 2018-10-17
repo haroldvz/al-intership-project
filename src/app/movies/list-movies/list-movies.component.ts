@@ -57,7 +57,7 @@ export class ListMoviesComponent extends Helpers implements OnInit, OnDestroy {
   /**
    * View child of list movies component
    */
-  @ViewChild('pagingMoviesBar') pagingMoviesBar: TdPagingBarComponent;
+  @ViewChild('pagingMoviesBar') _pagingMoviesBar: TdPagingBarComponent;
 
   /**
    *Creates an instance of ListMoviesComponent.
@@ -73,7 +73,7 @@ export class ListMoviesComponent extends Helpers implements OnInit, OnDestroy {
     private _movie_service: MovieService,
     private _loadingService: TdLoadingService,
     public _mediaService: TdMediaService,
-    public _router: Router,//try change to private and test it
+    private _router: Router,//try change to private and test it
   ) { super(); }
 
   /**
@@ -96,25 +96,17 @@ export class ListMoviesComponent extends Helpers implements OnInit, OnDestroy {
     });
   }
 
-  get_actual_category():string{
-    return this._actual_category;
+  /**
+   * Gets _pagingMoviesBar
+   */
+  get pagingMoviesBar():TdPagingBarComponent{
+    return this._pagingMoviesBar;
   }
-  set_actual_category(value:string):void{
-    this._actual_category = value;
-  }
-  get_actual_page():number{
-    return this._actual_page;
-  }
-  set_actual_page(value:number):void{
-    this._actual_page = value;
-  }
-  get_paging_bar():TdPagingBarComponent{
-    return this.pagingMoviesBar;
-  }
-  set_paging_bar(value:TdPagingBarComponent):void{
-    this.pagingMoviesBar = value;
-  }
-  get_router():Router{
+  
+  /**
+   * Gets _router
+   */
+  get router():Router{
     return this._router;
   }
 

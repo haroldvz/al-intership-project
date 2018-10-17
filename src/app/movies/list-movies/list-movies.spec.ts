@@ -66,6 +66,7 @@ describe('List Movies Component', () => {
         }).compileComponents();;
     }));*/
 
+    //Test Suite for performance
     configureTestSuite();
 
     beforeAll(done => (async () => {
@@ -98,7 +99,7 @@ describe('List Movies Component', () => {
         debugElement = fixture.debugElement;
         movies_component = fixture.componentInstance;
         movie_service = TestBed.get(MovieService);
-        navigateSpy = spyOn(movies_component._router, 'navigate');
+        navigateSpy = spyOn(movies_component.router, 'navigate');
 
     });
 
@@ -321,9 +322,8 @@ describe('List Movies Component', () => {
             //reset router spy
             navigateSpy.calls.reset();
             //call the function
-            movies_component.changeFilter(evt,movies_component.pagingMoviesBar,movies_component._router,'/movies/');
+            movies_component.changeFilter(evt,movies_component.pagingMoviesBar,movies_component.router,'/movies/');
             //movies_component.changeFilter(evt);
-
             //---Expects----
 
             //this no because the cangeFilter function changed
@@ -374,4 +374,23 @@ describe('List Movies Component', () => {
         });
 
     });
+
+
+    //Fix the logic of this when the attribute will be private
+    describe('When get pagingMoviesBar is called',()=>{
+        it('should return the _pagingMoviesBar component attribute',()=>{
+         const result = movies_component.pagingMoviesBar;
+         expect(result).toBe(movies_component._pagingMoviesBar);
+        });
+    });
+
+    //Fix the logic of this when the attribute will be private
+    /*describe('When get router is called',()=>{
+        it('should return _router component attribute',()=>{
+            const result = movies_component.router;
+            expect(result).toBe(movies_component._router);
+        });
+    });*/
+
+
 });
