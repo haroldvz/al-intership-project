@@ -9,6 +9,7 @@ import { SharedCovalentModule } from "../../shared/shared-covalent.module";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { of } from "rxjs";
+import { person_images } from "../../../testing/models/person-images";
 
 
 describe('Person Images Component',()=>{
@@ -58,7 +59,11 @@ describe('Person Images Component',()=>{
 
         it('should set the data attribute correctly',()=>{
 
+            spyOn(person_detail_service,'getPersonImages').and.returnValue(of(person_images));
             person_images_component.ngOnInit();
+            expect(person_images_component.data).toEqual(person_images);
+            expect(person_detail_service.getPersonImages).toHaveBeenCalledTimes(1);
+            expect(person_detail_service.getPersonImages).toHaveBeenCalledWith(1);
 
         });
 

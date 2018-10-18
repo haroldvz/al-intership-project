@@ -8,7 +8,7 @@
             <p class="title-categories push-bottom-xs push-top-sm">Filter: </p>
           </div>
           <mat-form-field class="category-selector pad-left-md pad-top-xs">
-            <mat-select [(value)]="_actual_category" (selectionChange)="changeFilter($event,pagingMoviesBar(),router(),'/movies/')">
+            <mat-select [(value)]="_actual_category" (selectionChange)="changeFilter($event,pagingMoviesBar,router,'/movies/')">
               <mat-option value="popular">Popular</mat-option>
               <mat-option value="top-rated">Top rated</mat-option>
               <mat-option value="now-playing">Now playing</mat-option>
